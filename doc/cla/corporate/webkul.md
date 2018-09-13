@@ -14,3 +14,4 @@ List of contributors:
 
 Webkul support@webkul.com https://github.com/webkul
 Mohit Chandra mohit@webkul.com https://github.com/mohitg1213
+Manish Bisht manish.bishtck91@webkul.com https://github.com/manishbisht94
