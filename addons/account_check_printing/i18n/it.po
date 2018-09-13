@@ -1,39 +1,36 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * account_check_printing
-#
+# 
 # Translators:
-# Francesco Arillotta <frarillotta@gmail.com>, 2016
-# Riccardo Di Maio <riccardodimaio11@gmail.com>, 2015
+# Martin Trigaux, 2017
+# Paolo Valier, 2018
+# Davide Corio <enlightx@gmail.com>, 2018
+# Giacomo Grasso <giacomo.grasso.82@gmail.com>, 2018
+# Francesco Arillotta <frarillotta@gmail.com>, 2018
+# Léonie Bouchat <lbo@odoo.com>, 2018
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo 9.0\n"
+"Project-Id-Version: Odoo Server 10.saas~18\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-18 14:07+0000\n"
-"PO-Revision-Date: 2016-06-21 10:11+0000\n"
-"Last-Translator: Francesco Arillotta <frarillotta@gmail.com>\n"
-"Language-Team: Italian (http://www.transifex.com/odoo/odoo-9/language/it/)\n"
-"Language: it\n"
+"POT-Creation-Date: 2017-09-20 09:53+0000\n"
+"PO-Revision-Date: 2017-09-20 09:53+0000\n"
+"Last-Translator: Léonie Bouchat <lbo@odoo.com>, 2018\n"
+"Language-Team: Italian (https://www.transifex.com/odoo/teams/41243/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
+"Language: it\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: account_check_printing
-#: code:addons/account_check_printing/account_journal.py:56
+#: code:addons/account_check_printing/models/account_journal.py:58
 #, python-format
 msgid " : Check Number Sequence"
 msgstr ": Controlla la sequenza numerica"
 
 #. module: account_check_printing
-#: code:addons/account_check_printing/account_payment.py:35
-#: code:addons/account_check_printing/account_payment.py:72
-#, python-format
-msgid " and %s/100"
-msgstr "e %s/100"
-
-#. module: account_check_printing
-#: code:addons/account_check_printing/account_payment.py:81
+#: code:addons/account_check_printing/models/account_payment.py:69
 #, python-format
 msgid "A check memo cannot exceed 60 characters."
 msgstr "Le note di assegno non possono superare i 60 caratteri."
@@ -53,22 +50,22 @@ msgstr "Annulla"
 #: model:ir.model.fields,field_description:account_check_printing.field_account_payment_check_number
 #: model:ir.model.fields,field_description:account_check_printing.field_account_register_payments_check_number
 msgid "Check Number"
-msgstr "Numero di assegno"
+msgstr "Numero Assegno"
 
 #. module: account_check_printing
 #: model:ir.ui.view,arch_db:account_check_printing.view_account_journal_form_inherited
 msgid "Check Printing"
-msgstr ""
+msgstr "Stampa Assegno"
+
+#. module: account_check_printing
+#: model:ir.model.fields,field_description:account_check_printing.field_account_journal_check_printing_payment_method_selected
+msgid "Check Printing Payment Method Selected"
+msgstr "Metodo di pagamento di stampa degli assegni selezionato"
 
 #. module: account_check_printing
 #: model:ir.model.fields,field_description:account_check_printing.field_account_journal_check_sequence_id
 msgid "Check Sequence"
-msgstr ""
-
-#. module: account_check_printing
-#: model:ir.model.fields,field_description:account_check_printing.field_account_journal_check_printing_payment_method_selected
-msgid "Check printing payment method selected"
-msgstr ""
+msgstr "Sequenza Assegno"
 
 #. module: account_check_printing
 #: model:ir.model.fields,help:account_check_printing.field_account_journal_check_manual_sequencing
@@ -76,11 +73,17 @@ msgstr ""
 #: model:ir.model.fields,help:account_check_printing.field_account_register_payments_check_manual_sequencing
 msgid "Check this option if your pre-printed checks are not numbered."
 msgstr ""
+"Seleziona questa opzione se i tuoi assegni prestampati non sono numerati."
 
 #. module: account_check_printing
 #: model:ir.ui.view,arch_db:account_check_printing.account_journal_dashboard_kanban_view_inherited
 msgid "Check to print"
 msgstr "Assegno da stampare"
+
+#. module: account_check_printing
+#: model:account.payment.method,name:account_check_printing.account_payment_method_check
+msgid "Checks"
+msgstr "Assegni"
 
 #. module: account_check_printing
 #: model:ir.ui.view,arch_db:account_check_printing.view_payment_check_printing_search
@@ -90,18 +93,18 @@ msgstr "Assegni da stampare"
 #. module: account_check_printing
 #: model:ir.model.fields,help:account_check_printing.field_account_journal_check_sequence_id
 msgid "Checks numbering sequence."
-msgstr ""
+msgstr "Sequenza di numerazione degli assegni. "
 
 #. module: account_check_printing
-#: code:addons/account_check_printing/account_journal_dashboard.py:23
+#: code:addons/account_check_printing/models/account_journal.py:97
 #, python-format
 msgid "Checks to Print"
-msgstr ""
+msgstr "Assegni da Stampare"
 
 #. module: account_check_printing
 #: model:ir.ui.view,arch_db:account_check_printing.account_journal_dashboard_kanban_view_inherited
 msgid "Checks to print"
-msgstr ""
+msgstr "Assegni da stampare"
 
 #. module: account_check_printing
 #: model:ir.model.fields,field_description:account_check_printing.field_print_prenumbered_checks_create_uid
@@ -124,11 +127,11 @@ msgid "ID"
 msgstr "ID"
 
 #. module: account_check_printing
-#: code:addons/account_check_printing/account_payment.py:101
+#: code:addons/account_check_printing/models/account_payment.py:89
 #, python-format
 msgid ""
-"In order to print multiple checks at once, they must belong to the same bank "
-"journal."
+"In order to print multiple checks at once, they must belong to the same bank"
+" journal."
 msgstr ""
 "Per poter stampare più assegni in una volta è necessario che appartengano "
 "allo stesso registro bancario."
@@ -136,7 +139,7 @@ msgstr ""
 #. module: account_check_printing
 #: model:ir.model,name:account_check_printing.model_account_journal
 msgid "Journal"
-msgstr "Giornale"
+msgstr "Sezionale"
 
 #. module: account_check_printing
 #: model:ir.model.fields,field_description:account_check_printing.field_print_prenumbered_checks___last_update
@@ -158,7 +161,12 @@ msgstr "Ultima modifica il"
 #: model:ir.model.fields,field_description:account_check_printing.field_account_payment_check_manual_sequencing
 #: model:ir.model.fields,field_description:account_check_printing.field_account_register_payments_check_manual_sequencing
 msgid "Manual Numbering"
-msgstr ""
+msgstr "Numerazione Manuale"
+
+#. module: account_check_printing
+#: model:ir.ui.view,arch_db:account_check_printing.view_account_bank_journal_form_inherited_check_printing
+msgid "Manual Numbering of check"
+msgstr "Numerazione Manuale degli assegni"
 
 #. module: account_check_printing
 #: model:ir.model.fields,field_description:account_check_printing.field_account_journal_check_next_number
@@ -169,10 +177,13 @@ msgstr "Prossimo numero di assegno"
 #. module: account_check_printing
 #: model:ir.model.fields,help:account_check_printing.field_account_register_payments_check_number
 msgid ""
-"Number of the check corresponding to this payment. If your pre-printed check "
-"are not already numbered, you can manage the numbering in the journal "
+"Number of the check corresponding to this payment. If your pre-printed check"
+" are not already numbered, you can manage the numbering in the journal "
 "configuration page."
 msgstr ""
+"Numero del assegno corrispondente a tale pagamento. Se il tuo assegno "
+"prestampato non è già numerato, puoi gestire la numerazione nella pagina di "
+"configurazione del sezionale. "
 
 #. module: account_check_printing
 #: model:ir.model,name:account_check_printing.model_account_payment
@@ -180,19 +191,23 @@ msgid "Payments"
 msgstr "Pagamenti"
 
 #. module: account_check_printing
-#: code:addons/account_check_printing/account_payment.py:98
+#: code:addons/account_check_printing/models/account_payment.py:86
 #, python-format
 msgid ""
 "Payments to print as a checks must have 'Check' selected as payment method "
 "and not have already been reconciled"
 msgstr ""
+"I pagamenti da stampare come assegni devono avere il metodo di pagamento "
+"\"Assegno\" selezionato e non devono già essere riconciliati"
 
 #. module: account_check_printing
 #: model:ir.ui.view,arch_db:account_check_printing.print_pre_numbered_checks_view
 msgid ""
-"Please enter the number of the first pre-printed check that you are about to "
-"print on."
+"Please enter the number of the first pre-printed check that you are about to"
+" print on."
 msgstr ""
+"Inserisci il numero del primo assegno prestampato sul quale stai per "
+"stampare."
 
 #. module: account_check_printing
 #: model:ir.ui.view,arch_db:account_check_printing.print_pre_numbered_checks_view
@@ -207,40 +222,44 @@ msgstr "Stampa assegno"
 #. module: account_check_printing
 #: model:ir.actions.server,name:account_check_printing.action_account_print_checks
 msgid "Print Checks"
-msgstr ""
+msgstr "Stampare gli Assegni"
 
 #. module: account_check_printing
-#: code:addons/account_check_printing/account_payment.py:114
+#: code:addons/account_check_printing/models/account_payment.py:99
 #: model:ir.model,name:account_check_printing.model_print_prenumbered_checks
 #: model:ir.ui.view,arch_db:account_check_printing.print_pre_numbered_checks_view
 #, python-format
 msgid "Print Pre-numbered Checks"
-msgstr ""
+msgstr "Stampare gli Assegni Prenumerati"
 
 #. module: account_check_printing
 #: model:ir.model,name:account_check_printing.model_account_register_payments
 msgid "Register payments on multiple invoices"
-msgstr "Registra pagamenti su fatture multiple."
+msgstr "Registra pagamenti su fatture multiple"
 
 #. module: account_check_printing
 #: model:ir.model.fields,help:account_check_printing.field_account_journal_check_next_number
 msgid "Sequence number of the next printed check."
-msgstr ""
+msgstr "Numero di sequenza del prossimo assegno stampato."
 
 #. module: account_check_printing
 #: model:ir.model.fields,help:account_check_printing.field_account_journal_check_printing_payment_method_selected
 msgid ""
-"Technical feature used to know whether check printing was enabled as payment "
-"method."
+"Technical feature used to know whether check printing was enabled as payment"
+" method."
 msgstr ""
+"Funzionalità tecnica utilizzata per sapere se la stampa degli assegni è "
+"stata abilitata come metodo di pagamento. "
 
 #. module: account_check_printing
-#: code:addons/account_check_printing/account_journal.py:25
+#: code:addons/account_check_printing/models/account_journal.py:26
 #, python-format
 msgid ""
 "The last check number was %s. In order to avoid a check being rejected by "
 "the bank, you can only use a greater number."
 msgstr ""
+"L'ultimo numero di assegno era %s. Per evitare che un assegno venga "
+"rifiutato dalla banca, puoi utilizzare solo un numero più grande."
 
 #. module: account_check_printing
 #: model:ir.model.fields,help:account_check_printing.field_account_payment_check_number
@@ -249,28 +268,34 @@ msgid ""
 "printed check paper already has numbers or if the current numbering is "
 "wrong, you can change it in the journal configuration page."
 msgstr ""
+"Il sezionale selezionato è configurato per stampare i numeri di assegno. Se "
+"l'assegno prestampato ha già un numero o se la numerazione esistente è "
+"sbagliata, puoi cambiarla nella pagina di configurazione del sezionale. "
 
 #. module: account_check_printing
-#: code:addons/account_check_printing/account_payment.py:135
+#: code:addons/account_check_printing/models/account_payment.py:121
 #, python-format
 msgid ""
 "There is no check layout configured.\n"
-"Make sure the proper check printing module is installed and its "
-"configuration (in company settings > 'Configuration' tab) is correct."
+"Make sure the proper check printing module is installed and its configuration (in company settings > 'Configuration' tab) is correct."
 msgstr ""
+"Non è stato configurato nessun layout di assegno.\n"
+"Assicurati che sia installato il modulo di stampa degli assegni appropriato e che la sua configurazione (nelle impostazioni dell'azienda > scheda \"Configurazione\") sia corretta. "
 
 #. module: account_check_printing
 #: model:ir.ui.view,arch_db:account_check_printing.print_pre_numbered_checks_view
 msgid ""
 "This will allow to save on payments the number of the corresponding check."
 msgstr ""
+"Ciò ti consentirà di salvare sui pagamenti il numero dell'assegno "
+"corrispondente. "
 
 #. module: account_check_printing
 #: model:ir.ui.view,arch_db:account_check_printing.view_account_payment_form_inherited
 msgid "Unmark Sent"
-msgstr ""
+msgstr "Deselezionare quelli che sono stati inviati"
 
 #. module: account_check_printing
-#: model:ir.ui.view,arch_db:account_check_printing.print_pre_numbered_checks_view
-msgid "or"
-msgstr "o"
+#: model:ir.model,name:account_check_printing.model_wizard_multi_charts_accounts
+msgid "wizard.multi.charts.accounts"
+msgstr "wizard.multi.charts.accounts"

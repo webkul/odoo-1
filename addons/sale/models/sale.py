@@ -58,7 +58,7 @@ class SaleOrder(models.Model):
             # Search for invoices which have been 'cancelled' (filter_refund = 'modify' in
             # 'account.invoice.refund')
             # use like as origin may contains multiple references (e.g. 'SO01, SO02')
-            refunds = invoice_ids.search([('origin', 'like', order.name)]).filtered(lambda r: r.type in ['out_invoice', 'out_refund'])
+            refunds = invoice_ids.search([('origin', 'like', order.name), ('company_id', '=', order.company_id.id)]).filtered(lambda r: r.type in ['out_invoice', 'out_refund'])
             invoice_ids |= refunds.filtered(lambda r: order.name in [origin.strip() for origin in r.origin.split(',')])
             # Search for refunds as well
             refund_ids = self.env['account.invoice'].browse()
@@ -89,8 +89,8 @@ class SaleOrder(models.Model):
 
     @api.model
     def get_empty_list_help(self, help):
-        if help:
-            return '<p class=''oe_view_nocontent_create''">%s</p>' % (help)
+        if help and help.find("oe_view_nocontent_create") == -1:
+            return '<p class="oe_view_nocontent_create">%s</p>' % (help)
         return super(SaleOrder, self).get_empty_list_help(help)
 
     def _get_default_access_token(self):
@@ -112,6 +112,11 @@ class SaleOrder(models.Model):
         for order in self:
             order.order_line._compute_tax_id()
 
+    @api.multi
+    def _get_payment_type(self):
+        self.ensure_one()
+        return 'form'
+
     name = fields.Char(string='Order Reference', required=True, copy=False, readonly=True, states={'draft': [('readonly', False)]}, index=True, default=lambda self: _('New'))
     origin = fields.Char(string='Source Document', help="Reference of the document that generated this sales order request.")
     client_order_ref = fields.Char(string='Customer Reference', copy=False)
@@ -130,7 +135,7 @@ class SaleOrder(models.Model):
         help="Manually set the expiration date of your quotation (offer), or it will set the date automatically based on the template if online quotation is installed.")
     is_expired = fields.Boolean(compute='_compute_is_expired', string="Is expired")
     create_date = fields.Datetime(string='Creation Date', readonly=True, index=True, help="Date on which sales order is created.")
-    confirmation_date = fields.Datetime(string='Confirmation Date', readonly=True, index=True, help="Date on which the sales order is confirmed.", oldname="date_confirm")
+    confirmation_date = fields.Datetime(string='Confirmation Date', readonly=True, index=True, help="Date on which the sales order is confirmed.", oldname="date_confirm", copy=False)
     user_id = fields.Many2one('res.users', string='Salesperson', index=True, track_visibility='onchange', default=lambda self: self.env.user)
     partner_id = fields.Many2one('res.partner', string='Customer', readonly=True, states={'draft': [('readonly', False)], 'sent': [('readonly', False)]}, required=True, change_default=True, index=True, track_visibility='always')
     partner_invoice_id = fields.Many2one('res.partner', string='Invoice Address', readonly=True, required=True, states={'draft': [('readonly', False)], 'sent': [('readonly', False)]}, help="Invoice address for current sales order.")
@@ -400,6 +405,9 @@ class SaleOrder(models.Model):
         precision = self.env['decimal.precision'].precision_get('Product Unit of Measure')
         invoices = {}
         references = {}
+        invoices_origin = {}
+        invoices_name = {}
+
         for order in self:
             group_key = order.id if grouped else (order.partner_invoice_id.id, order.currency_id.id)
             for line in order.order_line.sorted(key=lambda l: l.qty_to_invoice < 0):
@@ -410,13 +418,14 @@ class SaleOrder(models.Model):
                     invoice = inv_obj.create(inv_data)
                     references[invoice] = order
                     invoices[group_key] = invoice
+                    invoices_origin[group_key] = [invoice.origin]
+                    invoices_name[group_key] = [invoice.name]
                 elif group_key in invoices:
-                    vals = {}
-                    if order.name not in invoices[group_key].origin.split(', '):
-                        vals['origin'] = invoices[group_key].origin + ', ' + order.name
-                    if order.client_order_ref and order.client_order_ref not in invoices[group_key].name.split(', ') and order.client_order_ref != invoices[group_key].name:
-                        vals['name'] = invoices[group_key].name + ', ' + order.client_order_ref
-                    invoices[group_key].write(vals)
+                    if order.name not in invoices_origin[group_key]:
+                        invoices_origin[group_key].append(order.name)
+                    if order.client_order_ref and order.client_order_ref not in invoices_name[group_key]:
+                        invoices_name[group_key].append(order.client_order_ref)
+
                 if line.qty_to_invoice > 0:
                     line.invoice_line_create(invoices[group_key].id, line.qty_to_invoice)
                 elif line.qty_to_invoice < 0 and final:
@@ -424,14 +433,18 @@ class SaleOrder(models.Model):
 
             if references.get(invoices.get(group_key)):
                 if order not in references[invoices[group_key]]:
-                    references[invoice] = references[invoice] | order
+                    references[invoices[group_key]] |= order
+
+        for group_key in invoices:
+            invoices[group_key].write({'name': ', '.join(invoices_name[group_key]),
+                                       'origin': ', '.join(invoices_origin[group_key])})
 
         if not invoices:
-            raise UserError(_('There is no invoicable line.'))
+            raise UserError(_('There is no invoiceable line.'))
 
         for invoice in invoices.values():
             if not invoice.invoice_line_ids:
-                raise UserError(_('There is no invoicable line.'))
+                raise UserError(_('There is no invoiceable line.'))
             # If invoice is negative, do a refund invoice instead
             if invoice.amount_untaxed < 0:
                 invoice.type = 'out_refund'
@@ -515,7 +528,7 @@ class SaleOrder(models.Model):
         self.write({'state': 'sale'})
 
     @api.multi
-    def action_confirm(self):
+    def _action_confirm(self):
         for order in self.filtered(lambda order: order.partner_id not in order.message_partner_ids):
             order.message_subscribe([order.partner_id.id])
         self.write({
@@ -524,8 +537,6 @@ class SaleOrder(models.Model):
         })
         if self.env.context.get('send_email'):
             self.force_quotation_send()
-        if self.env['ir.config_parameter'].sudo().get_param('sale.auto_done_setting'):
-            self.action_done()
 
         # create an analytic account if at least an expense product
         if any([expense_policy != 'no' for expense_policy in self.order_line.mapped('product_id.expense_policy')]):
@@ -533,6 +544,20 @@ class SaleOrder(models.Model):
                 self._create_analytic_account()
 
         return True
+
+    @api.multi
+    def action_confirm(self):
+        if self._get_forbidden_state_confirm() & set(self.mapped('state')):
+            raise UserError(_(
+                'It is not allowed to confirm an order in the following states: %s'
+            ) % (', '.join(self._get_forbidden_state_confirm())))
+        self._action_confirm()
+        if self.env['ir.config_parameter'].sudo().get_param('sale.auto_done_setting'):
+            self.action_done()
+        return True
+
+    def _get_forbidden_state_confirm(self):
+        return {'done', 'cancel'}
 
     @api.multi
     def _create_analytic_account(self, prefix=None):
@@ -562,7 +587,7 @@ class SaleOrder(models.Model):
                 report_pages.append([])
             # Append category to current report page
             report_pages[-1].append({
-                'name': category and category.name or 'Uncategorized',
+                'name': category and category.name or _('Uncategorized'),
                 'subtotal': category and category.subtotal,
                 'pagebreak': category and category.pagebreak,
                 'lines': list(lines)
@@ -575,20 +600,15 @@ class SaleOrder(models.Model):
         self.ensure_one()
         res = {}
         for line in self.order_line:
-            base_tax = 0
+            price_reduce = line.price_unit * (1.0 - line.discount / 100.0)
+            taxes = line.tax_id.compute_all(price_reduce, quantity=line.product_uom_qty, product=line.product_id, partner=self.partner_shipping_id)['taxes']
             for tax in line.tax_id:
                 group = tax.tax_group_id
                 res.setdefault(group, {'amount': 0.0, 'base': 0.0})
-                # FORWARD-PORT UP TO SAAS-17
-                price_reduce = line.price_unit * (1.0 - line.discount / 100.0)
-                taxes = tax.compute_all(price_reduce + base_tax, quantity=line.product_uom_qty,
-                                         product=line.product_id, partner=self.partner_shipping_id)['taxes']
                 for t in taxes:
-                    res[group]['amount'] += t['amount']
-                    res[group]['base'] += t['base']
-                if tax.include_base_amount:
-                    base_tax += tax.compute_all(price_reduce + base_tax, quantity=1, product=line.product_id,
-                                                partner=self.partner_shipping_id)['taxes'][0]['amount']
+                    if t['id'] == tax.id or t['id'] in tax.children_tax_ids.ids:
+                        res[group]['amount'] += t['amount']
+                        res[group]['base'] += t['base']
         res = sorted(res.items(), key=lambda l: l[0].sequence)
         res = [(l[0].name, l[1]['amount'], l[1]['base'], len(res)) for l in res]
         return res
@@ -625,6 +645,12 @@ class SaleOrder(models.Model):
                         'target': 'self',
                         'res_id': self.id,
                     }
+        else:
+            action = self.env.ref('sale.action_quotations', False)
+            if action:
+                result = action.read()[0]
+                result['res_id'] = self.id
+                return result
         return super(SaleOrder, self).get_access_action(access_uid)
 
     def get_mail_url(self):
@@ -640,6 +666,8 @@ class SaleOrder(models.Model):
         self.ensure_one()
         if self.state not in ('draft', 'cancel'):
             for group_name, group_method, group_data in groups:
+                if group_name == 'customer':
+                    continue
                 group_data['has_button_access'] = True
 
         return groups
@@ -706,7 +734,10 @@ class SaleOrderLine(models.Model):
         for line in self:
             line.qty_delivered_updateable = (line.order_id.state == 'sale') and (line.product_id.service_type == 'manual') and (line.product_id.expense_policy == 'no')
 
-    @api.depends('invoice_lines',
+    @api.depends('state',
+                 'price_reduce_taxinc',
+                 'qty_delivered',
+                 'invoice_lines',
                  'invoice_lines.price_total',
                  'invoice_lines.invoice_id',
                  'invoice_lines.invoice_id.state',
@@ -722,9 +753,17 @@ class SaleOrderLine(models.Model):
             # Total invoiced amount
             invoiced_amount_total = sum(invoice_lines.mapped('price_total'))
             # Total refunded amount
-            refund_amount_total = sum(refund_invoices.mapped('amount_total'))
+            refund_invoice_lines = refund_invoices.mapped('invoice_line_ids').filtered(lambda l: l.product_id == line.product_id)
+            refund_amount_total = sum(refund_invoice_lines.mapped('price_total'))
+            # Total of remaining amount to invoice on the sale ordered (and draft invoice included) to support upsell (when
+            # delivered quantity is higher than ordered one). Draft invoice are ignored on purpose, the 'to invoice' should
+            # come only from the SO lines.
+            total_sale_line = line.price_total
+            if line.product_id.invoice_policy == 'delivery':
+                total_sale_line = line.price_reduce_taxinc * line.qty_delivered
+
             line.amt_invoiced = invoiced_amount_total - refund_amount_total
-            line.amt_to_invoice = line.price_total - invoiced_amount_total
+            line.amt_to_invoice = (total_sale_line - invoiced_amount_total) if line.state in ['sale', 'done'] else 0.0
 
     @api.depends('qty_invoiced', 'qty_delivered', 'product_uom_qty', 'order_id.state')
     def _get_to_invoice_qty(self):
@@ -803,7 +842,7 @@ class SaleOrderLine(models.Model):
     def create(self, values):
         values.update(self._prepare_add_missing_fields(values))
         line = super(SaleOrderLine, self).create(values)
-        if line.state == 'sale':
+        if line.order_id.state == 'sale':
             msg = _("Extra line with %s ") % (line.product_id.display_name,)
             line.order_id.message_post(body=msg)
             # create an analytic account if at least an expense product
@@ -832,6 +871,19 @@ class SaleOrderLine(models.Model):
             precision = self.env['decimal.precision'].precision_get('Product Unit of Measure')
             self.filtered(
                 lambda r: r.state == 'sale' and float_compare(r.product_uom_qty, values['product_uom_qty'], precision_digits=precision) != 0)._update_line_quantity(values)
+
+        # Prevent writing on a locked SO.
+        protected_fields = self._get_protected_fields()
+        if 'done' in self.mapped('order_id.state') and any(f in values.keys() for f in protected_fields):
+            protected_fields_modified = list(set(protected_fields) & set(values.keys()))
+            fields = self.env['ir.model.fields'].search([
+                ('name', 'in', protected_fields_modified), ('model', '=', self._name)
+            ])
+            raise UserError(
+                _('It is forbidden to modify the following fields in a locked order:\n%s')
+                % '\n'.join(fields.mapped('field_description'))
+            )
+
         result = super(SaleOrderLine, self).write(values)
         return result
 
@@ -895,8 +947,8 @@ class SaleOrderLine(models.Model):
     customer_lead = fields.Float(
         'Delivery Lead Time', required=True, default=0.0,
         help="Number of days between the order confirmation and the shipping of the products to the customer", oldname="delay")
-    amt_to_invoice = fields.Monetary(string='Amount To Invoice', compute='_compute_invoice_amount', store=True)
-    amt_invoiced = fields.Monetary(string='Amount Invoiced', compute='_compute_invoice_amount', store=True)
+    amt_to_invoice = fields.Monetary(string='Amount To Invoice', compute='_compute_invoice_amount', compute_sudo=True, store=True)
+    amt_invoiced = fields.Monetary(string='Amount Invoiced', compute='_compute_invoice_amount', compute_sudo=True, store=True)
 
     layout_category_id = fields.Many2one('sale.layout_category', string='Section')
     layout_category_sequence = fields.Integer(string='Layout Sequence')
@@ -966,11 +1018,11 @@ class SaleOrderLine(models.Model):
         # TO DO: move me in master/saas-16 on sale.order
         if self.order_id.pricelist_id.discount_policy == 'with_discount':
             return product.with_context(pricelist=self.order_id.pricelist_id.id).price
-        final_price, rule_id = self.order_id.pricelist_id.get_product_price_rule(self.product_id, self.product_uom_qty or 1.0, self.order_id.partner_id)
-        context_partner = dict(self.env.context, partner_id=self.order_id.partner_id.id, date=self.order_id.date_order)
-        base_price, currency_id = self.with_context(context_partner)._get_real_price_currency(self.product_id, rule_id, self.product_uom_qty, self.product_uom, self.order_id.pricelist_id.id)
+        product_context = dict(self.env.context, partner_id=self.order_id.partner_id.id, date=self.order_id.date_order, uom=self.product_uom.id)
+        final_price, rule_id = self.order_id.pricelist_id.with_context(product_context).get_product_price_rule(self.product_id, self.product_uom_qty or 1.0, self.order_id.partner_id)
+        base_price, currency_id = self.with_context(product_context)._get_real_price_currency(product, rule_id, self.product_uom_qty, self.product_uom, self.order_id.pricelist_id.id)
         if currency_id != self.order_id.pricelist_id.currency_id.id:
-            base_price = self.env['res.currency'].browse(currency_id).with_context(context_partner).compute(base_price, self.order_id.pricelist_id.currency_id)
+            base_price = self.env['res.currency'].browse(currency_id).with_context(product_context).compute(base_price, self.order_id.pricelist_id.currency_id)
         # negative discounts (= surcharge) are included in the display price
         return max(base_price, final_price)
 
@@ -1042,23 +1094,21 @@ class SaleOrderLine(models.Model):
 
     @api.multi
     def name_get(self):
-        if self._context.get('sale_show_order_product_name'):
-            result = []
-            for so_line in self:
-                name = '%s - %s' % (so_line.order_id.name, so_line.product_id.name)
-                result.append((so_line.id, name))
-            return result
-        return super(SaleOrderLine, self).name_get()
+        result = []
+        for so_line in self:
+            name = '%s - %s' % (so_line.order_id.name, so_line.name.split('\n')[0] or so_line.product_id.name)
+            if so_line.order_partner_id.ref:
+                name = '%s (%s)' % (name, so_line.order_partner_id.ref)
+            result.append((so_line.id, name))
+        return result
 
     @api.model
     def name_search(self, name='', args=None, operator='ilike', limit=100):
-        if self._context.get('sale_show_order_product_name'):
-            if operator in ('ilike', 'like', '=', '=like', '=ilike'):
-                domain = expression.AND([
-                    args or [],
-                    ['|', ('order_id.name', operator, name), ('product_id.name', operator, name)]
-                ])
-                return self.search(domain, limit=limit).name_get()
+        if operator in ('ilike', 'like', '=', '=like', '=ilike'):
+            args = expression.AND([
+                args or [],
+                ['|', ('order_id.name', operator, name), ('name', operator, name)]
+            ])
         return super(SaleOrderLine, self).name_search(name, args, operator, limit)
 
     @api.multi
@@ -1121,25 +1171,40 @@ class SaleOrderLine(models.Model):
 
         return product[field_name] * uom_factor * cur_factor, currency_id.id
 
+    def _get_protected_fields(self):
+        return [
+            'product_id', 'name', 'price_unit', 'product_uom', 'product_uom_qty',
+            'tax_id', 'analytic_tag_ids'
+        ]
+
     @api.onchange('product_id', 'price_unit', 'product_uom', 'product_uom_qty', 'tax_id')
     def _onchange_discount(self):
-        self.discount = 0.0
         if not (self.product_id and self.product_uom and
                 self.order_id.partner_id and self.order_id.pricelist_id and
                 self.order_id.pricelist_id.discount_policy == 'without_discount' and
                 self.env.user.has_group('sale.group_discount_per_so_line')):
             return
 
-        context_partner = dict(self.env.context, partner_id=self.order_id.partner_id.id, date=self.order_id.date_order)
-        pricelist_context = dict(context_partner, uom=self.product_uom.id)
+        self.discount = 0.0
+        product = self.product_id.with_context(
+            lang=self.order_id.partner_id.lang,
+            partner=self.order_id.partner_id.id,
+            quantity=self.product_uom_qty,
+            date=self.order_id.date_order,
+            pricelist=self.order_id.pricelist_id.id,
+            uom=self.product_uom.id,
+            fiscal_position=self.env.context.get('fiscal_position')
+        )
 
-        price, rule_id = self.order_id.pricelist_id.with_context(pricelist_context).get_product_price_rule(self.product_id, self.product_uom_qty or 1.0, self.order_id.partner_id)
-        new_list_price, currency_id = self.with_context(context_partner)._get_real_price_currency(self.product_id, rule_id, self.product_uom_qty, self.product_uom, self.order_id.pricelist_id.id)
+        product_context = dict(self.env.context, partner_id=self.order_id.partner_id.id, date=self.order_id.date_order, uom=self.product_uom.id)
+
+        price, rule_id = self.order_id.pricelist_id.with_context(product_context).get_product_price_rule(self.product_id, self.product_uom_qty or 1.0, self.order_id.partner_id)
+        new_list_price, currency_id = self.with_context(product_context)._get_real_price_currency(product, rule_id, self.product_uom_qty, self.product_uom, self.order_id.pricelist_id.id)
 
         if new_list_price != 0:
             if self.order_id.pricelist_id.currency_id.id != currency_id:
                 # we need new_list_price in the same currency as price, which is in the SO's pricelist's currency
-                new_list_price = self.env['res.currency'].browse(currency_id).with_context(context_partner).compute(new_list_price, self.order_id.pricelist_id.currency_id)
+                new_list_price = self.env['res.currency'].browse(currency_id).with_context(product_context).compute(new_list_price, self.order_id.pricelist_id.currency_id)
             discount = (new_list_price - price) / new_list_price * 100
             if discount > 0:
                 self.discount = discount
@@ -1154,7 +1219,7 @@ class SaleOrderLine(models.Model):
             on SO lines. This method is a hook: since analytic line are used for timesheet,
             expense, ...  each use case should provide its part of the domain.
         """
-        return [('so_line', 'in', self.ids), ('amount', '<=', 0.0)]
+        return ['&', ('so_line', 'in', self.ids), ('amount', '<=', 0.0)]
 
     @api.multi
     def _analytic_compute_delivered_quantity(self):
@@ -1171,9 +1236,12 @@ class SaleOrderLine(models.Model):
             domain,
             ['so_line', 'unit_amount', 'product_uom_id'], ['product_uom_id', 'so_line'], lazy=False
         )
-
-        # convert uom and sum all unit_amount of analytic lines to get the delivered qty of SO lines
+        # Force recompute for the "unlink last line" case: if remove the last AAL link to the SO, the read_group
+        # will give no value for the qty of the SOL, so we need to reset it to 0.0
         value_to_write = {}
+        if self._context.get('sale_analytic_force_recompute'):
+            value_to_write = dict.fromkeys([sol for sol in self], 0.0)
+        # convert uom and sum all unit_amount of analytic lines to get the delivered qty of SO lines
         for item in data:
             if not item['product_uom_id']:
                 continue
@@ -1191,3 +1259,7 @@ class SaleOrderLine(models.Model):
             so_line.write({'qty_delivered': qty})
 
         return True
+
+    def _is_delivery(self):
+        self.ensure_one()
+        return False

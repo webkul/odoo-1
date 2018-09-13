@@ -5,7 +5,7 @@
 # Translators:
 # Yenthe Van Ginneken <yenthespam@gmail.com>, 2017
 # Cas Vissers <casvissers@brahoo.nl>, 2017
-# Martin Trigaux <mat@odoo.com>, 2017
+# Martin Trigaux, 2017
 # Erwin van der Ploeg <erwin@odooexperts.nl>, 2017
 # Eric Geens <ericgeens@yahoo.com>, 2017
 # Pol Van Dingenen <pol.vandingenen@vanroey.be>, 2017
@@ -61,6 +61,10 @@ msgid ""
 "highest customer lead time of products. With this option, you can set a "
 "specific delivery date on orders rather than setting lead times on products."
 msgstr ""
+"Standaard berekend Odoo de verwachte leverdatum op de volgende manier: "
+"orderdatum + langste klant levertijd van de producten. Met deze optie kunt u"
+" een specifieke leverdatum ingeven in plaats van levertijden per product "
+"instellen."
 
 #. module: sale_stock
 #: model:ir.model,name:sale_stock.model_res_company
@@ -90,7 +94,7 @@ msgstr "Leverdatum"
 #. module: sale_stock
 #: model:ir.model.fields,field_description:sale_stock.field_sale_order_delivery_count
 msgid "Delivery Orders"
-msgstr "Uitgaande leveringen"
+msgstr "Leveringen"
 
 #. module: sale_stock
 #: model:res.groups,name:sale_stock.group_display_incoterm
@@ -155,7 +159,7 @@ msgstr "Factuurregel"
 #. module: sale_stock
 #: model:ir.ui.menu,name:sale_stock.menu_invoiced
 msgid "Invoicing"
-msgstr "Facturatie"
+msgstr "Boekhouding"
 
 #. module: sale_stock
 #: model:ir.model.fields,help:sale_stock.field_res_config_settings_use_security_lead
@@ -164,6 +168,9 @@ msgid ""
 "for delivery that many days earlier than the actual promised date, to cope "
 "with unexpected delays in the supply chain."
 msgstr ""
+"Foutmarge op een leverdatum beloofd aan klanten. Producten worden ingepland "
+"voor verwerving en levering, zo veel dagen eerder dan de werkelijk beloofde "
+"datum om zo onverwachte vertragingen te kunnen opvangen in de supply chain."
 
 #. module: sale_stock
 #: model:ir.model.fields,help:sale_stock.field_res_company_security_lead
@@ -181,7 +188,7 @@ msgstr ""
 #. module: sale_stock
 #: model:ir.ui.view,arch_db:sale_stock.res_config_settings_view_form_stock
 msgid "Move forward expected delivery dates by"
-msgstr ""
+msgstr "Verschuif geplande leverdatum vooruit met"
 
 #. module: sale_stock
 #: code:addons/sale_stock/models/sale_order.py:174
@@ -238,6 +245,10 @@ msgid ""
 "or/and frequent stock-outs. By default, the scheduler runs automatically "
 "every 24 hours."
 msgstr ""
+"Het handmatig reserveren van producten in uitgaande leveringen of het "
+"uitvoeren van de planner wordt geadviseerd om de prioriteiten te beheren bij"
+" lange levertijden of als een product frequent niet op voorraad is. "
+"Standaard draait de planner elke 24 uur."
 
 #. module: sale_stock
 #: model:ir.model.fields,field_description:sale_stock.field_sale_order_line_route_id
@@ -247,7 +258,7 @@ msgstr "Route"
 #. module: sale_stock
 #: model:ir.ui.view,arch_db:sale_stock.res_config_settings_view_form_sale
 msgid "Routes for Sales Order Lines"
-msgstr "Routes voor verkooporderlijnen"
+msgstr "Routes voor verkooporderregels"
 
 #. module: sale_stock
 #: model:ir.model.fields,field_description:sale_stock.field_stock_move_sale_line_id
@@ -292,7 +303,7 @@ msgstr "Verkopen veiligheidsdagen"
 #. module: sale_stock
 #: model:ir.ui.view,arch_db:sale_stock.res_config_settings_view_form_stock
 msgid "Schedule deliveries earlier to avoid delays"
-msgstr "Plan levering vroeger om vertragingen te vermijden"
+msgstr "Plan levering eerder om vertragingen te voorkomen"
 
 #. module: sale_stock
 #: model:ir.model.fields,field_description:sale_stock.field_res_config_settings_security_lead
@@ -332,7 +343,7 @@ msgstr "Verzendgegevens"
 #. module: sale_stock
 #: model:ir.model.fields,field_description:sale_stock.field_res_config_settings_default_picking_policy
 msgid "Shipping Management"
-msgstr "Vervoersbeheer"
+msgstr "Verzendbeheer"
 
 #. module: sale_stock
 #: model:ir.model.fields,field_description:sale_stock.field_sale_order_picking_policy
@@ -357,6 +368,10 @@ msgid ""
 "available in sales orders, routes must have 'Sales Order Line' option "
 "checked in their setup form."
 msgstr ""
+"Dit geeft u de mogelijkheid om, voor speciale gevallen, een speciale route "
+"in te stellen op orderregels (zoals bijvoorbeeld dropshipping of maak op "
+"order). Om deze beschikbaar te hebben bij verkooporders moet bij de route "
+"\"Verkooporderregel\" worden aangevinkt. "
 
 #. module: sale_stock
 #: code:addons/sale_stock/models/sale_order.py:273
@@ -407,8 +422,8 @@ msgstr ""
 msgid ""
 "You plan to sell %s %s but you only have %s %s available in %s warehouse."
 msgstr ""
-"U bent van plan om %s%ste verkopen maar u heeft slechts %s%sbeschikbaar in "
-"%shet magazijn."
+"U bent van plan om %s %s te verkopen maar u heeft slechts %s%s beschikbaar "
+"in %s het magazijn."
 
 #. module: sale_stock
 #: model:ir.ui.view,arch_db:sale_stock.res_config_settings_view_form_stock

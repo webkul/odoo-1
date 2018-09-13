@@ -5,16 +5,16 @@
 # Translators:
 # Yenthe Van Ginneken <yenthespam@gmail.com>, 2017
 # Erwin van der Ploeg <erwin@odooexperts.nl>, 2017
-# Martin Trigaux <mat@odoo.com>, 2017
+# Martin Trigaux, 2017
 # Cas Vissers <casvissers@brahoo.nl>, 2017
 # Eric Geens <ericgeens@yahoo.com>, 2017
 # Pol Van Dingenen <pol.vandingenen@vanroey.be>, 2017
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.saas~18\n"
+"Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-02 11:26+0000\n"
-"PO-Revision-Date: 2017-10-02 11:26+0000\n"
+"POT-Creation-Date: 2018-07-27 11:55+0000\n"
+"PO-Revision-Date: 2018-07-27 11:55+0000\n"
 "Last-Translator: Pol Van Dingenen <pol.vandingenen@vanroey.be>, 2017\n"
 "Language-Team: Dutch (https://www.transifex.com/odoo/teams/41243/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -129,7 +129,7 @@ msgstr "Actief"
 #. module: hr
 #: model:hr.job,website_description:hr.job_consultant
 msgid "Analyse needs, write specification documents and quotation"
-msgstr "Analyseer de node, schrijf specificatie documentatie en offerte"
+msgstr "Analyseer van nodig is, schrijf specificatie documentatie en offerte"
 
 #. module: hr
 #: model:ir.ui.view,arch_db:hr.view_department_filter
@@ -277,11 +277,6 @@ msgid "Configuration"
 msgstr "Configuratie"
 
 #. module: hr
-#: model:ir.actions.act_window,name:hr.hr_config_settings_action
-msgid "Configure HR"
-msgstr "Configureer HR"
-
-#. module: hr
 #: model:hr.job,name:hr.job_consultant
 msgid "Consultant"
 msgstr "Consultant"
@@ -422,6 +417,7 @@ msgstr "Naam werknemer"
 #: model:ir.ui.menu,name:hr.menu_hr_root
 #: model:ir.ui.menu,name:hr.menu_open_view_employee_list_my
 #: model:ir.ui.view,arch_db:hr.hr_department_view_kanban
+#: model:ir.ui.view,arch_db:hr.res_config_settings_view_form
 #: model:ir.ui.view,arch_db:hr.view_employee_filter
 #: model:ir.ui.view,arch_db:hr.view_employee_tree
 #: model:ir.ui.view,arch_db:hr.view_partner_tree2
@@ -444,17 +440,17 @@ msgid ""
 "Enter here the private address of the employee, not the one linked to your "
 "company."
 msgstr ""
-"Geef het privéadres van de werknemer in, niet het adres gelinkt aan uw "
+"Geef het privéadres van de werknemer in, niet het adres gekoppeld aan uw "
 "bedrijf."
 
 #. module: hr
-#: code:addons/hr/models/hr.py:303
+#: code:addons/hr/models/hr.py:310
 #, python-format
 msgid "Error! You cannot create recursive departments."
 msgstr "Fout! het is niet toegestaan recursieve afdelingen aan te maken."
 
 #. module: hr
-#: code:addons/hr/models/hr.py:184
+#: code:addons/hr/models/hr.py:187
 #, python-format
 msgid "Error! You cannot create recursive hierarchy of Employee(s)."
 msgstr ""
@@ -735,6 +731,11 @@ msgid "Launch new products, marketing campaigns and offers"
 msgstr "Lanceer nieuwe producten, marketingcampagnes en aanbiedingen"
 
 #. module: hr
+#: selection:hr.employee,marital:0
+msgid "Legal Cohabitant"
+msgstr "Samenwonend"
+
+#. module: hr
 #: selection:hr.employee,gender:0
 msgid "Male"
 msgstr "Man"
@@ -759,8 +760,8 @@ msgstr "Marketing en communicatie manager"
 
 #. module: hr
 #: selection:hr.employee,marital:0
-msgid "Married (or similar)"
-msgstr "Getrouwd (of gelijkend)"
+msgid "Married"
+msgstr "Gehuwd"
 
 #. module: hr
 #: model:hr.job,website_description:hr.job_cto
@@ -866,6 +867,9 @@ msgid ""
 "                related to employees by departments: expenses, timesheets,\n"
 "                leaves, recruitments, etc."
 msgstr ""
+"Odoo's afdelingen structuur is gebruikt om alle documenten te beheren\n"
+"die gerelateerd zijn aan werknemers per afdeling: declaraties, urenstaten,\n"
+"verloven, vacatures, etc.."
 
 #. module: hr
 #: model:res.groups,name:hr.group_hr_user
@@ -945,11 +949,6 @@ msgstr "Privé adres"
 #: model:ir.ui.view,arch_db:hr.view_employee_form
 msgid "Private Information"
 msgstr "Privé informatie"
-
-#. module: hr
-#: model:ir.ui.view,arch_db:hr.res_config_settings_view_form
-msgid "Prout prout prout"
-msgstr "Trots trots trots"
 
 #. module: hr
 #: model:hr.job,website_description:hr.job_consultant
@@ -1042,6 +1041,7 @@ msgstr ""
 "Stel in of het verwervingsproces open of gesloten is voor deze vacature."
 
 #. module: hr
+#: model:ir.actions.act_window,name:hr.hr_config_settings_action
 #: model:ir.ui.menu,name:hr.hr_menu_configuration
 #: model:ir.ui.view,arch_db:hr.hr_department_view_kanban
 msgid "Settings"
@@ -1055,7 +1055,7 @@ msgstr "Laat organigram zien"
 #. module: hr
 #: model:ir.ui.view,arch_db:hr.res_config_settings_view_form
 msgid "Show organizational chart on employee form"
-msgstr "Toon organisatie grafiek op werknemers formulier"
+msgstr "Organigram op werknemers formulier weergeven"
 
 #. module: hr
 #: model:ir.ui.view,arch_db:hr.res_config_settings_view_form
@@ -1197,6 +1197,9 @@ msgid ""
 "                                            This private address is used in the expense report reimbursement document.\n"
 "                                            It should be different from the work address."
 msgstr ""
+"Gebruik hier het privé adres van de medewerker\n"
+"Het privé adres is gebruikt voor het declaratieformulier.\n"
+"Het zou anders moeten zijn dan het werk adres."
 
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_employee_user_id

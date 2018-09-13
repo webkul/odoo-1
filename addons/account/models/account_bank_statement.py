@@ -4,7 +4,7 @@ from odoo import api, fields, models, _
 from odoo.osv import expression
 from odoo.tools import float_is_zero, pycompat
 from odoo.tools import float_compare, float_round, float_repr
-from odoo.tools.misc import formatLang
+from odoo.tools.misc import formatLang, format_date
 from odoo.exceptions import UserError, ValidationError
 
 import time
@@ -289,7 +289,7 @@ class AccountBankStatement(models.Model):
                         WHERE account_id IS NULL AND stl.amount != 0.0 AND not exists (select 1 from account_move_line aml where aml.statement_line_id = stl.id)
                             AND company_id = %s
                 """
-        params = (self.env.user.company_id.id,)
+        params = (self.company_id.id,)
         if statements:
             sql_query += ' AND stl.statement_id IN %s'
             params += (tuple(statements.ids),)
@@ -317,7 +317,7 @@ class AccountBankStatement(models.Model):
                                     )
                                 AND aml.ref IN %s
                                 """
-            params = (self.env.user.company_id.id, (st_lines_left[0].journal_id.default_credit_account_id.id, st_lines_left[0].journal_id.default_debit_account_id.id), tuple(refs))
+            params = (self.company_id.id, (st_lines_left[0].journal_id.default_credit_account_id.id, st_lines_left[0].journal_id.default_debit_account_id.id), tuple(refs))
             if statements:
                 sql_query += 'AND stl.id IN %s'
                 params += (tuple(stl_to_assign.ids),)
@@ -339,14 +339,14 @@ class AccountBankStatement(models.Model):
     def link_bank_to_partner(self):
         for statement in self:
             for st_line in statement.line_ids:
-                if st_line.bank_account_id and st_line.partner_id and st_line.bank_account_id.partner_id != st_line.partner_id:
+                if st_line.bank_account_id and st_line.partner_id and not st_line.bank_account_id.partner_id:
                     st_line.bank_account_id.partner_id = st_line.partner_id
 
 
 class AccountBankStatementLine(models.Model):
     _name = "account.bank.statement.line"
     _description = "Bank Statement Line"
-    _order = "statement_id desc, sequence, id desc"
+    _order = "statement_id desc, date desc, sequence, id desc"
 
     name = fields.Char(string='Label', required=True)
     date = fields.Date(required=True, default=lambda self: self._context.get('date', fields.Date.context_today(self)))
@@ -512,7 +512,7 @@ class AccountBankStatementLine(models.Model):
             'ref': self.ref,
             'note': self.note or "",
             'name': self.name,
-            'date': self.date,
+            'date': format_date(self.env, self.date),
             'amount': amount,
             'amount_str': amount_str,  # Amount in the statement line currency
             'currency_id': self.currency_id.id or statement_currency.id,
@@ -627,7 +627,7 @@ class AccountBankStatementLine(models.Model):
         st_line_currency = self.currency_id or self.journal_id.currency_id
         currency = (st_line_currency and st_line_currency != company_currency) and st_line_currency.id or False
         precision = st_line_currency and st_line_currency.decimal_places or company_currency.decimal_places
-        params = {'company_id': self.env.user.company_id.id,
+        params = {'company_id': self.company_id.id,
                     'account_payable_receivable': (self.journal_id.default_credit_account_id.id, self.journal_id.default_debit_account_id.id),
                     'amount': float_repr(float_round(amount, precision_digits=precision), precision_digits=precision),
                     'partner_id': self.partner_id.id,
@@ -678,7 +678,7 @@ class AccountBankStatementLine(models.Model):
         st_line_currency = self.currency_id or self.journal_id.currency_id
         currency = (st_line_currency and st_line_currency != company_currency) and st_line_currency.id or False
         precision = st_line_currency and st_line_currency.decimal_places or company_currency.decimal_places
-        params = {'company_id': self.env.user.company_id.id,
+        params = {'company_id': self.company_id.id,
                     'account_payable_receivable': (self.journal_id.default_credit_account_id.id, self.journal_id.default_debit_account_id.id),
                     'amount': float_round(amount, precision_digits=precision),
                     'partner_id': self.partner_id.id,
@@ -895,7 +895,7 @@ class AccountBankStatementLine(models.Model):
         total = self.amount
         for aml_rec in payment_aml_rec:
             total -= aml_rec.debit - aml_rec.credit
-            aml_rec.write({'statement_line_id': self.id})
+            aml_rec.with_context(check_move_validity=False).write({'statement_line_id': self.id})
             counterpart_moves = (counterpart_moves | aml_rec.move_id)
 
         # Create move line(s). Either matching an existing journal entry (eg. invoice), in which
@@ -934,7 +934,7 @@ class AccountBankStatementLine(models.Model):
                     'currency_id': currency.id,
                     'amount': abs(total),
                     'communication': self._get_communication(payment_methods[0] if payment_methods else False),
-                    'name': self.statement_id.name,
+                    'name': self.statement_id.name or _("Bank Statement %s") %  self.date,
                 })
 
             # Complete dicts to create both counterpart move lines and write-offs

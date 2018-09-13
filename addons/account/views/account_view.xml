@@ -16,7 +16,7 @@
                              <field name="code" placeholder="code"/>
                              <field name="name"/>
                              <field name="user_type_id" widget="selection"/>
-                             <field name="tax_ids" widget="many2many_tags"/>
+                             <field name="tax_ids" widget="many2many_tags" domain="[('company_id','=',company_id)]"/>
                              <field name="tag_ids" widget="many2many_tags" domain="[('applicability', '!=', 'taxes')]" context="{'default_applicability': 'accounts'}" options="{'no_create_edit': True}"/>
                              <field name="group_id"/>
                              <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company"/>
@@ -843,7 +843,7 @@
                             <group>
                                 <field name="account_id" domain="[('company_id', '=', company_id)]"/>
                                 <field name="amount_type"/>
-                                <field name="tax_id" domain="[('company_id', '=', company_id)]" widget="selection" />
+                                <field name="tax_id" domain="[('company_id', '=', company_id)]" options="{'no_create': True}" />
                                 <field name="analytic_account_id" groups="analytic.group_analytic_accounting" domain="[('company_id', '=', company_id)]"/>
                                 <field name="company_id" groups="base.group_multi_company"/>
                             </group>
@@ -1140,7 +1140,8 @@
                         <group>
                             <field name="name"/>
                             <field name="partner_id"
-                                domain="['|', ('parent_id', '=', False), ('is_company', '=', True)]"/>
+                                domain="['|', ('parent_id', '=', False), ('is_company', '=', True)]"
+                                attrs="{'readonly': [('parent_state', '=', 'posted')]}"/>
                         </group>
                         <notebook colspan="4">
                             <page string="Information">
@@ -1466,7 +1467,7 @@
                                         domain="['|', ('parent_id', '=', False), ('is_company', '=', True)]"/>
                                     <field name="name"/>
                                     <field name="analytic_account_id" groups="analytic.group_analytic_accounting"/>
-                                    <field name="analytic_tag_ids" groups="analytic.group_analytic_accounting"/>
+                                    <field name="analytic_tag_ids" widget="many2many_tags" groups="analytic.group_analytic_accounting"/>
                                     <field name="amount_currency" groups="base.group_multi_currency"/>
                                     <field name="company_currency_id" invisible="1"/>
                                     <field name="company_id" invisible="1"/>

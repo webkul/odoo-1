@@ -6,15 +6,15 @@
 # Norimichi Sugimoto <norimichi.sugimoto@tls-ltd.co.jp>, 2017
 # Yoshi Tashiro <tashiro@roomsfor.hk>, 2017
 # Manami Hashi <manami@roomsfor.hk>, 2017
-# Martin Trigaux <mat@odoo.com>, 2017
+# Martin Trigaux, 2017
 # 高木正勝 <masakatsu.takagi@pro-spire.co.jp>, 2017
 # NOKA Shigekazu <shigekazu.noka@gmail.com>, 2017
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.saas~18\n"
+"Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-20 09:54+0000\n"
-"PO-Revision-Date: 2017-09-20 09:54+0000\n"
+"POT-Creation-Date: 2017-10-24 09:00+0000\n"
+"PO-Revision-Date: 2017-10-24 09:00+0000\n"
 "Last-Translator: NOKA Shigekazu <shigekazu.noka@gmail.com>, 2017\n"
 "Language-Team: Japanese (https://www.transifex.com/odoo/teams/41243/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -466,12 +466,12 @@ msgstr "同意<i class=\"fa fa-check\"/>"
 #. module: website_forum
 #: model:ir.model.fields,field_description:website_forum.field_forum_forum_karma_answer_accept_own
 msgid "Accept an answer on own questions"
-msgstr "自分の質問に対する回答を受け入れる"
+msgstr "自分の質問への回答受入可"
 
 #. module: website_forum
 #: model:ir.model.fields,field_description:website_forum.field_forum_forum_karma_answer_accept_all
 msgid "Accept an answer to all questions"
-msgstr "すべての質問に対する回答を受け入れる"
+msgstr "どの質問への回答も受入可"
 
 #. module: website_forum
 #: model:ir.ui.view,arch_db:website_forum.view_forum_post_search
@@ -516,7 +516,7 @@ msgstr ""
 "投稿後、ユーザはソーシャルネットワーク上で質問または回答を共有するよう提案され、フォーラムコンテンツのソーシャルネットワークの波及を可能にします。"
 
 #. module: website_forum
-#: code:addons/website_forum/controllers/main.py:187
+#: code:addons/website_forum/controllers/main.py:196
 #: model:ir.ui.view,arch_db:website_forum.forum_index
 #, python-format
 msgid "All"
@@ -533,7 +533,7 @@ msgid "Answer"
 msgstr "回答"
 
 #. module: website_forum
-#: code:addons/website_forum/models/forum.py:501
+#: code:addons/website_forum/models/forum.py:499
 #: model:mail.message.subtype,description:website_forum.mt_answer_edit
 #: model:mail.message.subtype,name:website_forum.mt_answer_edit
 #, python-format
@@ -664,17 +664,17 @@ msgstr "質問をして回答を同意しました。"
 #. module: website_forum
 #: model:gamification.badge,description:website_forum.badge_q_1
 msgid "Asked a question with at least 150 views"
-msgstr ""
+msgstr "150ビュー以上の質問をした"
 
 #. module: website_forum
 #: model:gamification.badge,description:website_forum.badge_q_2
 msgid "Asked a question with at least 250 views"
-msgstr ""
+msgstr "250ビュー以上の質問をした"
 
 #. module: website_forum
 #: model:gamification.badge,description:website_forum.badge_q_3
 msgid "Asked a question with at least 500 views"
-msgstr ""
+msgstr "500ビュー以上の質問をした"
 
 #. module: website_forum
 #: model:gamification.badge,description:website_forum.badge_q_7
@@ -689,7 +689,7 @@ msgstr "質問日"
 #. module: website_forum
 #: model:ir.ui.view,arch_db:website_forum.header
 msgid "Asked:"
-msgstr "質問："
+msgstr "質問日:"
 
 #. module: website_forum
 #: model:ir.model.fields,field_description:website_forum.field_forum_forum_karma_gen_question_new
@@ -709,7 +709,7 @@ msgstr "自伝作家"
 #. module: website_forum
 #: model:ir.ui.view,arch_db:website_forum.new_question
 msgid "Avoid unnecessary introductions (Hi,... Please... Thanks...),"
-msgstr ""
+msgstr "挨拶やお礼(「はじめまして」「ありがとうございます」等)は含めないようにしてください。"
 
 #. module: website_forum
 #: model:ir.ui.view,arch_db:website_forum.header
@@ -717,8 +717,9 @@ msgid "Back to"
 msgstr ""
 
 #. module: website_forum
-#: code:addons/website_forum/controllers/main.py:324
-#: code:addons/website_forum/controllers/main.py:395
+#: code:addons/website_forum/controllers/main.py:333
+#: code:addons/website_forum/controllers/main.py:335
+#: code:addons/website_forum/controllers/main.py:404
 #, python-format
 msgid "Bad Request"
 msgstr "不正な要求"
@@ -836,7 +837,7 @@ msgstr ""
 #. module: website_forum
 #: model:ir.model.fields,field_description:website_forum.field_forum_forum_karma_edit_retag
 msgid "Change question tags"
-msgstr ""
+msgstr "質問タグを変更"
 
 #. module: website_forum
 #: model:ir.ui.view,arch_db:website_forum.user_badges
@@ -926,12 +927,12 @@ msgstr ""
 #. module: website_forum
 #: model:ir.model.fields,field_description:website_forum.field_forum_forum_karma_close_all
 msgid "Close all posts"
-msgstr ""
+msgstr "どの投稿でもクローズ"
 
 #. module: website_forum
 #: model:ir.model.fields,field_description:website_forum.field_forum_forum_karma_close_own
 msgid "Close own posts"
-msgstr ""
+msgstr "自分の投稿をクローズ"
 
 #. module: website_forum
 #: model:ir.ui.view,arch_db:website_forum.close_post
@@ -965,17 +966,17 @@ msgstr "コメント"
 #. module: website_forum
 #: model:ir.model.fields,field_description:website_forum.field_forum_forum_karma_comment_all
 msgid "Comment all posts"
-msgstr "全ての投稿にコメント"
+msgstr "どの投稿でもコメント"
 
 #. module: website_forum
 #: model:ir.model.fields,field_description:website_forum.field_forum_forum_karma_comment_own
 msgid "Comment own posts"
-msgstr ""
+msgstr "自分の投稿にコメント"
 
 #. module: website_forum
 #: model:ir.ui.view,arch_db:website_forum.post_comment
 msgid "Comment this post..."
-msgstr ""
+msgstr "この投稿にコメント..."
 
 #. module: website_forum
 #: model:gamification.badge,name:website_forum.badge_p_2
@@ -1009,7 +1010,7 @@ msgstr ""
 msgid ""
 "Congratulations! Your email has just been validated. You may now participate"
 " to our forums."
-msgstr "おめでとう！ あなたの電子メールが認証されました。 あなたは今私たちのフォーラムに参加することができます。"
+msgstr "Eメールが確認されました。これでフォーラムに参加いただけます。"
 
 #. module: website_forum
 #: model:ir.model.fields,field_description:website_forum.field_forum_post_content
@@ -1020,17 +1021,17 @@ msgstr "内容"
 #. module: website_forum
 #: model:ir.model.fields,field_description:website_forum.field_forum_forum_karma_comment_convert_all
 msgid "Convert all answers to comments and vice versa"
-msgstr ""
+msgstr "どの回答でもコメントに変換もしくはその逆"
 
 #. module: website_forum
 #: model:ir.ui.view,arch_db:website_forum.post_answers
 msgid "Convert as a comment"
-msgstr ""
+msgstr "コメントに変換"
 
 #. module: website_forum
 #: model:ir.ui.view,arch_db:website_forum.post_comment
 msgid "Convert as an answer"
-msgstr ""
+msgstr "回答に変換"
 
 #. module: website_forum
 #: model:ir.model.fields,field_description:website_forum.field_forum_post_karma_accept
@@ -1040,7 +1041,7 @@ msgstr ""
 #. module: website_forum
 #: model:ir.model.fields,field_description:website_forum.field_forum_forum_karma_comment_convert_own
 msgid "Convert own answers to comments and vice versa"
-msgstr ""
+msgstr "自分の回答をコメントに変換もしくはその逆"
 
 #. module: website_forum
 #: model:ir.model.fields,field_description:website_forum.field_forum_post_is_correct
@@ -1070,7 +1071,7 @@ msgstr "作成日"
 #. module: website_forum
 #: model:ir.model.fields,field_description:website_forum.field_forum_forum_karma_tag_create
 msgid "Create new tags"
-msgstr ""
+msgstr "タグを新規作成"
 
 #. module: website_forum
 #: model:gamification.badge,description:website_forum.badge_32
@@ -1126,12 +1127,12 @@ msgstr "削除"
 #. module: website_forum
 #: model:ir.model.fields,field_description:website_forum.field_forum_forum_karma_unlink_all
 msgid "Delete all posts"
-msgstr ""
+msgstr "どの投稿でも削除"
 
 #. module: website_forum
 #: model:ir.model.fields,field_description:website_forum.field_forum_forum_karma_unlink_own
 msgid "Delete own posts"
-msgstr ""
+msgstr "自分の投稿を削除"
 
 #. module: website_forum
 #: model:gamification.badge,description:website_forum.badge_23
@@ -1151,7 +1152,7 @@ msgstr "説明"
 #. module: website_forum
 #: model:ir.ui.view,arch_db:website_forum.header
 msgid "Design Welcome Message"
-msgstr ""
+msgstr "ウェルカムメッセージを設定"
 
 #. module: website_forum
 #: model:gamification.badge,name:website_forum.badge_6
@@ -1188,7 +1189,7 @@ msgstr ""
 #. module: website_forum
 #: model:ir.model.fields,field_description:website_forum.field_forum_forum_karma_downvote
 msgid "Downvote"
-msgstr ""
+msgstr "下げ投票"
 
 #. module: website_forum
 #: model:ir.ui.view,arch_db:website_forum.edit_post
@@ -1215,12 +1216,12 @@ msgstr ""
 #. module: website_forum
 #: model:ir.model.fields,field_description:website_forum.field_forum_forum_karma_edit_all
 msgid "Edit all posts"
-msgstr ""
+msgstr "どの投稿でも編集"
 
 #. module: website_forum
 #: model:ir.model.fields,field_description:website_forum.field_forum_forum_karma_edit_own
 msgid "Edit own posts"
-msgstr ""
+msgstr "自分の投稿を編集"
 
 #. module: website_forum
 #: model:ir.ui.view,arch_db:website_forum.edit_post
@@ -1248,7 +1249,7 @@ msgstr "エディタ"
 #. module: website_forum
 #: model:ir.model.fields,field_description:website_forum.field_forum_forum_karma_editor
 msgid "Editor Features: image and links"
-msgstr ""
+msgstr "エディタ機能: 画像およびリンク"
 
 #. module: website_forum
 #: model:ir.ui.view,arch_db:website_forum.edit_profile
@@ -1350,7 +1351,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:website_forum.field_forum_forum_karma_flag
 #: model:ir.model.fields,field_description:website_forum.field_forum_post_karma_flag
 msgid "Flag a post as offensive"
-msgstr ""
+msgstr "投稿を攻撃的とフラグ"
 
 #. module: website_forum
 #: selection:forum.post,state:0
@@ -1438,7 +1439,7 @@ msgstr "投稿"
 #. module: website_forum
 #: model:ir.ui.view,arch_db:website_forum.header
 msgid "Forum Settings"
-msgstr ""
+msgstr "フォーラム設定"
 
 #. module: website_forum
 #: model:ir.model,name:website_forum.model_forum_tag
@@ -1496,7 +1497,7 @@ msgstr ""
 #: model:gamification.badge,name:website_forum.badge_q_9
 #: model:gamification.challenge,name:website_forum.challenge_good_question
 msgid "Good Question"
-msgstr ""
+msgstr "よい質問"
 
 #. module: website_forum
 #: model:ir.ui.view,arch_db:website_forum.view_forum_post_graph
@@ -1536,7 +1537,7 @@ msgstr "ガイドライン"
 #: model:gamification.badge,name:website_forum.badge_a_6
 #: model:gamification.challenge,name:website_forum.challenge_guru
 msgid "Guru"
-msgstr ""
+msgstr "グル"
 
 #. module: website_forum
 #: model:gamification.challenge.line,name:website_forum.line_guru
@@ -1647,7 +1648,7 @@ msgstr ""
 #. module: website_forum
 #: model:ir.ui.view,arch_db:website_forum.header
 msgid "It appears your email has not been verified."
-msgstr "あなたのメールは確認されていないようです。"
+msgstr "Eメールがまだ確認されていません。"
 
 #. module: website_forum
 #: model:ir.model.fields,field_description:website_forum.field_res_users_karma
@@ -1754,17 +1755,17 @@ msgstr "リンク"
 #. module: website_forum
 #: model:ir.ui.view,arch_db:website_forum.close_post
 msgid "Mark as offensive"
-msgstr ""
+msgstr "攻撃的とマーク"
 
 #. module: website_forum
 #: model:ir.model.fields,field_description:website_forum.field_forum_forum_karma_moderate
 msgid "Moderate posts"
-msgstr ""
+msgstr "投稿をモデレート"
 
 #. module: website_forum
 #: model:ir.ui.view,arch_db:website_forum.header
 msgid "Moderation Tools"
-msgstr ""
+msgstr "モデレーションツール"
 
 #. module: website_forum
 #: model:forum.forum,faq:website_forum.forum_help
@@ -1860,28 +1861,28 @@ msgstr ""
 #: model:gamification.badge,name:website_forum.badge_q_8
 #: model:gamification.challenge,name:website_forum.challenge_nice_question
 msgid "Nice Question"
-msgstr ""
+msgstr "ナイスな質問"
 
 #. module: website_forum
 #: model:ir.model.fields,field_description:website_forum.field_forum_forum_karma_dofollow
 msgid "Nofollow links"
-msgstr ""
+msgstr "nofollowリンク"
 
 #. module: website_forum
-#: code:addons/website_forum/models/forum.py:870
-#: code:addons/website_forum/models/forum.py:890
+#: code:addons/website_forum/models/forum.py:868
+#: code:addons/website_forum/models/forum.py:888
 #, python-format
 msgid "Not allowed to vote for its own post"
 msgstr "自分の投稿に投票することはできません"
 
 #. module: website_forum
-#: code:addons/website_forum/models/forum.py:934
+#: code:addons/website_forum/models/forum.py:932
 #, python-format
 msgid "Not enough karma to create a new Tag"
 msgstr "新しいタグを作成するのに十分なカルマがありません。"
 
 #. module: website_forum
-#: code:addons/website_forum/models/forum.py:491
+#: code:addons/website_forum/models/forum.py:489
 #, python-format
 msgid "Not enough karma to retag."
 msgstr "タグを付けるにはカルマが足りません。"
@@ -1953,7 +1954,7 @@ msgstr "オーダ"
 #. module: website_forum
 #: model:ir.ui.view,arch_db:website_forum.forum_all
 msgid "Our forums"
-msgstr ""
+msgstr "フォーラム一覧"
 
 #. module: website_forum
 #: model:gamification.badge,name:website_forum.badge_23
@@ -2020,7 +2021,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:website_forum.post_comment
 #: model:ir.ui.view,arch_db:website_forum.view_forum_post_search
 msgid "Post"
-msgstr "記帳"
+msgstr "投稿"
 
 #. module: website_forum
 #: model:ir.ui.view,arch_db:website_forum.post_answer
@@ -2072,10 +2073,10 @@ msgstr ""
 #. module: website_forum
 #: model:gamification.badge,description:website_forum.badge_p_4
 msgid "Posted 100 comments"
-msgstr ""
+msgstr "コメントを100投稿した"
 
 #. module: website_forum
-#: code:addons/website_forum/models/forum.py:435
+#: code:addons/website_forum/models/forum.py:433
 #, python-format
 msgid "Posting answer on a [Deleted] or [Closed] question is not possible"
 msgstr ""
@@ -2131,7 +2132,7 @@ msgid "Question"
 msgstr "質問"
 
 #. module: website_forum
-#: code:addons/website_forum/models/forum.py:504
+#: code:addons/website_forum/models/forum.py:502
 #: model:mail.message.subtype,description:website_forum.mt_question_edit
 #: model:mail.message.subtype,name:website_forum.mt_question_edit
 #, python-format
@@ -2169,9 +2170,15 @@ msgid "Question set as favorite by 5 users"
 msgstr ""
 
 #. module: website_forum
+#: code:addons/website_forum/controllers/main.py:335
+#, python-format
+msgid "Question should not be empty."
+msgstr ""
+
+#. module: website_forum
 #: model:ir.ui.view,arch_db:website_forum.header
 msgid "Question tools"
-msgstr ""
+msgstr "質問ツール"
 
 #. module: website_forum
 #: model:ir.model.fields,field_description:website_forum.field_forum_forum_karma_gen_question_upvote
@@ -2202,7 +2209,7 @@ msgid "Questions"
 msgstr "質問"
 
 #. module: website_forum
-#: code:addons/website_forum/models/forum.py:522
+#: code:addons/website_forum/models/forum.py:520
 #, python-format
 msgid "Re: %s"
 msgstr "Re: %s"
@@ -2210,7 +2217,7 @@ msgstr "Re: %s"
 #. module: website_forum
 #: model:ir.ui.view,arch_db:website_forum.post_description_full
 msgid "Reactivate"
-msgstr ""
+msgstr "再有効化"
 
 #. module: website_forum
 #: model:ir.ui.view,arch_db:website_forum.header
@@ -2257,7 +2264,7 @@ msgstr "拒否<i class=\"fa fa-times\"/>"
 #: model:ir.model.fields,field_description:website_forum.field_forum_post_relevancy
 #: model:ir.ui.view,arch_db:website_forum.forum_index
 msgid "Relevance"
-msgstr "レリバンス"
+msgstr "関連性"
 
 #. module: website_forum
 #: model:ir.ui.view,arch_db:website_forum.view_forum_forum_form
@@ -2327,7 +2334,7 @@ msgstr ""
 #. module: website_forum
 #: model:ir.ui.view,arch_db:website_forum.header
 msgid "Seen:"
-msgstr ""
+msgstr "参照回数:"
 
 #. module: website_forum
 #. openerp-web
@@ -2349,9 +2356,7 @@ msgstr "自己学習者"
 msgid ""
 "Set a clear, explicit and concise question title\n"
 "                (check"
-msgstr ""
-"明白で簡潔なタイトルを設定してください\n"
-"(以下をチェック"
+msgstr "分かりやすく簡潔なタイトルを設定してください(次をチェック"
 
 #. module: website_forum
 #: model:ir.ui.view,arch_db:website_forum.post_description_full
@@ -2453,7 +2458,7 @@ msgstr ""
 #: model:gamification.badge,name:website_forum.badge_q_7
 #: model:gamification.challenge,name:website_forum.challenge_student
 msgid "Student"
-msgstr ""
+msgstr "学生"
 
 #. module: website_forum
 #: model:ir.ui.view,arch_db:website_forum.header
@@ -2467,7 +2472,7 @@ msgstr "リンクを投稿"
 #: model:gamification.challenge.line,name:website_forum.line_supporter
 #: model:gamification.goal.definition,name:website_forum.definition_supporter
 msgid "Supporter"
-msgstr ""
+msgstr "サポーター"
 
 #. module: website_forum
 #: model:ir.actions.act_window,name:website_forum.forum_tag_action
@@ -2509,7 +2514,7 @@ msgstr ""
 #: model:gamification.challenge.line,name:website_forum.line_teacher
 #: model:gamification.goal.definition,name:website_forum.definition_teacher
 msgid "Teacher"
-msgstr ""
+msgstr "先生"
 
 #. module: website_forum
 #: model:ir.model.fields,help:website_forum.field_forum_post_bump_date
@@ -2584,7 +2589,7 @@ msgid ""
 "services. Share and discuss the best content and new marketing ideas, build "
 "your professional profile and become a better marketer together."
 msgstr ""
-"このコミュニティは、当社の製品およびサービスの専門家および愛好家を対象としています。最高のコンテンツと新しいマーケティングアイデアを共有し、議論し、プロフェッショナルなプロファイルを構築し、より良いマーケティング担当者になることができます。"
+"このコミュニティは、私たちのプロダクト/サービスの専門家や愛好家のためのものです。コンテンツや新しいマーケティングアイデアを共有・議論することで専門家としてのプロフィールを構築しましょう。"
 
 #. module: website_forum
 #: model:ir.model.fields,help:website_forum.field_forum_forum_relevancy_post_vote
@@ -2595,7 +2600,7 @@ msgid ""
 msgstr "この式は、関連性によってソートするために使用されます。 変数 'votes'は投稿の投票数を表し、 'days'は投稿作成後の日数です"
 
 #. module: website_forum
-#: code:addons/website_forum/models/forum.py:411
+#: code:addons/website_forum/models/forum.py:409
 #, python-format
 msgid "This forum does not allow %s"
 msgstr "このフォーラムは %s を許可していません"
@@ -2643,8 +2648,8 @@ msgid "Title must not be empty"
 msgstr ""
 
 #. module: website_forum
-#: code:addons/website_forum/controllers/main.py:324
-#: code:addons/website_forum/controllers/main.py:395
+#: code:addons/website_forum/controllers/main.py:333
+#: code:addons/website_forum/controllers/main.py:404
 #, python-format
 msgid "Title should not be empty."
 msgstr "タイトルを入れてください。"
@@ -2701,12 +2706,12 @@ msgstr "未回答"
 #. module: website_forum
 #: model:ir.model.fields,field_description:website_forum.field_forum_forum_karma_comment_unlink_all
 msgid "Unlink all comments"
-msgstr ""
+msgstr "どのコメントでも削除"
 
 #. module: website_forum
 #: model:ir.model.fields,field_description:website_forum.field_forum_forum_karma_comment_unlink_own
 msgid "Unlink own comments"
-msgstr ""
+msgstr "自分のコメントを削除"
 
 #. module: website_forum
 #: model:ir.ui.view,arch_db:website_forum.edit_profile
@@ -2782,7 +2787,7 @@ msgstr "ビュー"
 #. module: website_forum
 #: model:ir.ui.view,arch_db:website_forum.header
 msgid "View Your Badges"
-msgstr ""
+msgstr "自分のバッジを見る"
 
 #. module: website_forum
 #: model:ir.model,name:website_forum.model_forum_post_vote
@@ -2804,7 +2809,7 @@ msgstr ""
 #. module: website_forum
 #: model:ir.ui.view,arch_db:website_forum.post_description_full
 msgid "Waiting for validation"
-msgstr ""
+msgstr "検証待ち"
 
 #. module: website_forum
 #: model:ir.model.fields,field_description:website_forum.field_res_users_forum_waiting_posts_count
@@ -2888,7 +2893,7 @@ msgstr ""
 "            続行する前にモデレータがあなたの前の投稿を検証するのを待ってください。"
 
 #. module: website_forum
-#: code:addons/website_forum/models/forum.py:140
+#: code:addons/website_forum/models/forum.py:138
 #, python-format
 msgid ""
 "You cannot choose %s as default post since the forum does not allow it."
@@ -2984,7 +2989,7 @@ msgstr "投稿順"
 #. module: website_forum
 #: model:ir.ui.view,arch_db:website_forum.forum_index
 msgid "by relevance"
-msgstr "レリバンス順"
+msgstr "関連順"
 
 #. module: website_forum
 #: model:ir.ui.view,arch_db:website_forum.faq
@@ -3049,7 +3054,7 @@ msgstr ""
 #. module: website_forum
 #: model:ir.ui.view,arch_db:website_forum.header
 msgid "follower(s)"
-msgstr ""
+msgstr "フォロワー"
 
 #. module: website_forum
 #: model:ir.ui.view,arch_db:website_forum.post_description_full
@@ -3245,7 +3250,7 @@ msgstr ""
 #. module: website_forum
 #: model:ir.ui.view,arch_db:website_forum.header
 msgid "times"
-msgstr ""
+msgstr "回"
 
 #. module: website_forum
 #: model:forum.post.reason,name:website_forum.reason_9
@@ -3280,7 +3285,7 @@ msgstr "投票"
 #. module: website_forum
 #: model:ir.ui.view,arch_db:website_forum.header
 msgid "waiting for validation"
-msgstr ""
+msgstr "検証待ち"
 
 #. module: website_forum
 #: model:forum.forum,faq:website_forum.forum_help

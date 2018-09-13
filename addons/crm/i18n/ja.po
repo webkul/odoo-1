@@ -5,7 +5,7 @@
 # Translators:
 # Norimichi Sugimoto <norimichi.sugimoto@tls-ltd.co.jp>, 2017
 # Yoshi Tashiro <tashiro@roomsfor.hk>, 2017
-# Martin Trigaux <mat@odoo.com>, 2017
+# Martin Trigaux, 2017
 # 高木正勝 <masakatsu.takagi@pro-spire.co.jp>, 2017
 # 髙木雄介 <yuusuke.takagi@pro-spire.co.jp>, 2017
 # Manami Hashi <manami@roomsfor.hk>, 2017
@@ -13,13 +13,14 @@
 # NOKA Shigekazu <shigekazu.noka@gmail.com>, 2017
 # Takahiro MURAKAMI <murakami@date-yakkyoku.com>, 2017
 # SHIMIZU Taku <shimizu.taku@gmail.com>, 2017
+# 城谷 龍弥 <tatsuya.shirotani@pro-spire.co.jp>, 2018
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.saas~18\n"
+"Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-02 11:25+0000\n"
-"PO-Revision-Date: 2017-10-02 11:25+0000\n"
-"Last-Translator: SHIMIZU Taku <shimizu.taku@gmail.com>, 2017\n"
+"POT-Creation-Date: 2018-04-20 11:58+0000\n"
+"PO-Revision-Date: 2018-04-20 11:58+0000\n"
+"Last-Translator: 城谷 龍弥 <tatsuya.shirotani@pro-spire.co.jp>, 2018\n"
 "Language-Team: Japanese (https://www.transifex.com/odoo/teams/41243/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -113,7 +114,7 @@ msgid ""
 "                                <span>We would be delighted to assist you along the way. Contact us through our\n"
 "                                <a href=\"https://www.odoo.com/help\">support form</a> if you have any question.\n"
 "                                You can also discover how to get the best out of Odoo CRM with our </span>\n"
-"                                <a target=\"_blank\" href=\"https://www.odoo.com/documentation/user/10.0/crm.html\">\n"
+"                                <a target=\"_blank\" href=\"https://www.odoo.com/documentation/user/11.0/crm.html\">\n"
 "                                <span style=\"text-decoration:underline;\">User Documentation</span></a>\n"
 "                                </span><span> or with our </span>\n"
 "                                <a target=\"_blank\" href=\"https://www.odoo.com/documentation\">\n"
@@ -597,7 +598,7 @@ msgstr "<strong>新規:</strong>"
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
 msgid "<strong>Next actions:</strong>"
-msgstr "<strong>次のアクション：</strong>"
+msgstr "<strong>次のアクション:</strong>"
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
@@ -626,7 +627,7 @@ msgstr "<strong>見積テンプレート</strong> <span class=\"small\">(パッ�
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
 msgid "<strong>Recommended actions:</strong>"
-msgstr "<strong>推奨アクション：</strong>"
+msgstr "<strong>推奨アクション:</strong>"
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
@@ -666,7 +667,7 @@ msgstr "<strong>スライド</strong>"
 msgid ""
 "<strong>Standard quotation</strong> <span class=\"small\">(products or "
 "services)</span>"
-msgstr "<strong>標準見積</strong> <span class=\"small\">(製品またはサービス)</span>"
+msgstr "<strong>標準見積</strong> <span class=\"small\">(プロダクトまたはサービス)</span>"
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
@@ -761,7 +762,7 @@ msgstr ""
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
 msgid "A sales manager will mostly use these two reports:"
-msgstr "セールスマネージャは主に次の2つのレポートを使用します:"
+msgstr "セールスマネジャーは主に次の2つのレポートを使用します:"
 
 #. module: crm
 #: model:ir.model.fields,field_description:crm.field_base_partner_merge_automatic_wizard_exclude_contact
@@ -814,7 +815,7 @@ msgstr "活動完了ターゲット"
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.view_crm_case_opportunities_filter
 msgid "Activities Todo"
-msgstr ""
+msgstr "自分の活動"
 
 #. module: crm
 #: model:ir.model.fields,field_description:crm.field_crm_lead_kanban_state
@@ -824,7 +825,7 @@ msgstr "活動状態"
 #. module: crm
 #: model:ir.model.fields,field_description:crm.field_crm_activity_report_mail_activity_type_id
 msgid "Activity Type"
-msgstr ""
+msgstr "活動タイプ"
 
 #. module: crm
 #: model:ir.ui.menu,name:crm.crm_team_menu_config_activity_types
@@ -884,7 +885,7 @@ msgstr ""
 "販売実績を継続的に向上させることができます。"
 
 #. module: crm
-#: code:addons/crm/wizard/base_partner_merge.py:274
+#: code:addons/crm/wizard/base_partner_merge.py:273
 #, python-format
 msgid ""
 "All contacts must have the same email. Only the Administrator can merge "
@@ -892,7 +893,7 @@ msgid ""
 msgstr "すべての連絡先に同じメールが必要です。 管理者だけが連絡先を別の電子メールとマージできます。"
 
 #. module: crm
-#: code:addons/crm/models/crm_lead.py:905
+#: code:addons/crm/models/crm_lead.py:916
 #, python-format
 msgid ""
 "All email incoming to %s will automatically\n"
@@ -1171,7 +1172,7 @@ msgstr "クリックして失注理由を新規作成してください。"
 #. module: crm
 #: model:ir.actions.act_window,help:crm.crm_lead_tag_action
 msgid "Click to define a new sales tag."
-msgstr "クリックして新規販売タグを定義してください。"
+msgstr "クリックして販売タグを新たに定義してください。"
 
 #. module: crm
 #: model:ir.actions.act_window,help:crm.crm_stage_action
@@ -1250,11 +1251,6 @@ msgstr "設定"
 #, python-format
 msgid "Configuration options are available in the Settings app."
 msgstr "設定オプションは、設定アプリで使用できます。"
-
-#. module: crm
-#: model:ir.actions.act_window,name:crm.crm_config_settings_action
-msgid "Configure CRM"
-msgstr ""
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
@@ -1442,10 +1438,8 @@ msgid ""
 "                Such categories could for instance reflect your product\n"
 "                structure or the different types of sales you do."
 msgstr ""
-"あなたの会社の活動に合った特定のタグを作成し\n"
-"                 あなたのリードと案件をよりよく分類し、分析することができます。\n"
-"                 そのようなカテゴリは、例えば、あなたの製品構造または\n"
-"　　　　 あなたが行う様々なタイプの販売を反映することができます。"
+"リードや案件を分類・分析するためのタグを作成しましょう。\n"
+"タグにより、例えばプロダクト構造や販売種別を示すことができます。"
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
@@ -1530,7 +1524,7 @@ msgid "Current Line"
 msgstr "現在の項目"
 
 #. module: crm
-#: code:addons/crm/models/crm_lead.py:1124
+#: code:addons/crm/models/crm_lead.py:1135
 #: model:ir.model.fields,field_description:crm.field_crm_lead2opportunity_partner_mass_partner_id
 #: model:ir.model.fields,field_description:crm.field_crm_lead2opportunity_partner_partner_id
 #: model:ir.model.fields,field_description:crm.field_crm_lead_convert2task_partner_id
@@ -1548,7 +1542,7 @@ msgstr "顧客"
 #. module: crm
 #: model:ir.model.fields,field_description:crm.field_res_config_settings_module_web_clearbit
 msgid "Customer Autocomplete"
-msgstr ""
+msgstr "顧客自動提案"
 
 #. module: crm
 #: code:addons/crm/models/crm_lead.py:1126
@@ -1959,7 +1953,12 @@ msgid "Force assignation"
 msgstr "強制割当"
 
 #. module: crm
-#: code:addons/crm/models/crm_lead.py:577
+#: model:ir.ui.view,arch_db:crm.res_config_settings_view_form
+msgid "Format phone numbers based on national conventions"
+msgstr ""
+
+#. module: crm
+#: code:addons/crm/models/crm_lead.py:588
 #, python-format
 msgid "From %s : %s"
 msgstr "%s から：%s"
@@ -2496,7 +2495,7 @@ msgstr "セグメント/プロファイルによる可能な弱点のリスト"
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.res_config_settings_view_form
 msgid "Look up company information (name, logo, etc.)"
-msgstr ""
+msgstr "会社情報を自動取得 (名称、ロゴ等)"
 
 #. module: crm
 #. openerp-web
@@ -2544,6 +2543,16 @@ msgstr ""
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.res_config_settings_view_form
 msgid "Manually Assignation of Incoming Emails"
+msgstr ""
+
+#. module: crm
+#: model:ir.actions.server,name:crm.action_mark_activities_done
+msgid "Mark All Activities as Done"
+msgstr ""
+
+#. module: crm
+#: model:ir.actions.server,name:crm.action_mark_late_activities_done
+msgid "Mark Late Activities as Done"
 msgstr ""
 
 #. module: crm
@@ -3078,7 +3087,7 @@ msgstr "その他"
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.view_crm_case_opportunities_filter
 msgid "Overdue Opportunities"
-msgstr ""
+msgstr "期日を過ぎた案件"
 
 #. module: crm
 #: model:ir.model.fields,field_description:crm.field_crm_opportunity_report_delay_expected
@@ -3161,7 +3170,7 @@ msgstr "電話"
 
 #. module: crm
 #: model:ir.model.fields,field_description:crm.field_res_config_settings_module_crm_phone_validation
-msgid "Phone Validation"
+msgid "Phone Formatting"
 msgstr ""
 
 #. module: crm
@@ -3207,7 +3216,7 @@ msgid ""
 "teams of the sales pipeline."
 msgstr ""
 "パイプライン分析を使用すると、期待収益、計画原価、納期不足または案件ごとのインタラクション数などの情報を使用して、案件に即座にアクセスできます。\n"
-"このレポートは主にセールスマネージャーが販売パイプラインのチームと定期的にレビューするために使用されます。"
+"このレポートは主にセールスマネジャーが販売パイプラインのチームと定期的にレビューするために使用されます。"
 
 #. module: crm
 #: model:ir.actions.act_window,help:crm.crm_opportunity_report_action_graph
@@ -3292,7 +3301,7 @@ msgstr "予想売上高"
 #. module: crm
 #: model:crm.lead.tag,name:crm.categ_oppor1
 msgid "Product"
-msgstr "製品"
+msgstr "プロダクト"
 
 #. module: crm
 #. openerp-web
@@ -3304,7 +3313,7 @@ msgstr ""
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
 msgid "Products"
-msgstr "製品"
+msgstr "プロダクト"
 
 #. module: crm
 #. openerp-web
@@ -3428,7 +3437,7 @@ msgstr "必要事項"
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_case_kanban_view_leads
 msgid "Restore"
-msgstr ""
+msgstr "リストア"
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
@@ -3595,7 +3604,7 @@ msgstr ""
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
 msgid "Set the sales manager as a follower of every opportunity above $20k"
-msgstr "セールスマネージャーを$ 20k以上のすべての案件のフォロワーとして設定する"
+msgstr "セールスマネジャーを$ 20k以上のすべての案件のフォロワーとして設定する"
 
 #. module: crm
 #: model:ir.model.fields,help:crm.field_crm_stage_on_change
@@ -3618,6 +3627,7 @@ msgstr ""
 "                       それがこのガイドの目的です。"
 
 #. module: crm
+#: model:ir.actions.act_window,name:crm.crm_config_settings_action
 #: model:ir.ui.menu,name:crm.crm_config_settings_menu
 msgid "Settings"
 msgstr "管理設定"
@@ -3649,7 +3659,7 @@ msgstr ""
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.view_crm_case_leads_filter
 msgid "Show all records which has next action date is before today"
-msgstr ""
+msgstr "次のアクションの日付が今日より前のすべてのレコードを表示する"
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_activity_report_view_search
@@ -3764,7 +3774,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:crm.crm_case_form_view_leads
 #: model:ir.ui.view,arch_db:crm.crm_case_form_view_oppor
 msgid "State"
-msgstr "都道府県・州"
+msgstr "状態"
 
 #. module: crm
 #: model:ir.model.fields,field_description:crm.field_crm_lead_street
@@ -4114,6 +4124,12 @@ msgid "Unassigned Leads"
 msgstr ""
 
 #. module: crm
+#: code:addons/crm/models/crm_team.py:211
+#, python-format
+msgid "Undefined"
+msgstr "未定義"
+
+#. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner
 msgid ""
 "Unless you are starting a new business, you probably have a list of "
@@ -4252,11 +4268,6 @@ msgid "VIP letter to potential sponsors"
 msgstr "潜在的なスポンサーへのVIPレター"
 
 #. module: crm
-#: model:ir.ui.view,arch_db:crm.res_config_settings_view_form
-msgid "Validate and normalize phone numbers."
-msgstr ""
-
-#. module: crm
 #: selection:crm.lead,priority:0 selection:crm.opportunity.report,priority:0
 msgid "Very High"
 msgstr "とても高い"
@@ -4290,7 +4301,7 @@ msgid ""
 msgstr ""
 "インポートプロセス全体を処理します：\n"
 "すべてのデータを含むCSVファイルを\n"
-"Odooプロジェクトマネージャに送信\n"
+"Odooプロジェクトマネジャーに送信\n"
 "するだけです。"
 
 #. module: crm
@@ -4314,7 +4325,7 @@ msgstr ""
 #. module: crm
 #: model:crm.lost.reason,name:crm.lost_reason_2
 msgid "We don't have people/skills"
-msgstr "人/スキル不足"
+msgstr "人材/技術不足"
 
 #. module: crm
 #: model:ir.ui.view,arch_db:crm.crm_planner

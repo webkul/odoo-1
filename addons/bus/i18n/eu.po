@@ -1,20 +1,25 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * bus
-#
+# 
 # Translators:
+# Martin Trigaux, 2017
+# Eneko <eastigarraga@codesyntax.com>, 2018
+# Naomi Hidalgo <naomihid96@gmail.com>, 2018
+# oihane <oihanecruce@gmail.com>, 2018
+# Esther Martín Menéndez <esthermartin001@gmail.com>, 2018
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo 9.0\n"
+"Project-Id-Version: Odoo Server 10.saas~18\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-18 14:07+0000\n"
-"PO-Revision-Date: 2016-02-08 18:25+0000\n"
-"Last-Translator: Oihane Crucelaegui <oihanecruce@gmail.com>\n"
-"Language-Team: Basque (http://www.transifex.com/odoo/odoo-9/language/eu/)\n"
-"Language: eu\n"
+"POT-Creation-Date: 2017-09-20 09:53+0000\n"
+"PO-Revision-Date: 2017-09-20 09:53+0000\n"
+"Last-Translator: Esther Martín Menéndez <esthermartin001@gmail.com>, 2018\n"
+"Language-Team: Basque (https://www.transifex.com/odoo/teams/41243/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
+"Language: eu\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: bus
@@ -33,6 +38,11 @@ msgid "Channel"
 msgstr "Kanala"
 
 #. module: bus
+#: model:ir.model,name:bus.model_res_partner
+msgid "Contact"
+msgstr "Kontaktua"
+
+#. module: bus
 #: model:ir.model.fields,field_description:bus.field_bus_bus_create_date
 msgid "Create date"
 msgstr "Sortze data"
@@ -47,21 +57,6 @@ msgstr "Nork sortua"
 #: model:ir.model.fields,field_description:bus.field_bus_presence_display_name
 msgid "Display Name"
 msgstr "Izena erakutsi"
-
-#. module: bus
-#: model:ir.model.fields,field_description:bus.field_res_users_partner_latitude
-msgid "Geo Latitude"
-msgstr ""
-
-#. module: bus
-#: model:ir.model.fields,field_description:bus.field_res_users_partner_longitude
-msgid "Geo Longitude"
-msgstr ""
-
-#. module: bus
-#: model:ir.model.fields,field_description:bus.field_res_users_date_localization
-msgid "Geolocation Date"
-msgstr ""
 
 #. module: bus
 #: model:ir.model.fields,field_description:bus.field_bus_bus_id
@@ -80,7 +75,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:bus.field_bus_bus___last_update
 #: model:ir.model.fields,field_description:bus.field_bus_presence___last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Azken aldaketa"
 
 #. module: bus
 #: model:ir.model.fields,field_description:bus.field_bus_presence_last_poll
@@ -115,17 +110,12 @@ msgstr ""
 #. module: bus
 #: selection:bus.presence,status:0
 msgid "Online"
-msgstr ""
-
-#. module: bus
-#: model:ir.model,name:bus.model_res_partner
-msgid "Partner"
-msgstr "Kidea"
+msgstr "Linean "
 
 #. module: bus
 #: model:ir.model,name:bus.model_bus_presence
 msgid "User Presence"
-msgstr ""
+msgstr "Erabiltzailearen presentzia "
 
 #. module: bus
 #: model:ir.model,name:bus.model_res_users
@@ -137,6 +127,3 @@ msgstr "Erabiltzaileak"
 #: model:ir.model,name:bus.model_bus_bus
 msgid "bus.bus"
 msgstr ""
-
-#~ msgid "Created on"
-#~ msgstr "Created on"

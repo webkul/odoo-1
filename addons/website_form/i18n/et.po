@@ -1,41 +1,45 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * website_form
-#
+# 
 # Translators:
+# Eneli Õigus <enelioigus@gmail.com>, 2017
+# Martin Trigaux, 2017
+# Marek Pontus, 2018
+# Rivo Zängov <eraser@eraser.ee>, 2018
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo 9.0\n"
+"Project-Id-Version: Odoo Server 10.saas~18\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-18 14:08+0000\n"
-"PO-Revision-Date: 2015-09-08 10:19+0000\n"
-"Last-Translator: Martin Trigaux\n"
-"Language-Team: Estonian (http://www.transifex.com/odoo/odoo-9/language/et/)\n"
-"Language: et\n"
+"POT-Creation-Date: 2017-09-20 09:54+0000\n"
+"PO-Revision-Date: 2017-09-20 09:54+0000\n"
+"Last-Translator: Rivo Zängov <eraser@eraser.ee>, 2018\n"
+"Language-Team: Estonian (https://www.transifex.com/odoo/teams/41243/et/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
+"Language: et\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: website_form
 #. openerp-web
-#: code:addons/website_form/static/src/js/website_form.js:209
+#: code:addons/website_form/static/src/js/website_form.js:226
 #, python-format
 msgid "'%s' is not a correct date"
-msgstr ""
+msgstr "'%s' ei ole korrektne kuupäev"
 
 #. module: website_form
 #. openerp-web
-#: code:addons/website_form/static/src/js/website_form.js:204
+#: code:addons/website_form/static/src/js/website_form.js:221
 #, python-format
 msgid "'%s' is not a correct datetime"
-msgstr ""
+msgstr "'%s' ei ole korrektne kuupäev-kellaaeg"
 
 #. module: website_form
-#: code:addons/website_form/controllers/main.py:221
+#: code:addons/website_form/controllers/main.py:226
 #, python-format
 msgid "<p>Attached files : </p>"
-msgstr ""
+msgstr "<p>Lisatud failid : </p>"
 
 #. module: website_form
 #: model:ir.model.fields,field_description:website_form.field_ir_model_website_form_access
@@ -60,7 +64,7 @@ msgid "Blacklisted in web forms"
 msgstr ""
 
 #. module: website_form
-#: code:addons/website_form/controllers/main.py:49
+#: code:addons/website_form/controllers/main.py:54
 #, python-format
 msgid "Custom infos"
 msgstr ""
@@ -98,15 +102,15 @@ msgid "Label for form action"
 msgstr ""
 
 #. module: website_form
-#: code:addons/website_form/controllers/main.py:50
+#: code:addons/website_form/controllers/main.py:55
 #, python-format
 msgid "Metadata"
-msgstr ""
+msgstr "Metaandmed"
 
 #. module: website_form
 #: model:ir.model,name:website_form.model_ir_model
 msgid "Models"
-msgstr ""
+msgstr "Mudelid"
 
 #. module: website_form
 #. openerp-web
@@ -117,7 +121,8 @@ msgstr ""
 
 #. module: website_form
 #: model:ir.model.fields,help:website_form.field_ir_model_website_form_default_field_id
-msgid "Specify the field which will contain meta and custom form fields datas."
+msgid ""
+"Specify the field which will contain meta and custom form fields datas."
 msgstr ""
 
 #. module: website_form
@@ -135,4 +140,4 @@ msgstr "Veebileht"
 #. module: website_form
 #: model:ir.model.fields,field_description:website_form.field_website_website_form_enable_metadata
 msgid "Write metadata"
-msgstr ""
+msgstr "Kirjuta metaandmed"

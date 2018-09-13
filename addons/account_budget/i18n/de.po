@@ -6,22 +6,24 @@
 # Gab_Odoo <gab@odoo.com>, 2017
 # Philipp Hug <philipp@hug.cx>, 2017
 # Ermin Trevisan <trevi@twanda.com>, 2017
-# Martin Trigaux <mat@odoo.com>, 2017
+# Martin Trigaux, 2017
 # Tina Rittmüller <tr@ife.de>, 2017
-# Niki Waibel <niki.waibel@gmail.com>, 2017
+# Niki Waibel, 2017
 # Anja Funk <anja.funk@afimage.de>, 2017
-# Wolfgang Taferner <wolfgang.transifex@service.wt-io-it.at>, 2017
+# Wolfgang Taferner, 2017
 # Henry Mineehen <info@mineehen.de>, 2017
+# Andreas Stauder <andreas.stauder@brain-tec.ch>, 2017
 # darenkster <inactive+darenkster@transifex.com>, 2017
-# Renzo Meister <info@jamotion.ch>, 2017
+# Renzo Meister, 2017
 # Rudolf Schnapka <rs@techno-flex.de>, 2017
+# AppleMentalist <felix.schnatbaum@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-10-10 11:34+0000\n"
 "PO-Revision-Date: 2017-10-10 11:34+0000\n"
-"Last-Translator: Rudolf Schnapka <rs@techno-flex.de>, 2017\n"
+"Last-Translator: AppleMentalist <felix.schnatbaum@gmail.com>, 2017\n"
 "Language-Team: German (https://www.transifex.com/odoo/teams/41243/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -51,7 +53,7 @@ msgstr "Konten"
 #. module: account_budget
 #: model:ir.model.fields,field_description:account_budget.field_crossovered_budget_lines_percentage
 msgid "Achievement"
-msgstr "Ergebnis"
+msgstr "Abweichung in %"
 
 #. module: account_budget
 #: model:ir.model,name:account_budget.model_account_analytic_account
@@ -298,7 +300,7 @@ msgstr "Status"
 #: code:addons/account_budget/models/account_budget.py:31
 #, python-format
 msgid "The budget must have at least one account."
-msgstr ""
+msgstr "Das Budget muss mindestens ein Konto haben."
 
 #. module: account_budget
 #: model:ir.model.fields,field_description:account_budget.field_crossovered_budget_lines_theoritical_amount

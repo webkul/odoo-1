@@ -207,11 +207,15 @@ define([
         var layoutInfo = dom.makeLayoutInfo(target);
         /* ODOO: (start_modification */
         var $editable = layoutInfo.editable();
-        if (!event.isDefaultPrevented()) {
-          modules.editor.saveRange($editable);
+        if (event.setStyleInfoFromEditable) {
+            var styleInfo = modules.editor.styleFromNode($editable);
+        } else {
+            if (!event.isDefaultPrevented()) {
+              modules.editor.saveRange($editable);
+            }
+            var styleInfo = modules.editor.currentStyle(target);
         }
         /* ODOO: end_modification) */
-        var styleInfo = modules.editor.currentStyle(target);
         self.updateStyleInfo(styleInfo, layoutInfo);
       }, 0);
     };
@@ -472,7 +476,8 @@ define([
         onImageUpload: options.onImageUpload,
         onImageUploadError: options.onImageUploadError,
         onMediaDelete: options.onMediaDelete,
-        onToolbarClick: options.onToolbarClick
+        onToolbarClick: options.onToolbarClick,
+        onUpload: options.onUpload,
       });
 
       var styleInfo = modules.editor.styleFromNode(layoutInfo.editable());

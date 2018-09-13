@@ -5,6 +5,7 @@
 # Translators:
 # Yenthe Van Ginneken <yenthespam@gmail.com>, 2017
 # Cas Vissers <casvissers@brahoo.nl>, 2017
+# Erwin van der Ploeg <erwin@odooexperts.nl>, 2017
 # Melroy van den Berg <webmaster1989@gmail.com>, 2017
 # Pol Van Dingenen <pol.vandingenen@vanroey.be>, 2017
 msgid ""
@@ -58,7 +59,7 @@ msgstr "Indirecte ondergeschikten van %s"
 #. module: hr_org_chart
 #: model:ir.model.fields,field_description:hr_org_chart.field_hr_employee_child_all_count
 msgid "Indirect Surbordinates Count"
-msgstr ""
+msgstr "Aantal indirecte ondergeschikten"
 
 #. module: hr_org_chart
 #. openerp-web
@@ -77,14 +78,14 @@ msgstr "Geen hiërarchische positie."
 #. module: hr_org_chart
 #: model:ir.ui.view,arch_db:hr_org_chart.hr_employee_view_form_inherit_org_chart
 msgid "Organization Chart"
-msgstr "Organisatie grafiek"
+msgstr "Organigram"
 
 #. module: hr_org_chart
 #. openerp-web
 #: code:addons/hr_org_chart/static/src/js/hr_org_chart.js:139
 #, python-format
 msgid "Subordinates of %s"
-msgstr ""
+msgstr "Ondergeschikte van %s"
 
 #. module: hr_org_chart
 #. openerp-web

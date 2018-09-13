@@ -1,27 +1,32 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * im_livechat
-#
+# 
 # Translators:
-# Jaroslav Bosansky <jaro.bosansky@ekoenergo.sk>, 2016
+# Martin Trigaux, 2017
+# gebri <gebri@inmail.sk>, 2018
+# Robert Kirschner <robertkirschner@yahoo.com>, 2018
+# Matus Krnac <matus.krnac@gmail.com>, 2018
+# Pavol Krnáč <pavol.krnac@ekoenergo.sk>, 2018
+# Jaroslav Bosansky <jaro.bosansky@ekoenergo.sk>, 2018
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo 9.0\n"
+"Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-18 14:08+0000\n"
-"PO-Revision-Date: 2016-05-27 09:03+0000\n"
-"Last-Translator: Martin Trigaux\n"
-"Language-Team: Slovak (http://www.transifex.com/odoo/odoo-9/language/sk/)\n"
-"Language: sk\n"
+"POT-Creation-Date: 2017-11-30 13:12+0000\n"
+"PO-Revision-Date: 2017-11-30 13:12+0000\n"
+"Last-Translator: Jaroslav Bosansky <jaro.bosansky@ekoenergo.sk>, 2018\n"
+"Language-Team: Slovak (https://www.transifex.com/odoo/teams/41243/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"Language: sk\n"
+"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);\n"
 
 #. module: im_livechat
 #: model:ir.model.fields,field_description:im_livechat.field_im_livechat_report_operator_nbr_channel
-msgid "# of channel"
-msgstr "# kanálu"
+msgid "# of Sessions"
+msgstr ""
 
 #. module: im_livechat
 #: model:ir.model.fields,field_description:im_livechat.field_im_livechat_report_channel_nbr_speaker
@@ -32,22 +37,15 @@ msgstr "# reproduktorov"
 #: model:ir.model.fields,field_description:im_livechat.field_im_livechat_channel_rating_percentage_satisfaction
 #: model:ir.ui.view,arch_db:im_livechat.im_livechat_channel_view_form
 msgid "% Happy"
-msgstr "% Šťastný"
+msgstr "% Spokojný"
 
 #. module: im_livechat
 #: model:ir.model.fields,help:im_livechat.field_im_livechat_channel_rule_action
 msgid ""
-"* Select 'Display the button' to simply display the chat button on the "
-"pages.\n"
-"* Select 'Auto popup' for to display the button, and automatically open the "
-"conversation window.\n"
-"* Select 'Hide the button' to hide the chat button on the pages."
+"* 'Display the button' displays the chat button on the pages.\n"
+"* 'Auto popup' displays the button and automatically open the conversation pane.\n"
+"* 'Hide the button' hides the chat button on the pages."
 msgstr ""
-"* Zvoľte 'Zobraziť tlačidlo' pre jednoduché zobrazenie chat tlačidla na "
-"stránkach.\n"
-"* Zvoľte 'Auto popup' pre zobrazenie tlačidla, a automatické otvorenie okna "
-"konverzácie.\n"
-"* Zvoľte 'Skryť tlačidlo' pre skrytie chat tlačidla na stránkach."
 
 #. module: im_livechat
 #: model:ir.ui.view,arch_db:im_livechat.im_livechat_channel_view_form
@@ -55,14 +53,9 @@ msgid ""
 "<span>Define rules for your live support channel. You can apply an action "
 "(disable the support, automatically open your support, or just make the "
 "button available) for the given URL, and per country.<br/>To identify the "
-"country, GeoIP must be install on your server, otherwise, the countries of "
-"the rule will not be taken into account.</span>"
+"country, GeoIP must be installed on your server, otherwise, the countries of"
+" the rule will not be taken into account.</span>"
 msgstr ""
-"<span>Definujte pravidlá pre váš kanál živej podpory. Môžete použiť akciu "
-"(vypnúť podporu, automaticky otvoriť vašu podporu, alebo len sprístupniť "
-"tlačidlo) pre danú URL adresu, a pre každú krajinu.<br/>Pre identifikáciu "
-"krajiny, GeoIP musí byť nainštalovaný na vašom serveri, inak nebudú krajiny "
-"pravidla brané do úvahy.</span>"
 
 #. module: im_livechat
 #: model:ir.model.fields,field_description:im_livechat.field_im_livechat_channel_rule_action
@@ -81,7 +74,7 @@ msgstr "Ste vo vnútri matrice?"
 
 #. module: im_livechat
 #. openerp-web
-#: code:addons/im_livechat/static/src/js/im_livechat.js:27
+#: code:addons/im_livechat/static/src/js/im_livechat.js:48
 #, python-format
 msgid "Ask something ..."
 msgstr "Opýtajte sa niečo ..."
@@ -90,7 +83,7 @@ msgstr "Opýtajte sa niečo ..."
 #: model:ir.ui.view,arch_db:im_livechat.mail_channel_view_form
 #: model:ir.ui.view,arch_db:im_livechat.mail_channel_view_tree
 msgid "Attendees"
-msgstr ""
+msgstr "Účastníci"
 
 #. module: im_livechat
 #: selection:im_livechat.channel.rule,action:0
@@ -124,6 +117,21 @@ msgstr "Priemerný čas na danie prvej odpovede návštevníkovi"
 #, python-format
 msgid "Bad"
 msgstr "Zlé"
+
+#. module: im_livechat
+#: model:ir.actions.act_window,name:im_livechat.im_livechat_canned_response_action
+#: model:ir.ui.menu,name:im_livechat.canned_responses
+msgid "Canned Responses"
+msgstr ""
+
+#. module: im_livechat
+#: model:ir.actions.act_window,help:im_livechat.im_livechat_canned_response_action
+msgid ""
+"Canned responses allow you to insert prewritten responses in\n"
+"                your messages by typing <i>:shortcut</i>. The shortcut is\n"
+"                replaced directly in your message, so that you can still edit\n"
+"                it before sending."
+msgstr ""
 
 #. module: im_livechat
 #: model:ir.model.fields,field_description:im_livechat.field_im_livechat_channel_rule_channel_id
@@ -164,10 +172,15 @@ msgstr "Vlastník vstupu chatu-u"
 
 #. module: im_livechat
 #. openerp-web
-#: code:addons/im_livechat/static/src/js/im_livechat.js:29
+#: code:addons/im_livechat/static/src/js/im_livechat.js:50
 #, python-format
 msgid "Chat with one of our collaborators"
 msgstr "Chatujte s jedným z našich spolupracovníkov"
+
+#. module: im_livechat
+#: model:ir.actions.act_window,help:im_livechat.im_livechat_canned_response_action
+msgid "Click to create a new canned response."
+msgstr ""
 
 #. module: im_livechat
 #: model:ir.actions.act_window,help:im_livechat.im_livechat_channel_action
@@ -181,21 +194,43 @@ msgid "Code"
 msgstr "Kód"
 
 #. module: im_livechat
+#: model:ir.ui.menu,name:im_livechat.livechat_config
+msgid "Configuration"
+msgstr "Konfigurácia"
+
+#. module: im_livechat
 #: model:ir.model.fields,field_description:im_livechat.field_im_livechat_report_channel_channel_id
 #: model:ir.model.fields,field_description:im_livechat.field_im_livechat_report_operator_channel_id
 msgid "Conversation"
 msgstr "Konverzácia"
 
 #. module: im_livechat
+#. openerp-web
+#: code:addons/im_livechat/static/src/js/copy_clipboard.js:32
+#, python-format
+msgid "Copied !"
+msgstr ""
+
+#. module: im_livechat
+#. openerp-web
+#: code:addons/im_livechat/static/src/xml/copy_clipboard.xml:6
+#: code:addons/im_livechat/static/src/xml/copy_clipboard.xml:12
+#, python-format
+msgid "Copy Text"
+msgstr ""
+
+#. module: im_livechat
 #: model:ir.ui.view,arch_db:im_livechat.im_livechat_channel_view_form
 msgid ""
 "Copy and paste this code into your website, within the &lt;head&gt; tag:"
 msgstr ""
+"Skopírujte a vložte tento kód do vašej webstránky, v rámci  &lt;head&gt; "
+"tagu:"
 
 #. module: im_livechat
 #: model:ir.model.fields,field_description:im_livechat.field_im_livechat_channel_rule_country_ids
 msgid "Country"
-msgstr "Krajina"
+msgstr "Štát"
 
 #. module: im_livechat
 #: model:ir.model.fields,field_description:im_livechat.field_im_livechat_channel_create_uid
@@ -218,7 +253,6 @@ msgstr "Dátum vytvorenia (deň)"
 
 #. module: im_livechat
 #: model:ir.ui.view,arch_db:im_livechat.im_livechat_report_channel_view_search
-#: model:ir.ui.view,arch_db:im_livechat.im_livechat_report_operator_view_search
 msgid "Creation date (hour)"
 msgstr "Dátum vytvorenia (hodina)"
 
@@ -244,6 +278,17 @@ msgid "Creation date (year)"
 msgstr "Dátum vytvorenia (rok)"
 
 #. module: im_livechat
+#: model:ir.actions.act_window,name:im_livechat.rating_rating_action_livechat_report
+#: model:ir.ui.menu,name:im_livechat.rating_rating_menu_livechat
+msgid "Customer Ratings"
+msgstr ""
+
+#. module: im_livechat
+#: model:ir.actions.act_window,help:im_livechat.rating_rating_action_livechat_report
+msgid "Customer ratings on livechat session."
+msgstr ""
+
+#. module: im_livechat
 #: model:ir.model.fields,help:im_livechat.field_im_livechat_channel_button_text
 msgid "Default text displayed on the Livechat Support Button"
 msgstr "Prednastavený text zobrazený na Tlačidle podpory živého chatu"
@@ -251,13 +296,10 @@ msgstr "Prednastavený text zobrazený na Tlačidle podpory živého chatu"
 #. module: im_livechat
 #: model:ir.model.fields,help:im_livechat.field_im_livechat_channel_rule_auto_popup_timer
 msgid ""
-"Delay (in seconds) to automatically open the converssation window. Note : "
-"the selected action must be 'Auto popup', otherwise this parameter will not "
-"be take into account."
+"Delay (in seconds) to automatically open the conversation window. Note: the "
+"selected action must be 'Auto popup' otherwise this parameter will not be "
+"taken into account."
 msgstr ""
-"Oneskorenie (v sekundách) pre automatické otvorenie okna konverzácie. "
-"Poznámka: vybraná akcie musí byť \"Auto pop-up\", v opačnom prípade tento "
-"parameter nebude braný do úvahy."
 
 #. module: im_livechat
 #. openerp-web
@@ -309,13 +351,10 @@ msgstr "Vysvetlite svoju poznámku"
 #. module: im_livechat
 #: model:ir.ui.view,arch_db:im_livechat.im_livechat_channel_view_form
 msgid ""
-"For website built with Odoo CMS, please install the website_livechat module. "
-"Then go to Settings &gt; Website Settings and select the Website Live Chat "
-"Channel you want to add on your website."
+"For website built with Odoo CMS, please install the website_livechat module."
+" Then go to Website Admin &gt; Configuration &gt; Settings and select the "
+"Website Live Chat Channel you want to add on your website."
 msgstr ""
-"Pre wenstránku postavenú s Odoo CMS, prosím nainštalujte modul "
-"website_livechat. Potom choďte na Nastavenia &gt; Nastavenia webstránky a "
-"vyberte Kanál webstránky živého chatu ktorý chcete pridať na vašu webstránku."
 
 #. module: im_livechat
 #: model:ir.model.fields,help:im_livechat.field_im_livechat_channel_rule_sequence
@@ -347,7 +386,6 @@ msgstr "Skryť tlačidlo"
 
 #. module: im_livechat
 #: model:ir.actions.act_window,name:im_livechat.mail_channel_action
-#: model:ir.ui.menu,name:im_livechat.session_history
 #: model:ir.ui.view,arch_db:im_livechat.mail_channel_view_form
 #: model:ir.ui.view,arch_db:im_livechat.mail_channel_view_tree
 msgid "History"
@@ -360,7 +398,7 @@ msgstr "Hodina začiatku Dátum relácie"
 
 #. module: im_livechat
 #. openerp-web
-#: code:addons/im_livechat/static/src/js/im_livechat.js:30
+#: code:addons/im_livechat/static/src/js/im_livechat.js:51
 #, python-format
 msgid "How may I help you?"
 msgstr "Ako Vám môžem pomôcť?"
@@ -375,7 +413,7 @@ msgstr "Ako pouźiť miniaplikáciu Živý chat webstránky?"
 #: code:addons/im_livechat/static/src/xml/im_livechat.xml:15
 #, python-format
 msgid "I don't want to rate this conversation"
-msgstr ""
+msgstr "Nechcem hodnotiť túto konverzáciu"
 
 #. module: im_livechat
 #: model:ir.model.fields,field_description:im_livechat.field_im_livechat_channel_id
@@ -407,6 +445,11 @@ msgid "Last 24h"
 msgstr "Posledných 24h"
 
 #. module: im_livechat
+#: model:ir.ui.view,arch_db:im_livechat.rating_rating_view_search_livechat
+msgid "Last 7 days"
+msgstr "Posledných 7 dní"
+
+#. module: im_livechat
 #: model:ir.model.fields,field_description:im_livechat.field_im_livechat_channel___last_update
 #: model:ir.model.fields,field_description:im_livechat.field_im_livechat_channel_rule___last_update
 #: model:ir.model.fields,field_description:im_livechat.field_im_livechat_report_channel___last_update
@@ -433,9 +476,24 @@ msgid "Last Week"
 msgstr "Posledný týždeň"
 
 #. module: im_livechat
+#: model:ir.ui.view,arch_db:im_livechat.im_livechat_channel_view_kanban
+msgid "Leave"
+msgstr "Voľno"
+
+#. module: im_livechat
 #: model:ir.ui.view,arch_db:im_livechat.im_livechat_channel_view_form
 msgid "Leave Channel"
 msgstr "Opustiť kanál"
+
+#. module: im_livechat
+#: model:ir.model,name:im_livechat.model_mail_channel_partner
+msgid "Listeners of a Channel"
+msgstr ""
+
+#. module: im_livechat
+#: model:ir.ui.menu,name:im_livechat.menu_livechat_root
+msgid "Live Chat"
+msgstr ""
 
 #. module: im_livechat
 #: model:ir.module.category,name:im_livechat.module_category_im_livechat
@@ -445,32 +503,25 @@ msgstr "Živá podpora"
 #. module: im_livechat
 #. openerp-web
 #: code:addons/im_livechat/static/src/xml/im_livechat_backend.xml:9
+#: code:addons/im_livechat/static/src/xml/im_livechat_backend.xml:21
 #, python-format
 msgid "Livechat"
 msgstr "Živý chat"
 
 #. module: im_livechat
 #: model:ir.model,name:im_livechat.model_im_livechat_channel
+#: model:ir.ui.view,arch_db:im_livechat.rating_rating_view_search_livechat
 msgid "Livechat Channel"
 msgstr "Živý chat kanál"
 
 #. module: im_livechat
 #: model:ir.actions.act_window,help:im_livechat.im_livechat_report_channel_action
 #: model:ir.actions.act_window,help:im_livechat.im_livechat_report_operator_action
-#, fuzzy
 msgid ""
 "Livechat Support Channel Statistics allows you to easily check and analyse "
 "your company livechat session performance. Extract information about the "
 "missed sessions, the audiance, the duration of a session, etc."
 msgstr ""
-"Štatistiky kanálov podpory živého chatu vám umožňuje jednoducho skontrolovať "
-"výkon relácií živého chatu. Extrahujte informácie o zmeškaných reláciach, "
-"publikum, trvanie relácie, atď."
-
-#. module: im_livechat
-#: model:ir.ui.view,arch_db:im_livechat.support_page
-msgid "Livechat Support Page"
-msgstr "Stránka podpory živého chatu"
 
 #. module: im_livechat
 #: model:ir.model,name:im_livechat.model_im_livechat_report_channel
@@ -529,8 +580,14 @@ msgid "Name"
 msgstr "Meno"
 
 #. module: im_livechat
+#: code:addons/im_livechat/models/mail_channel.py:125
+#, python-format
+msgid "No history found"
+msgstr ""
+
+#. module: im_livechat
 #. openerp-web
-#: code:addons/im_livechat/static/src/js/im_livechat.js:117
+#: code:addons/im_livechat/static/src/js/im_livechat.js:150
 #, python-format
 msgid ""
 "None of our collaborators seems to be available, please try again later."
@@ -592,43 +649,65 @@ msgstr ""
 
 #. module: im_livechat
 #: model:ir.ui.view,arch_db:im_livechat.im_livechat_channel_view_form
+msgid ""
+"Operators that do not show any activity In Odoo for more than 30 minutes "
+"will be considered as disconnected."
+msgstr ""
+
+#. module: im_livechat
+#: model:ir.ui.view,arch_db:im_livechat.im_livechat_channel_view_form
 msgid "Options"
 msgstr "Možnosti"
 
 #. module: im_livechat
 #: model:ir.model.fields,help:im_livechat.field_im_livechat_channel_rating_percentage_satisfaction
 msgid "Percentage of happy ratings over the past 7 days"
-msgstr ""
-
-#. module: im_livechat
-#: model:ir.ui.view,arch_db:im_livechat.im_livechat_channel_view_kanban
-msgid "Quit"
-msgstr "Ukončiť"
+msgstr "Percento spokojných hodnotení za posledných 7 dní"
 
 #. module: im_livechat
 #: model:ir.model,name:im_livechat.model_rating_rating
+#: model:ir.ui.view,arch_db:im_livechat.mail_channel_view_form
+#: model:ir.ui.view,arch_db:im_livechat.mail_channel_view_tree
 msgid "Rating"
 msgstr "Hodnotenie"
 
 #. module: im_livechat
 #. openerp-web
-#: code:addons/im_livechat/static/src/js/im_livechat.js:309
+#: code:addons/im_livechat/static/src/js/im_livechat.js:344
 #, python-format
 msgid "Rating: :rating_%d"
+msgstr "Hodnotenie: :rating_%d"
+
+#. module: im_livechat
+#: model:ir.ui.view,arch_db:im_livechat.im_livechat_channel_view_kanban
+msgid "Rating: Bad"
+msgstr ""
+
+#. module: im_livechat
+#: model:ir.ui.view,arch_db:im_livechat.im_livechat_channel_view_kanban
+msgid "Rating: Great"
+msgstr ""
+
+#. module: im_livechat
+#: model:ir.ui.view,arch_db:im_livechat.im_livechat_channel_view_kanban
+msgid "Rating: Okay"
+msgstr ""
+
+#. module: im_livechat
+#: model:ir.actions.act_window,name:im_livechat.rating_rating_action_view_livechat_rating
+msgid "Ratings for livechat channel"
 msgstr ""
 
 #. module: im_livechat
 #: model:ir.model.fields,help:im_livechat.field_im_livechat_channel_rule_regex_url
 msgid ""
-"Regular expression identifying the web page on which the rules will be "
-"applied."
+"Regular expression specifying the web pages this rule will be applied on."
 msgstr ""
-"Regulérny výraz označujúci webstránku, na ktorej budú uplatnená pravidlá."
 
 #. module: im_livechat
 #: model:ir.ui.menu,name:im_livechat.menu_reporting_livechat
 msgid "Report"
-msgstr "Výkaz"
+msgstr "Report"
 
 #. module: im_livechat
 #: model:ir.model.fields,field_description:im_livechat.field_im_livechat_channel_rule_ids
@@ -653,10 +732,16 @@ msgid "Search report"
 msgstr "Vyhľadať výkaz"
 
 #. module: im_livechat
+#: code:addons/im_livechat/models/mail_channel.py:113
+#, python-format
+msgid "See 15 last visited pages"
+msgstr ""
+
+#. module: im_livechat
 #: model:ir.ui.view,arch_db:im_livechat.mail_channel_view_form
 #: model:ir.ui.view,arch_db:im_livechat.mail_channel_view_tree
 msgid "Session Date"
-msgstr ""
+msgstr "Dátum Relácie"
 
 #. module: im_livechat
 #: model:ir.ui.view,arch_db:im_livechat.mail_channel_view_form
@@ -677,11 +762,16 @@ msgid "Sessions"
 msgstr "Relácie"
 
 #. module: im_livechat
+#: model:ir.ui.menu,name:im_livechat.session_history
+msgid "Sessions History"
+msgstr ""
+
+#. module: im_livechat
 #: model:ir.model.fields,help:im_livechat.field_im_livechat_channel_image_small
 msgid ""
 "Small-sized photo of the group. It is automatically resized as a 64x64px "
-"image, with aspect ratio preserved. Use this field anywhere a small image is "
-"required."
+"image, with aspect ratio preserved. Use this field anywhere a small image is"
+" required."
 msgstr ""
 "Malý obrázok tejto kategórie. Veľkosť je automaticky zmenená na 64x64px "
 "obrázok, so zachovaním pomeru strán. Použite toto pole vždy keď je potrebný "
@@ -705,19 +795,6 @@ msgid "Text of the Button"
 msgstr "Text tlačidla"
 
 #. module: im_livechat
-#: model:ir.model.fields,help:im_livechat.field_im_livechat_channel_rule_country_ids
-msgid ""
-"The actual rule will match only for this country. So if you set select "
-"'Belgium' and 'France' and you set the action to 'Hide Buttun', this 2 "
-"country will not be see the support button for the specified URL. This "
-"feature requires GeoIP installed on your server."
-msgstr ""
-"Aktuálne pravidlo sa bude zhodovať len pre túto krajinu. Takže ak zvolíte "
-"'Belgicko' a 'Francúzsko' a nastavíte akciu na 'Skryť tlačidlo', tieto 2 "
-"krajiny nebudú mať zobrazené tlačidlo pre špecifikovanú URL. Táto funkcia "
-"vyžaduje nainštalované GeoIP na vašom serveri."
-
-#. module: im_livechat
 #: model:ir.model.fields,help:im_livechat.field_im_livechat_channel_rule_channel_id
 msgid "The channel of the rule"
 msgstr "Kanál pravidla"
@@ -728,6 +805,16 @@ msgid "The name of the channel"
 msgstr "Názov kanála"
 
 #. module: im_livechat
+#: model:ir.model.fields,help:im_livechat.field_im_livechat_channel_rule_country_ids
+msgid ""
+"The rule will only be applied for these countries. Example: if you select "
+"'Belgium' and 'United States' and that you set the action to 'Hide Button', "
+"the chat button will be hidden on the specified URL from the visitors "
+"located in these 2 countries. This feature requires GeoIP installed on your "
+"server."
+msgstr ""
+
+#. module: im_livechat
 #: model:res.groups,comment:im_livechat.im_livechat_group_manager
 msgid "The user will be able to delete support channels."
 msgstr "Používateľ bude môcť zmazať kanály podpory."
@@ -736,6 +823,11 @@ msgstr "Používateľ bude môcť zmazať kanály podpory."
 #: model:res.groups,comment:im_livechat.im_livechat_group_user
 msgid "The user will be able to join support channels."
 msgstr "Používateľ sa bude môcť pripojiť na kanály podpory."
+
+#. module: im_livechat
+#: model:ir.actions.act_window,help:im_livechat.rating_rating_action_view_livechat_rating
+msgid "There is no rating for this channel at the moment."
+msgstr ""
 
 #. module: im_livechat
 #: model:ir.model.fields,help:im_livechat.field_im_livechat_channel_image
@@ -795,8 +887,8 @@ msgstr "Používateľ"
 
 #. module: im_livechat
 #. openerp-web
-#: code:addons/im_livechat/controllers/main.py:30
-#: code:addons/im_livechat/static/src/js/im_livechat.js:28
+#: code:addons/im_livechat/controllers/main.py:37
+#: code:addons/im_livechat/static/src/js/im_livechat.js:49
 #, python-format
 msgid "Visitor"
 msgstr "Návštevník"
@@ -807,19 +899,9 @@ msgid "Web Page"
 msgstr "Webstránka"
 
 #. module: im_livechat
-#: model:ir.ui.menu,name:im_livechat.menu_livechat_root
-msgid "Website Live Chat"
-msgstr "Chat webovej stránky"
-
-#. module: im_livechat
 #: model:ir.actions.act_window,name:im_livechat.im_livechat_channel_action
 msgid "Website Live Chat Channels"
 msgstr "Kanály živého chatu webstránky"
-
-#. module: im_livechat
-#: model:ir.ui.view,arch_db:im_livechat.support_page
-msgid "Website Live Chat Powered by <strong>Odoo</strong>."
-msgstr "Živý chat webstránky poháňa <strong>Odoo</strong>."
 
 #. module: im_livechat
 #: model:ir.model.fields,field_description:im_livechat.field_im_livechat_channel_default_message
@@ -828,16 +910,18 @@ msgstr "Uvítacia správa"
 
 #. module: im_livechat
 #: model:ir.actions.act_window,help:im_livechat.im_livechat_channel_action
-#, fuzzy
 msgid ""
 "You can create channels for each website on which you want\n"
-"                to integrate the website live chat widget, allowing your "
-"website\n"
+"                to integrate the website live chat widget, allowing your website\n"
 "                visitors to talk in real time with your operators."
 msgstr ""
-"Môžete vytvoriť kanály pre každú webstránku na ktorej chcete\n"
-"integrovať miniaplikáciu živého chatu webstránky, povoliť návštevníkom\n"
-"vašej webstránky rozprávaˇsa v reálnom čase s vašimi operátormi."
+
+#. module: im_livechat
+#: model:ir.actions.act_window,help:im_livechat.mail_channel_action
+msgid ""
+"Your chatter history is empty. Create a channel and start chatting to fill "
+"up your history."
+msgstr ""
 
 #. module: im_livechat
 #: model:ir.ui.view,arch_db:im_livechat.im_livechat_channel_view_form
@@ -850,6 +934,11 @@ msgid "e.g. YourWebsite.com"
 msgstr "napr. VasaWebstranka.com"
 
 #. module: im_livechat
+#: model:ir.model,name:im_livechat.model_ir_autovacuum
+msgid "ir.autovacuum"
+msgstr "ir.autovacuum"
+
+#. module: im_livechat
 #: model:ir.ui.view,arch_db:im_livechat.im_livechat_channel_view_form
 msgid "or copy this url and send it by email to your customers or suppliers:"
 msgstr ""
@@ -860,12 +949,3 @@ msgstr ""
 #: model:ir.ui.view,arch_db:im_livechat.im_livechat_channel_rule_view_form
 msgid "seconds"
 msgstr "sekundy"
-
-#~ msgid "My sessions"
-#~ msgstr "Moje relácie"
-
-#~ msgid "Open Livechat Channel Menu"
-#~ msgstr "Otvoriť menu kanála živého chatu"
-
-#~ msgid "Opertor"
-#~ msgstr "Operator"

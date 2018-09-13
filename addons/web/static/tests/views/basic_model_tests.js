@@ -203,6 +203,7 @@ QUnit.module('Views', {
     QUnit.test('basic onchange', function (assert) {
         assert.expect(5);
 
+        this.data.partner.fields.foo.onChange = true;
         this.data.partner.onchanges.foo = function (obj) {
             obj.bar = obj.foo.length;
         };
@@ -240,6 +241,7 @@ QUnit.module('Views', {
     QUnit.test('onchange with a many2one', function (assert) {
         assert.expect(5);
 
+        this.data.partner.fields.product_id.onChange = true;
         this.data.partner.onchanges.product_id = function (obj) {
             if (obj.product_id === 37) {
                 obj.foo = "space lollipop";
@@ -280,6 +282,7 @@ QUnit.module('Views', {
     QUnit.test('onchange on a one2many not in view (fieldNames)', function (assert) {
         assert.expect(6);
 
+        this.data.partner.fields.foo.onChange = true;
         this.data.partner.onchanges.foo = function (obj) {
             obj.bar = obj.foo.length;
             obj.product_ids = [];
@@ -425,6 +428,7 @@ QUnit.module('Views', {
     QUnit.test('onchange on a char with an unchanged many2one', function (assert) {
         assert.expect(2);
 
+        this.data.partner.fields.foo.onChange = true;
         this.data.partner.onchanges.foo = function (obj) {
             obj.foo = obj.foo + " alligator";
         };
@@ -453,6 +457,7 @@ QUnit.module('Views', {
     QUnit.test('onchange on a char with another many2one not set to a value', function (assert) {
         assert.expect(2);
         this.data.partner.records[0].product_id = false;
+        this.data.partner.fields.foo.onChange = true;
         this.data.partner.onchanges.foo = function (obj) {
             obj.foo = obj.foo + " alligator";
         };
@@ -660,6 +665,42 @@ QUnit.module('Views', {
 
         assert.verifySteps(['default_get'],
             "there should be default_get");
+
+        model.destroy();
+    });
+
+    QUnit.test('default_get returning a non requested field', function (assert) {
+        // 'default_get' returns a default value for the fields given in
+        // arguments. It should not return a value for fields that have not be
+        // requested. However, it happens (e.g. res.users), and the webclient
+        // should not crash when this situation occurs (the field should simply
+        // be ignored).
+        assert.expect(2);
+
+        this.params.context = {};
+        this.params.fieldNames = ['category'];
+        this.params.res_id = undefined;
+        this.params.type = 'record';
+
+        var model = createModel({
+            Model: BasicModel,
+            data: this.data,
+            mockRPC: function (route, args) {
+                var result = this._super(route, args);
+                if (args.method === 'default_get') {
+                    result.product_ids = [[6, 0, [37, 41]]];
+                }
+                return result;
+            },
+        });
+
+        model.load(this.params).then(function (resultID) {
+            var record = model.get(resultID);
+            assert.ok('category' in record.data,
+                "should have processed 'category'");
+            assert.notOk('product_ids' in record.data,
+                "should have ignored 'product_ids'");
+        });
 
         model.destroy();
     });
@@ -1153,6 +1194,7 @@ QUnit.module('Views', {
         assert.expect(4);
 
         this.data.partner.fields.total.default = 50;
+        this.data.partner.fields.product_ids.onChange = true;
         this.data.partner.onchanges.product_ids = function (obj) {
             obj.total += 100;
         };
@@ -1497,6 +1539,7 @@ QUnit.module('Views', {
         assert.expect(6);
 
         this.params.fieldNames = ['foo', 'bar'];
+        this.data.partner.fields.foo.onChange = true;
         this.data.partner.onchanges.foo = function (obj) {
             obj.bar = obj.foo.length;
         };
@@ -1562,6 +1605,7 @@ QUnit.module('Views', {
         assert.expect(6);
 
         this.params.fieldNames = ['foo', 'bar'];
+        this.data.partner.fields.foo.onChange = true;
         this.data.partner.onchanges.foo = function (obj) {
             obj.bar = obj.foo.length;
         };
@@ -2138,6 +2182,7 @@ QUnit.module('Views', {
         };
         _.extend(this.data.partner.fields, newFields);
 
+        this.data.partner.fields.foobool.onChange = true;
         this.data.partner.onchanges.foobool = function (obj) {
             if (obj.foobool) {
                 obj.foobool2 = true;

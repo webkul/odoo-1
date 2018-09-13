@@ -157,6 +157,17 @@ class TestOnChange(common.TransactionCase):
             }),
         ])
 
+        # ensure onchange changing one2many without subfield works
+        one_level_fields = {k: v for k, v in field_onchange.items() if k.count('.') < 1}
+        values = dict(values, name='{generate_dummy_message}')
+        result = self.Discussion.with_context(generate_dummy_message=True).onchange(values, 'name', one_level_fields)
+        self.assertEqual(result['value']['messages'], [
+            (5,),
+            (4, message.id),
+            (0, 0, {}),
+            (0, 0, {}),
+        ])
+
     def test_onchange_one2many_reference(self):
         """ test the effect of onchange() on one2many fields with line references """
         BODY = "What a beautiful day!"
@@ -425,3 +436,32 @@ class TestOnChange(common.TransactionCase):
                  'size': email.size,
              })]
         )
+
+    def test_onchange_related(self):
+        value = {
+            'message': 1,
+            'message_name': False,
+            'message_currency': 2,
+        }
+        field_onchange = {
+            'message': '1',
+            'message_name': None,
+            'message_currency': None,
+        }
+
+        onchange_result = {
+            'message_name': 'Hey dude!',
+            'message_currency': (1, 'Administrator')
+        }
+
+        self.env.cache.invalidate()
+        Message = self.env['test_new_api.related']
+        result = Message.onchange(value, ['message', 'message_name', 'message_currency'], field_onchange)
+
+        self.assertEqual(result['value'], onchange_result)
+
+        self.env.cache.invalidate()
+        Message = self.env(user=self.env.ref('base.user_demo').id)['test_new_api.related']
+        result = Message.onchange(value, ['message', 'message_name', 'message_currency'], field_onchange)
+
+        self.assertEqual(result['value'], onchange_result)

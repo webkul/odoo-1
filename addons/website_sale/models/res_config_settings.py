@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
+from ast import literal_eval
+
 from odoo import api, models, fields
 
 class ResConfigSettings(models.TransientModel):
@@ -29,7 +31,7 @@ class ResConfigSettings(models.TransientModel):
         ], string="Shipping Management")
 
     group_website_multiimage = fields.Boolean(string='Multi-Images', implied_group='website_sale.group_website_multi_image', group='base.group_portal,base.group_user,base.group_public')
-    group_delivery_invoice_address = fields.Boolean(string="Shipping Address", implied_group='sale.group_delivery_invoice_address')
+    group_delivery_invoice_address = fields.Boolean(string="Shipping Address", implied_group='sale.group_delivery_invoice_address', group='base.group_portal,base.group_user,base.group_public')
 
     module_website_sale_options = fields.Boolean("Optional Products")
     module_website_sale_digital = fields.Boolean("Digital Content")
@@ -41,9 +43,14 @@ class ResConfigSettings(models.TransientModel):
 
     order_mail_template = fields.Many2one('mail.template', string='Order Confirmation Email',
         default=_default_order_mail_template, domain="[('model', '=', 'sale.order')]",
-        help="Email sent to customer at the end of the checkout process")
+        help="Email sent to customer at the end of the checkout process", readonly=True)
 
-    automatic_invoice = fields.Boolean("Automatic Invoice")
+    automatic_invoice = fields.Boolean("Automatic Invoice",
+                                       help="The invoice is generated automatically and available in the customer portal "
+                                       "when the transaction is confirmed by the payment acquirer.\n"
+                                       "The invoice is marked as paid and the payment is registered in the payment journal "
+                                       "defined in the configuration of the payment acquirer.\n"
+                                       "This mode is advised if you issue the final invoice at the order and not after the delivery.")
 
     module_l10n_eu_service = fields.Boolean(string="EU Digital Goods VAT")
 
@@ -62,8 +69,8 @@ class ResConfigSettings(models.TransientModel):
             if self.env['ir.module.module'].search([('name', '=', 'website_sale_delivery')], limit=1).state in ('installed', 'to install', 'to upgrade'):
                 sale_delivery_settings = 'website'
 
-        cart_recovery_mail_template = int(params.get_param('website_sale.cart_recovery_mail_template_id'))
-        if not cart_recovery_mail_template:
+        cart_recovery_mail_template = literal_eval(params.get_param('website_sale.cart_recovery_mail_template_id', default='False'))
+        if cart_recovery_mail_template and not self.env['mail.template'].browse(cart_recovery_mail_template).exists():
             cart_recovery_mail_template = self._default_recovery_mail_template()
 
         res.update(

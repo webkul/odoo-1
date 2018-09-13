@@ -6,7 +6,6 @@ var dialogs = require('web.view_dialogs');
 var core = require('web.core');
 var Dialog = require('web.Dialog');
 var field_utils = require('web.field_utils');
-var framework = require('web.framework');
 var session = require('web.session');
 var SystrayMenu = require('web.SystrayMenu');
 var utils = require('web.utils');
@@ -179,6 +178,7 @@ var DebugManager = Widget.extend({
                     })
                     .then(function (views) {
                         var view = views[0];
+                        view.type = view.type === 'tree' ? 'list' : view.type; // ignore tree view
                         self.do_action({
                             type: 'ir.actions.act_window',
                             name: view.name,
@@ -189,12 +189,26 @@ var DebugManager = Widget.extend({
             }
         }).open();
     },
+    /**
+     * Runs the JS (desktop) tests
+     */
     perform_js_tests: function () {
         this.do_action({
             name: _t("JS Tests"),
             target: 'new',
             type: 'ir.actions.act_url',
             url: '/web/tests?mod=*'
+        });
+    },
+    /**
+     * Runs the JS mobile tests
+     */
+    perform_js_mobile_tests: function () {
+        this.do_action({
+            name: _t("JS Mobile Tests"),
+            target: 'new',
+            type: 'ir.actions.act_url',
+            url: '/web/tests/mobile?mod=*'
         });
     },
     split_assets: function() {
@@ -433,7 +447,7 @@ DebugManager.include({
                         $defaults.parent().addClass('o_form_invalid');
                         return;
                     }
-                    var allUsers = d.$el.find('#formview_default_all').is(':checked');
+                    var selfUser = d.$el.find('#formview_default_self').is(':checked');
                     var condition = d.$el.find('#formview_default_conditions').val();
                     var value = _.find(self.fields, function (field) {
                         return field.name === fieldToSet;
@@ -445,7 +459,7 @@ DebugManager.include({
                             self._active_view.fields_view.model,
                             fieldToSet,
                             value,
-                            allUsers,
+                            selfUser,
                             true,
                             condition || false,
                         ],
@@ -769,7 +783,7 @@ if (core.debug) {
                 // Instantiate the DebugManager and insert it into the DOM once dialog is opened
                 this.opened(function() {
                     self.debug_manager = new DebugManager(self);
-                    var $header = self.$modal.find('.modal-header');
+                    var $header = self.$modal.find('.modal-header:first');
                     return self.debug_manager.prependTo($header).then(function() {
                         self.debug_manager.update('action', parent.dialog_widget.action, parent.dialog_widget);
                     });

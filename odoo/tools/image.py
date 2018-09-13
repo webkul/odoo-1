@@ -201,6 +201,8 @@ def crop_image(data, type='top', ratio=False, size=None, image_format="PNG"):
         raise ValueError('ERROR: invalid value for crop_type')
     if size:
         thumbnail = Image.open(io.BytesIO(output_stream.getvalue()))
+        output_stream.truncate(0)
+        output_stream.seek(0)
         thumbnail.thumbnail(size, Image.ANTIALIAS)
         thumbnail.save(output_stream, image_format)
     return base64.b64encode(output_stream.getvalue())
@@ -267,21 +269,23 @@ def image_get_resized_images(base64_source, return_big=False, return_medium=True
 
 def image_resize_images(vals, big_name='image', medium_name='image_medium', small_name='image_small'):
     """ Update ``vals`` with image fields resized as expected. """
-    if big_name in vals:
+    if vals.get(big_name):
         vals.update(image_get_resized_images(vals[big_name],
                         return_big=True, return_medium=True, return_small=True,
                         big_name=big_name, medium_name=medium_name, small_name=small_name,
                         avoid_resize_big=True, avoid_resize_medium=False, avoid_resize_small=False))
-    elif medium_name in vals:
+    elif vals.get(medium_name):
         vals.update(image_get_resized_images(vals[medium_name],
                         return_big=True, return_medium=True, return_small=True,
                         big_name=big_name, medium_name=medium_name, small_name=small_name,
                         avoid_resize_big=True, avoid_resize_medium=True, avoid_resize_small=False))
-    elif small_name in vals:
+    elif vals.get(small_name):
         vals.update(image_get_resized_images(vals[small_name],
                         return_big=True, return_medium=True, return_small=True,
                         big_name=big_name, medium_name=medium_name, small_name=small_name,
                         avoid_resize_big=True, avoid_resize_medium=True, avoid_resize_small=True))
+    elif big_name in vals or medium_name in vals or small_name in vals:
+        vals[big_name] = vals[medium_name] = vals[small_name] = False
 
 
 if __name__=="__main__":

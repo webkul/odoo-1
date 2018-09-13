@@ -37,10 +37,11 @@ var SnippetOption = Widget.extend({
      *
      * @constructor
      */
-    init: function (parent, $target, $overlay) {
+    init: function (parent, $target, $overlay, data) {
         this._super.apply(this, arguments);
         this.$target = $target;
         this.$overlay = $overlay;
+        this.data = data;
         this.__methodNames = [];
     },
     /**
@@ -50,7 +51,6 @@ var SnippetOption = Widget.extend({
      * @override
      */
     start: function () {
-        this.data = this.$el.data();
         this._setActive();
         return this._super.apply(this, arguments);
     },
@@ -872,8 +872,15 @@ registry.background = SnippetOption.extend({
         // Put fake image in the DOM, edit it and use it as background-image
         var $image = $('<img/>', {class: 'hidden', src: value}).appendTo(this.$target);
 
-        var _editor = new widget.MediaDialog(this, {}, null, $image[0]).open();
-        _editor.$('[href="#editor-media-video"], [href="#editor-media-icon"]').addClass('hidden');
+        var $editable = this.$target.closest('.o_editable');
+        var options = {
+            res_model: $editable.data('oe-model'),
+            res_id: $editable.data('oe-id'),
+        };
+        var _editor = new widget.MediaDialog(this, options, null, $image[0]).open();
+        _editor.opened(function () {
+            _editor.$('[href="#editor-media-video"], [href="#editor-media-icon"]').addClass('hidden');
+        });
 
         _editor.on('save', this, function () {
             this._setCustomBackground($image.attr('src'));
@@ -1284,7 +1291,7 @@ registry.many2one = SnippetOption.extend({
             method: 'search_read',
             args: [domain, this.Model === 'res.partner' ? ['name', 'display_name', 'city', 'country_id'] : ['name', 'display_name']],
             kwargs: {
-                order: 'name DESC',
+                order: [{name: 'name', asc: false}],
                 limit: 5,
                 context: weContext.get(),
             },

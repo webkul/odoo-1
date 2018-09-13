@@ -95,6 +95,7 @@
         
         <record id="route_warehouse0_mto" model='stock.location.route'>
             <field name="name">Make To Order</field>
+            <field name="company_id"></field>
             <field name="sequence">10</field>
         </record>
 
@@ -129,7 +130,6 @@
         
 
         <record id="warehouse0" model="stock.warehouse">
-            <field model="res.company" name="name" search="[]" use="name"/>
             <field name="partner_id" ref="base.main_partner"/>
             <field name="code">WH</field>
         </record>

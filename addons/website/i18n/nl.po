@@ -4,17 +4,17 @@
 # 
 # Translators:
 # Erwin van der Ploeg <erwin@odooexperts.nl>, 2017
-# Martin Trigaux <mat@odoo.com>, 2017
+# Martin Trigaux, 2017
 # Yenthe Van Ginneken <yenthespam@gmail.com>, 2017
 # Cas Vissers <casvissers@brahoo.nl>, 2017
 # Eric Geens <ericgeens@yahoo.com>, 2017
 # Volluta <volluta@tutanota.com>, 2017
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.saas~18\n"
+"Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-02 11:26+0000\n"
-"PO-Revision-Date: 2017-10-02 11:26+0000\n"
+"POT-Creation-Date: 2018-02-19 13:42+0000\n"
+"PO-Revision-Date: 2018-02-19 13:42+0000\n"
 "Last-Translator: Volluta <volluta@tutanota.com>, 2017\n"
 "Language-Team: Dutch (https://www.transifex.com/odoo/teams/41243/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -29,6 +29,13 @@ msgstr ""
 #, python-format
 msgid " Add Images"
 msgstr "Afbeeldingen toevoegen"
+
+#. module: website
+#: code:addons/website/models/website.py:233
+#: code:addons/website/models/website.py:302
+#, python-format
+msgid "%s (id:%s)"
+msgstr "%s (id:%s)"
 
 #. module: website
 #: model:ir.ui.view,arch_db:website.show_website_info
@@ -66,12 +73,19 @@ msgid "' did not match any pages."
 msgstr "' kwam met geen pagina overeen."
 
 #. module: website
-#: code:addons/website/models/website.py:622
-#: code:addons/website/models/website.py:624
-#: code:addons/website/models/website.py:642
+#: code:addons/website/models/website.py:723
+#: code:addons/website/models/website.py:725
+#: code:addons/website/models/website.py:743
 #, python-format
 msgid "(copy)"
 msgstr "(kopie)"
+
+#. module: website
+#. openerp-web
+#: code:addons/website/static/src/xml/website.pageProperties.xml:29
+#, python-format
+msgid "(could be used in"
+msgstr "(kan worden gebruikt in"
 
 #. module: website
 #: model:ir.ui.view,arch_db:website.website_planner
@@ -114,6 +128,17 @@ msgstr ", bijgewerkt:"
 #: model:ir.ui.view,arch_db:website.website_planner
 msgid "- The Odoo Team"
 msgstr "- Het Odoo Team"
+
+#. module: website
+#. openerp-web
+#: code:addons/website/static/src/xml/website.pageProperties.xml:23
+#, python-format
+msgid ""
+".\n"
+"            Changing its name will break these calls."
+msgstr ""
+".\n"
+"           Als u de naam wijzigt, worden deze oproepen verbroken."
 
 #. module: website
 #: model:ir.ui.view,arch_db:website.default_csv
@@ -223,7 +248,7 @@ msgstr ""
 #: code:addons/website/static/src/js/tours/banner.js:74
 #, python-format
 msgid "<b>Install a contact form</b> to improve this page."
-msgstr "<b>Installeer een contact formulier</b> om deze pagina te verbeteren."
+msgstr "<b>Installeer een contactformulier</b> om deze pagina te verbeteren."
 
 #. module: website
 #. openerp-web
@@ -234,7 +259,7 @@ msgid ""
 "form'</i> app."
 msgstr ""
 "<b>Installeer nieuwe Apps</b> om meer functionaliteiten te krijgen. Laten we"
-" de  <i>'Contact formulier'</i> App installeren."
+" de  <i>'Contactformulier'</i> App installeren."
 
 #. module: website
 #: model:ir.actions.act_window,help:website.action_module_theme
@@ -408,7 +433,7 @@ msgid ""
 "                    This Planner will help you think about your website and provide tips and ideas to inspire you. There are examples and explanations to guide you through the process of creating a top-notch, high quality website that meets all your needs.</i>"
 msgstr ""
 "<i> \n"
-"Deze planner helpt u denken aan de website en bied tips en ideeën aan om u te inspireren. Er zijn voorbeelden en uitleggen om u te sturen doorheen het proces van het creëren van een topkwaliteit website die voldoet aan al uw noden.</i>"
+"Deze planner helpt u denken aan de website en bied tips en ideeën aan om u te inspireren. Er zijn voorbeelden en uitleggen om u te sturen doorheen het proces van het creëren van een topkwaliteit website die voldoet aan al uw wensen.</i>"
 
 #. module: website
 #: model:ir.ui.view,arch_db:website.website_planner
@@ -468,6 +493,8 @@ msgid ""
 "<span class=\"caret\"/>\n"
 "                            <span class=\"sr-only\">Toggle Dropdown</span>"
 msgstr ""
+"<span class=\"caret\"/>\n"
+"                            <span class=\"sr-only\">Schakel Dropdown in</span>"
 
 #. module: website
 #: model:ir.ui.view,arch_db:website.website_planner
@@ -648,7 +675,7 @@ msgid ""
 "<strong>Be linked by trusted websites</strong><br/>\n"
 "                                The more websites that link to your website, the more Google trusts it to be worthwhile. Here are some tips:"
 msgstr ""
-"<strong>Wordt gelinkt door vertrouwbare websites</strong><br/> \n"
+"<strong>Wordt gelinkt door betrouwbare websites</strong><br/> \n"
 "Hoe meer websites u linkt aan uw eigen website, hoe meer Google uw website vertrouwt om de moeite te zijn. Hier zijn enkele tips:"
 
 #. module: website
@@ -938,11 +965,6 @@ msgid "Add"
 msgstr "Toevoegen"
 
 #. module: website
-#: model:ir.ui.view,arch_db:website.user_navbar
-msgid "Add Features"
-msgstr "Voeg opties toe"
-
-#. module: website
 #. openerp-web
 #: code:addons/website/static/src/xml/website.contentMenu.xml:49
 #, python-format
@@ -1000,7 +1022,7 @@ msgid ""
 msgstr ""
 "Na het werken aan deze stap, wilt u mogelijk terug gaan om uw doelstellingen"
 " te vernieuwen of de interesses van uw bezoekers te wijzigen. Die 3 stappen "
-"zijn essentieel gelinkt, en hoe meer tijd u hierin steekt, hoe beter uw "
+"zijn eigenlijk gekoppeld, en hoe meer tijd u hierin steekt, hoe beter uw "
 "website zal worden!"
 
 #. module: website
@@ -1020,6 +1042,9 @@ msgid ""
 "                                She mentors 100+ in-house developers and looks after the community of over\n"
 "                                thousands developers."
 msgstr ""
+"Aline is een van de iconische personen in het leven die kan zeggen dat ze houdt van wat ze doet.\n"
+"Zij is een voorstander van meer dan 100 interne ontwikkelaars en verzorgt de community van\n"
+"duizenden ontwikkelaars."
 
 #. module: website
 #: model:ir.ui.view,arch_db:website.s_feature_grid
@@ -1045,6 +1070,9 @@ msgid ""
 "                                indirectly, implying any approval, association, sponsorship, endorsement, or\n"
 "                                affiliation with any linked website, unless specifically stated herein."
 msgstr ""
+"Hoewel deze website mogelijk linkt naar andere websites zijn we niet direct of\n"
+"indirect verbonden voor goedkeuring, samenwerking, sponsoring, aanbevelingen of\n"
+"connecties met deze website, tenzij dit specifiek vermeld is."
 
 #. module: website
 #: model:ir.ui.view,arch_db:website.500
@@ -1256,7 +1284,7 @@ msgstr "Cirkel"
 #. module: website
 #: model:ir.ui.view,arch_db:website.snippet_options
 msgid "City"
-msgstr "Gemeente"
+msgstr "Plaats"
 
 #. module: website
 #: model:ir.ui.view,arch_db:website.website_planner
@@ -1387,7 +1415,7 @@ msgstr "Neem contact op"
 #: model:website.page,arch_db:website.website2_contactus_page
 #: model:website.page,arch_db:website.website2_homepage_page
 msgid "Contact us"
-msgstr "Contacteer ons"
+msgstr "Neem contact op"
 
 #. module: website
 #: model:ir.ui.view,arch_db:website.contactus
@@ -1418,7 +1446,7 @@ msgstr "Content Delivery Network (CDN)"
 
 #. module: website
 #. openerp-web
-#: code:addons/website/static/src/js/menu/content.js:316
+#: code:addons/website/static/src/js/menu/content.js:388
 #: code:addons/website/static/src/xml/website.xml:26
 #, python-format
 msgid "Continue"
@@ -1431,7 +1459,7 @@ msgstr "Copyright &amp;copy;"
 
 #. module: website
 #. openerp-web
-#: code:addons/website/static/src/js/menu/content.js:256
+#: code:addons/website/static/src/js/menu/content.js:328
 #, python-format
 msgid "Create Menu"
 msgstr "Maak menu"
@@ -1544,7 +1572,7 @@ msgstr "Verwijder blokken"
 
 #. module: website
 #. openerp-web
-#: code:addons/website/static/src/js/menu/content.js:669
+#: code:addons/website/static/src/js/menu/content.js:741
 #, python-format
 msgid "Delete Page"
 msgstr "Pagina verwijderen"
@@ -1572,6 +1600,14 @@ msgstr "Demo logo"
 
 #. module: website
 #. openerp-web
+#: code:addons/website/static/src/xml/website.pageProperties.xml:23
+#: code:addons/website/static/src/xml/website.pageProperties.xml:32
+#, python-format
+msgid "Dependencies"
+msgstr "Afhankelijkheden"
+
+#. module: website
+#. openerp-web
 #: code:addons/website/static/src/xml/website.seo.xml:20
 #, python-format
 msgid "Description"
@@ -1589,7 +1625,7 @@ msgstr "Autoplay uitschakelen"
 
 #. module: website
 #. openerp-web
-#: code:addons/website/static/src/js/menu/content.js:44
+#: code:addons/website/static/src/js/menu/content.js:45
 #: code:addons/website/static/src/js/menu/seo.js:343
 #, python-format
 msgid "Discard"
@@ -1704,7 +1740,7 @@ msgstr "Bewerken"
 
 #. module: website
 #. openerp-web
-#: code:addons/website/static/src/js/menu/content.js:345
+#: code:addons/website/static/src/js/menu/content.js:417
 #: model:ir.ui.view,arch_db:website.user_navbar
 #, python-format
 msgid "Edit Menu"
@@ -1846,6 +1882,11 @@ msgid "Feature Two"
 msgstr "Functie twee"
 
 #. module: website
+#: model:ir.model,name:website.model_ir_model_fields
+msgid "Fields"
+msgstr "Velden"
+
+#. module: website
 #: model:ir.ui.view,arch_db:website.website_planner
 msgid ""
 "Finally don't try to make all your content accessible from the main menu or the footer.\n"
@@ -1917,6 +1958,9 @@ msgid ""
 "                                to keep his hands full by participating in the development of the software,\n"
 "                                marketing and the Customer Experience strategies."
 msgstr ""
+"Oprichter en chef strategie, Tony is de drijvende kracht achter het bedrijf. Hij houdt ervan\n"
+"om zijn handen vol te houden door deel te nemen aan de ontwikkeling van de software,\n"
+"marketing en de klant beleving strategieën."
 
 #. module: website
 #: model:ir.ui.view,arch_db:website.website_planner
@@ -1935,7 +1979,7 @@ msgstr ""
 #. module: website
 #: model:ir.ui.view,arch_db:website.s_faq_collapse
 msgid "General Terms and Conditions / Service Policies"
-msgstr ""
+msgstr "Algemene voorwaarden / Service beleid"
 
 #. module: website
 #: model:ir.ui.view,arch_db:website.website_planner
@@ -1962,10 +2006,11 @@ msgstr "Krijg inzicht in uw methodologie"
 #: code:addons/website/static/src/js/menu/seo.js:340
 #, python-format
 msgid ""
-"Get this page efficiently referenced in Google to attract more visitors."
+"Get this page efficiently referenced in search engines to attract more "
+"visitors."
 msgstr ""
-"Krijg een efficiënte pagina referentie in Google om meer bezoekers aan te "
-"trekken."
+"Krijg een efficiënte pagina referentie in zoekpagina's om meer bezoekers aan"
+" te trekken."
 
 #. module: website
 #: model:ir.ui.view,arch_db:website.website_planner
@@ -1981,7 +2026,7 @@ msgstr "GitHub Account"
 
 #. module: website
 #. openerp-web
-#: code:addons/website/static/src/js/menu/content.js:47
+#: code:addons/website/static/src/js/menu/content.js:48
 #, python-format
 msgid "Go To Page"
 msgstr "Ga naar pagina"
@@ -1992,6 +2037,11 @@ msgstr "Ga naar pagina"
 #, python-format
 msgid "Go to Link"
 msgstr "Ga naar link"
+
+#. module: website
+#: model:ir.ui.view,arch_db:website.view_view_form_extend
+msgid "Go to Page Manager"
+msgstr "Ga naar paginabeheer"
 
 #. module: website
 #. openerp-web
@@ -2049,6 +2099,8 @@ msgid ""
 "Google Analytics initialization failed. Maybe this domain is not whitelisted"
 " in your Google Analytics project for this client ID."
 msgstr ""
+"Google Analytics Initialisatie mislukt. Misschien staat dit domein niet op "
+"de witte lijst in uw Google Analytics project voor dit klant-ID."
 
 #. module: website
 #: model:ir.ui.view,arch_db:website.website_planner
@@ -2145,7 +2197,7 @@ msgstr ""
 
 #. module: website
 #. openerp-web
-#: code:addons/website/static/src/xml/website.pageProperties.xml:75
+#: code:addons/website/static/src/xml/website.pageProperties.xml:110
 #, python-format
 msgid "Hide this page from search results"
 msgstr "Verberg deze pagina in de zoekresultaten"
@@ -2191,11 +2243,11 @@ msgstr "Hoe mijn cliënt ID verkrijgen"
 #: model:ir.ui.view,arch_db:website.res_config_settings_view_form
 #, python-format
 msgid "How to get my Tracking ID"
-msgstr ""
+msgstr "Hoe mijn tracking ID te verkrijgen"
 
 #. module: website
 #: model:ir.model.fields,field_description:website.field_website_id
-#: model:ir.model.fields,field_description:website.field_website_menu_id_7216
+#: model:ir.model.fields,field_description:website.field_website_menu_id_7241
 #: model:ir.model.fields,field_description:website.field_website_page_id
 #: model:ir.model.fields,field_description:website.field_website_published_mixin_id
 #: model:ir.model.fields,field_description:website.field_website_redirect_id
@@ -2270,7 +2322,7 @@ msgstr "In titel"
 
 #. module: website
 #. openerp-web
-#: code:addons/website/static/src/xml/website.pageProperties.xml:73
+#: code:addons/website/static/src/xml/website.pageProperties.xml:108
 #: model:ir.ui.view,arch_db:website.index_management
 #, python-format
 msgid "Indexed"
@@ -2328,8 +2380,12 @@ msgid ""
 "                                improves them. She is determined to drive success and delivers her professional\n"
 "                                acumen to bring Company at the next level."
 msgstr ""
+"Iris, met haar internationale ervaring, helpt ons de cijfers gemakkelijk te begrijpen\n"
+"en verbetert ze. Ze is vastbesloten om succes te behalen en levert haar professionele\n"
+"scherpzinnigheid om het bedrijf op het volgende niveau te brengen."
 
 #. module: website
+#: model:ir.model.fields,field_description:website.field_website_menu_is_visible
 #: model:ir.model.fields,field_description:website.field_website_page_is_visible
 msgid "Is Visible"
 msgstr "Is zichtbaar"
@@ -2352,7 +2408,14 @@ msgstr ""
 
 #. module: website
 #. openerp-web
-#: code:addons/website/static/src/js/content/website_root.js:208
+#: code:addons/website/static/src/xml/website.pageProperties.xml:19
+#, python-format
+msgid "It looks like your file is being called by"
+msgstr "Het lijkt erop dat uw bestand wordt opgeroepen door"
+
+#. module: website
+#. openerp-web
+#: code:addons/website/static/src/js/content/website_root.js:212
 #, python-format
 msgid ""
 "It might be possible to edit the relevant items or fix the issue in <a "
@@ -2495,7 +2558,7 @@ msgstr "Laten we starten met ontwerpen."
 #. module: website
 #: model:ir.ui.view,arch_db:website.s_comparisons
 msgid "Limited customization"
-msgstr "Gelimiteerde personalisering"
+msgstr "Beperkte personalisering"
 
 #. module: website
 #. openerp-web
@@ -2590,7 +2653,7 @@ msgid "Meet the Executive Team"
 msgstr "Ontmoet het uitvoerend team"
 
 #. module: website
-#: code:addons/website/models/website.py:209
+#: code:addons/website/models/website.py:241
 #: model:ir.model.fields,field_description:website.field_website_menu_name
 #, python-format
 msgid "Menu"
@@ -2598,10 +2661,16 @@ msgstr "Menu"
 
 #. module: website
 #. openerp-web
-#: code:addons/website/static/src/js/menu/content.js:266
+#: code:addons/website/static/src/js/menu/content.js:338
 #, python-format
 msgid "Menu Label"
 msgstr "Menulabel"
+
+#. module: website
+#: code:addons/website/models/website.py:243
+#, python-format
+msgid "Menus"
+msgstr "Menu's"
 
 #. module: website
 #: model:ir.ui.view,arch_db:website.template_partner_comment
@@ -2620,6 +2689,8 @@ msgid ""
 "                                Director in the software industry, Mich has helped Company to get where it\n"
 "                                is today. Mich is among the best minds."
 msgstr ""
+"Mich gaat graag uitdagingen aan. Met zijn meerjarige ervaring als commercieel directeur in de software-industrie heeft Mich het bedrijf geholpen tot waar het is gekomen\n"
+"vandaag. Mich is een van de slimste mensen."
 
 #. module: website
 #. openerp-web
@@ -2638,6 +2709,11 @@ msgstr "Model"
 #: model:ir.model.fields,field_description:website.field_website_page_model_data_id
 msgid "Model Data"
 msgstr "Modelgegevens"
+
+#. module: website
+#: model:ir.model,name:website.model_ir_model
+msgid "Models"
+msgstr "Modellen"
 
 #. module: website
 #. openerp-web
@@ -2685,7 +2761,7 @@ msgstr "Mijn website"
 
 #. module: website
 #. openerp-web
-#: code:addons/website/static/src/xml/website.pageProperties.xml:6
+#: code:addons/website/static/src/xml/website.pageProperties.xml:40
 #: model:ir.ui.view,arch_db:website.edit_website_pages
 #: model:ir.ui.view,arch_db:website.res_config_settings_view_form
 #, python-format
@@ -2931,6 +3007,8 @@ msgid ""
 "Our products are designed for small to medium size companies willing to optimize\n"
 "                                                      their performance."
 msgstr ""
+"Onze producten zijn ontworpen voor kleine tot middelgrote bedrijven die hun "
+"prestaties willen optimaliseren."
 
 #. module: website
 #: model:ir.ui.view,arch_db:website.footer_default
@@ -2942,17 +3020,26 @@ msgstr ""
 "prestaties willen optimaliseren."
 
 #. module: website
-#: code:addons/website/models/website.py:176
+#: code:addons/website/models/website.py:206
+#: code:addons/website/models/website.py:275
 #: model:ir.model,name:website.model_website_page
+#: model:ir.model.fields,field_description:website.field_ir_ui_view_page_ids
+#: model:ir.model.fields,field_description:website.field_website_page_page_ids
 #, python-format
 msgid "Page"
 msgstr "Pagina"
 
 #. module: website
-#: code:addons/website/models/website.py:187
+#: code:addons/website/models/website.py:213
 #, python-format
 msgid "Page <b>%s</b> contains a link to this page"
 msgstr "Pagina <b>%s</b> heeft een link daar deze pagina"
+
+#. module: website
+#: code:addons/website/models/website.py:282
+#, python-format
+msgid "Page <b>%s</b> is calling this file"
+msgstr "Pagina <b>%s</b> roept dit bestand aan"
 
 #. module: website
 #: model:ir.model.fields,field_description:website.field_website_page_website_indexed
@@ -2961,14 +3048,14 @@ msgstr "Pagina geïndexeerd"
 
 #. module: website
 #. openerp-web
-#: code:addons/website/static/src/xml/website.pageProperties.xml:12
+#: code:addons/website/static/src/xml/website.pageProperties.xml:46
 #, python-format
 msgid "Page Name"
 msgstr "Paginanaam"
 
 #. module: website
 #. openerp-web
-#: code:addons/website/static/src/js/menu/content.js:50
+#: code:addons/website/static/src/js/menu/content.js:51
 #: model:ir.ui.view,arch_db:website.user_navbar
 #, python-format
 msgid "Page Properties"
@@ -2984,14 +3071,17 @@ msgstr "Pagina titel"
 
 #. module: website
 #. openerp-web
-#: code:addons/website/static/src/xml/website.pageProperties.xml:18
+#: code:addons/website/static/src/xml/website.pageProperties.xml:53
 #: model:ir.model.fields,field_description:website.field_website_page_url
 #, python-format
 msgid "Page URL"
 msgstr "Pagina URL"
 
 #. module: website
+#: code:addons/website/models/website.py:208
+#: code:addons/website/models/website.py:277
 #: model:ir.ui.menu,name:website.menu_website_pages_list
+#, python-format
 msgid "Pages"
 msgstr "Pagina's"
 
@@ -3119,8 +3209,8 @@ msgstr "Promoot"
 #. openerp-web
 #: code:addons/website/static/src/js/menu/seo.js:339
 #, python-format
-msgid "Promote This Page"
-msgstr "Promoot deze pagina"
+msgid "Promote Page"
+msgstr "Promote pagina"
 
 #. module: website
 #: model:ir.ui.view,arch_db:website.user_navbar
@@ -3150,8 +3240,8 @@ msgstr "Openbare gebruiker"
 
 #. module: website
 #. openerp-web
-#: code:addons/website/static/src/xml/website.pageProperties.xml:7
-#: code:addons/website/static/src/xml/website.pageProperties.xml:87
+#: code:addons/website/static/src/xml/website.pageProperties.xml:41
+#: code:addons/website/static/src/xml/website.pageProperties.xml:122
 #, python-format
 msgid "Publish"
 msgstr "Publiceer"
@@ -3188,7 +3278,7 @@ msgstr "Gepubliceerd"
 
 #. module: website
 #. openerp-web
-#: code:addons/website/static/src/xml/website.pageProperties.xml:98
+#: code:addons/website/static/src/xml/website.pageProperties.xml:133
 #: model:ir.model.fields,field_description:website.field_website_page_date_publish
 #, python-format
 msgid "Publishing Date"
@@ -3208,7 +3298,7 @@ msgstr "Kwalificeer uw bezoekers om ze zo te bereiken via marketing campagnes"
 #. module: website
 #: model:ir.ui.view,arch_db:website.website_planner
 msgid "Reach your customers and prospects on a recurring basis"
-msgstr "Bereik uw klanten en prospecten op een wederkerende basis"
+msgstr "Bereik uw klanten en prospects op een wederkerende basis"
 
 #. module: website
 #: model:ir.ui.view,arch_db:website.website_planner
@@ -3232,10 +3322,10 @@ msgstr "Doorverwijzen van"
 
 #. module: website
 #. openerp-web
-#: code:addons/website/static/src/xml/website.pageProperties.xml:27
+#: code:addons/website/static/src/xml/website.pageProperties.xml:62
 #, python-format
 msgid "Redirect Old URL"
-msgstr ""
+msgstr "Redirect oude URL"
 
 #. module: website
 #: model:ir.model.fields,field_description:website.field_website_redirect_url_to
@@ -3269,7 +3359,7 @@ msgstr ""
 #. module: website
 #: model:ir.ui.view,arch_db:website.website_pages_form_view
 msgid "Related Menu Items"
-msgstr ""
+msgstr "Gekoppelde menu's"
 
 #. module: website
 #: model:ir.model.fields,field_description:website.field_website_page_menu_ids
@@ -3338,11 +3428,11 @@ msgstr "Voorbeeld afbeeldingen"
 #. module: website
 #. openerp-web
 #: code:addons/website/static/src/js/backend/dashboard.js:96
-#: code:addons/website/static/src/js/menu/content.js:43
+#: code:addons/website/static/src/js/menu/content.js:44
 #: code:addons/website/static/src/js/menu/seo.js:342
 #, python-format
 msgid "Save"
-msgstr "Bewaar"
+msgstr "Opslaan"
 
 #. module: website
 #: model:ir.ui.view,arch_db:website.menu_search
@@ -3381,7 +3471,7 @@ msgstr "Zie hoe zelf te vertalen"
 
 #. module: website
 #. openerp-web
-#: code:addons/website/static/src/js/menu/content.js:315
+#: code:addons/website/static/src/js/menu/content.js:387
 #, python-format
 msgid "Select a Menu"
 msgstr "Selecteer een menu"
@@ -3434,7 +3524,9 @@ msgid "Sequence"
 msgstr "Reeks"
 
 #. module: website
+#: model:ir.actions.act_window,name:website.action_website_configuration
 #: model:ir.ui.menu,name:website.menu_website_website_settings
+#: model:ir.ui.view,arch_db:website.user_navbar
 msgid "Settings"
 msgstr "Instellingen"
 
@@ -3461,7 +3553,7 @@ msgstr "Weergeven als optionele overerfing"
 
 #. module: website
 #. openerp-web
-#: code:addons/website/static/src/xml/website.pageProperties.xml:51
+#: code:addons/website/static/src/xml/website.pageProperties.xml:86
 #, python-format
 msgid "Show in Top Menu"
 msgstr "Weergeven in topmenu"
@@ -3503,13 +3595,13 @@ msgid "Social Media"
 msgstr "Sociale media"
 
 #. module: website
-#: code:addons/website/controllers/main.py:219
+#: code:addons/website/controllers/main.py:218
 #, python-format
 msgid "Sort by Name"
 msgstr "Sorteren op naam"
 
 #. module: website
-#: code:addons/website/controllers/main.py:218
+#: code:addons/website/controllers/main.py:217
 #, python-format
 msgid "Sort by Url"
 msgstr "Sorteren op URL"
@@ -3587,15 +3679,35 @@ msgid "Tell what's the value for the<br/>customer for this feature."
 msgstr "Vertel wat de waarde is van deze optie voor de<br/>klant."
 
 #. module: website
-#: code:addons/website/models/website.py:201
+#: code:addons/website/models/website.py:225
+#: code:addons/website/models/website.py:295
+#, python-format
+msgid "Template"
+msgstr "Sjabloon"
+
+#. module: website
+#: code:addons/website/models/website.py:231
 #, python-format
 msgid "Template <b>%s (id:%s)</b> contains a link to this page"
 msgstr "Sjabloon <b>%s (id:%s)</b> bevat een link naar deze pagina"
 
 #. module: website
+#: code:addons/website/models/website.py:301
+#, python-format
+msgid "Template <b>%s (id:%s)</b> is calling this file"
+msgstr "Sjabloon <b>%s (id:%s)</b> roept dit bestand aan"
+
+#. module: website
 #: model:ir.ui.view,arch_db:website.500
 msgid "Template fallback"
 msgstr "Sjabloon fallback"
+
+#. module: website
+#: code:addons/website/models/website.py:227
+#: code:addons/website/models/website.py:297
+#, python-format
+msgid "Templates"
+msgstr "Sjablonen"
 
 #. module: website
 #: model:ir.ui.view,arch_db:website.s_faq_collapse
@@ -3702,6 +3814,8 @@ msgid ""
 "These terms of service (\"Terms\", \"Agreement\") are an agreement between the website\n"
 "                                (\"Website operator\", \"us\", \"we\" or \"our\") and you (\"User\", \"you\" or \"your\")."
 msgstr ""
+"Deze servicevoorwaarden (\"Voorwaarden\", \"Overeenkomst\") vormen een overeenkomst tussen de website\n"
+"(\"Website-operator\", \"ons\", \"wij\" of \"onze\") en u (\"Gebruiker\", \"u\" of \"uw\")."
 
 #. module: website
 #: model:ir.ui.view,arch_db:website.s_features
@@ -3714,6 +3828,8 @@ msgid ""
 "This Agreement sets forth the general terms and conditions of your use of this website\n"
 "                                and any of its products or services (collectively, \"Website\" or \"Services\")."
 msgstr ""
+"Deze Overeenkomst bevat de algemene voorwaarden voor uw gebruik van deze website\n"
+"en de producten of diensten (gezamenlijk \"Website\" of \"Diensten\")."
 
 #. module: website
 #: model:ir.model.fields,help:website.field_res_config_settings_favicon
@@ -3732,14 +3848,14 @@ msgstr ""
 #. module: website
 #: model:ir.ui.view,arch_db:website.page_404
 msgid ""
-"This page does not exists, but you can create it as you are administrator of"
-" this site."
+"This page does not exist, but you can create it as you are administrator of "
+"this site."
 msgstr ""
 "Deze pagina bestaat niet, maar u kunt deze aanmaken als beheerder van deze "
 "site."
 
 #. module: website
-#: code:addons/website/models/website.py:213
+#: code:addons/website/models/website.py:246
 #, python-format
 msgid "This page is in the menu <b>%s</b>"
 msgstr "Deze pagina is in het menu <b>%s</b>"
@@ -3782,7 +3898,7 @@ msgstr "Tony Fred, CEO"
 
 #. module: website
 #. openerp-web
-#: code:addons/website/static/src/js/menu/content.js:310
+#: code:addons/website/static/src/js/menu/content.js:382
 #: model:website.menu,name:website.main_menu
 #: model:website.menu,name:website.website2_main_menu
 #, python-format
@@ -3838,7 +3954,7 @@ msgstr "Twitter Scroller"
 
 #. module: website
 #. openerp-web
-#: code:addons/website/static/src/xml/website.pageProperties.xml:41
+#: code:addons/website/static/src/xml/website.pageProperties.xml:76
 #: model:ir.ui.view,arch_db:website.snippet_options
 #, python-format
 msgid "Type"
@@ -3883,7 +3999,7 @@ msgstr "Niet geïndexeerd"
 #. module: website
 #: model:ir.ui.view,arch_db:website.s_comparisons
 msgid "Unlimited CRM power and support"
-msgstr "Ongelimiteerde CRM kracht en ondersteuning"
+msgstr "Onbeperkte CRM kracht en ondersteuning"
 
 #. module: website
 #: model:ir.ui.view,arch_db:website.s_comparisons
@@ -3932,7 +4048,7 @@ msgstr "Gebruik een Content Delivery Network (CDN)"
 
 #. module: website
 #. openerp-web
-#: code:addons/website/static/src/xml/website.pageProperties.xml:62
+#: code:addons/website/static/src/xml/website.pageProperties.xml:97
 #, python-format
 msgid "Use as Homepage"
 msgstr "Gebruiken als startpagina"
@@ -4041,6 +4157,9 @@ msgid ""
 "                                                      life through disruptive products. We build great products to solve your\n"
 "                                                      business problems."
 msgstr ""
+"Wij zijn een team van gepassioneerde mensen wiens doel het is om ieders leven te verbeteren\n"
+"                            door het maken van vernieuwende producten. Wij bouwen geweldige producten om uw  \n"
+"                            zakelijke problemen op te lossen."
 
 #. module: website
 #: model:ir.ui.view,arch_db:website.footer_default
@@ -4154,7 +4273,6 @@ msgid "Website Redirects"
 msgstr "Website omleidingen"
 
 #. module: website
-#: model:ir.actions.act_window,name:website.action_website_configuration
 #: model:ir.ui.view,arch_db:website.view_website_form
 msgid "Website Settings"
 msgstr "Website instellingen"
@@ -4200,6 +4318,8 @@ msgid ""
 "                                User by this site. The User may configure his / her browser to notify and\n"
 "                                reject the installation of the cookies sent by us."
 msgstr ""
+"Website kan cookies gebruiken om de navigatie van de website te personaliseren en te vergemakkelijken voor de gebruiker van deze site. De gebruiker kan zijn / haar browser configureren om de kennisgeving en\n"
+"de installatie van de cookies die door ons zijn verzonden af te wijzen."
 
 #. module: website
 #: model:ir.ui.view,arch_db:website.menu_tree
@@ -4280,12 +4400,12 @@ msgstr "Website: Dashboard"
 #. module: website
 #: model:ir.actions.server,name:website.action_partner_post
 msgid "Website: Partner Post and Thanks Demo"
-msgstr ""
+msgstr "Website partners reactie en bedankt demo"
 
 #. module: website
 #: model:ir.actions.server,name:website.action_partner_comment
 msgid "Website: Partners Comment Form"
-msgstr ""
+msgstr "Website: partners reactie formulier"
 
 #. module: website
 #: model:ir.model.fields,field_description:website.field_website_page_website_ids
@@ -4441,6 +4561,9 @@ msgid ""
 "                                any website which you access through a link from this Website. Your linking to\n"
 "                                any other off-site pages or other websites is at your own risk."
 msgstr ""
+"U moet de wettelijke verklaringen en andere gebruiksvoorwaarden van\n"
+"elke website die u bezoekt via een link vanaf deze website goed doornemen. Uw link naar\n"
+"andere off-site pagina's of andere websites zijn op eigen risico."
 
 #. module: website
 #: model:ir.actions.act_window,help:website.action_module_theme

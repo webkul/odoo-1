@@ -5,16 +5,16 @@
 # Translators:
 # Eric Geens <ericgeens@yahoo.com>, 2017
 # Yenthe Van Ginneken <yenthespam@gmail.com>, 2017
-# Martin Trigaux <mat@odoo.com>, 2017
+# Martin Trigaux, 2017
 # Erwin van der Ploeg <erwin@odooexperts.nl>, 2017
 # Cas Vissers <casvissers@brahoo.nl>, 2017
 # Stephan Van Dyck <stephan.vandyck@vanroey.be>, 2017
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.saas~18\n"
+"Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-02 11:27+0000\n"
-"PO-Revision-Date: 2017-10-02 11:27+0000\n"
+"POT-Creation-Date: 2018-01-30 13:41+0000\n"
+"PO-Revision-Date: 2018-01-30 13:41+0000\n"
 "Last-Translator: Stephan Van Dyck <stephan.vandyck@vanroey.be>, 2017\n"
 "Language-Team: Dutch (https://www.transifex.com/odoo/teams/41243/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -194,7 +194,7 @@ msgstr "Klik om een nieuwe machine aan te maken."
 #. module: maintenance
 #: model:ir.actions.act_window,help:maintenance.hr_equipment_category_action
 msgid "Click to add a new equipment category."
-msgstr "Klik om een nieuwe apparatuur categorie aan te maken."
+msgstr "Klik om een nieuwe apparatuurcategorie aan te maken."
 
 #. module: maintenance
 #: model:ir.actions.act_window,help:maintenance.hr_equipment_action
@@ -378,7 +378,7 @@ msgid ""
 "Email alias for this equipment category. New emails will automatically "
 "create new maintenance request for this equipment category."
 msgstr ""
-"Email alias voor deze apparatuurcategorie. Emails aan deze alias maken "
+"E-mail alias voor deze apparatuurcategorie. E-mails aan deze alias maken "
 "automatisch een nieuwe onderhoudsopdracht aan voor deze categorie."
 
 #. module: maintenance
@@ -404,9 +404,9 @@ msgid "Equipment Categories"
 msgstr "Categorie apparatuur "
 
 #. module: maintenance
-#: model:ir.model.fields,field_description:maintenance.field_maintenance_equipment_category_id_3448
+#: model:ir.model.fields,field_description:maintenance.field_maintenance_equipment_category_id_3470
 msgid "Equipment Category"
-msgstr "Apparatuur categorie "
+msgstr "Apparatuurcategorie "
 
 #. module: maintenance
 #: model:res.groups,name:maintenance.group_equipment_manager
@@ -496,6 +496,11 @@ msgstr ""
 #: model:maintenance.stage,name:maintenance.stage_1
 msgid "In Progress"
 msgstr "In behandeling"
+
+#. module: maintenance
+#: model:maintenance.team,name:maintenance.equipment_team_maintenance
+msgid "Internal Maintenance"
+msgstr "Intern onderhoud"
 
 #. module: maintenance
 #: model:ir.ui.view,arch_db:maintenance.hr_equipment_request_view_form
@@ -643,12 +648,12 @@ msgstr "Onderhoudsteam"
 #: model:ir.model,name:maintenance.model_maintenance_team
 #: model:ir.ui.menu,name:maintenance.menu_maintenance_teams
 msgid "Maintenance Teams"
-msgstr "Onderhoud teams"
+msgstr "Onderhoudsteams"
 
 #. module: maintenance
 #: model:ir.model.fields,field_description:maintenance.field_maintenance_request_maintenance_type
 msgid "Maintenance Type"
-msgstr "Sort onderhoud"
+msgstr "Soort onderhoud"
 
 #. module: maintenance
 #: model:ir.actions.server,name:maintenance.maintenance_requests_cron_ir_actions_server
@@ -656,6 +661,11 @@ msgstr "Sort onderhoud"
 #: model:ir.cron,name:maintenance.maintenance_requests_cron
 msgid "Maintenance: generate preventive maintenance requests"
 msgstr "Onderhoud: genereer preventieve onderhoudsaanvragen"
+
+#. module: maintenance
+#: model:maintenance.team,name:maintenance.equipment_team_metrology
+msgid "Metrology"
+msgstr "Metrologie"
 
 #. module: maintenance
 #: model:ir.model.fields,field_description:maintenance.field_maintenance_equipment_model
@@ -718,6 +728,31 @@ msgid "Note"
 msgstr "Notitie"
 
 #. module: maintenance
+#: model:ir.model.fields,field_description:maintenance.field_maintenance_team_todo_request_count
+msgid "Number of Requests"
+msgstr "Aantal aanvragen"
+
+#. module: maintenance
+#: model:ir.model.fields,field_description:maintenance.field_maintenance_team_todo_request_count_block
+msgid "Number of Requests Blocked"
+msgstr "Aantal aanvragen geblokkeerd"
+
+#. module: maintenance
+#: model:ir.model.fields,field_description:maintenance.field_maintenance_team_todo_request_count_date
+msgid "Number of Requests Scheduled"
+msgstr "Aantal aanvragen ingepland"
+
+#. module: maintenance
+#: model:ir.model.fields,field_description:maintenance.field_maintenance_team_todo_request_count_unscheduled
+msgid "Number of Requests Unscheduled"
+msgstr "Aantal aanvragen ongepland"
+
+#. module: maintenance
+#: model:ir.model.fields,field_description:maintenance.field_maintenance_team_todo_request_count_high_priority
+msgid "Number of Requests in High Priority"
+msgstr "Aantal aanvragen met hoge prioriteit"
+
+#. module: maintenance
 #: model:ir.model.fields,help:maintenance.field_maintenance_equipment_category_alias_force_thread_id
 msgid ""
 "Optional ID of a thread (record) to which all incoming messages will be "
@@ -736,7 +771,7 @@ msgstr "Overall Equipment Effectiveness (OEE)"
 #. module: maintenance
 #: model:ir.ui.view,arch_db:maintenance.hr_equipment_view_search
 msgid "Overdue Activities"
-msgstr "Activiteiten over tijd"
+msgstr "Activiteiten te laat"
 
 #. module: maintenance
 #: model:ir.model.fields,field_description:maintenance.field_maintenance_equipment_category_alias_user_id
@@ -815,7 +850,7 @@ msgstr "Prioriteit"
 #. module: maintenance
 #: model:ir.ui.view,arch_db:maintenance.hr_equipment_view_form
 msgid "Product Information"
-msgstr "Product Informatie"
+msgstr "Productinformatie"
 
 #. module: maintenance
 #: selection:maintenance.request,kanban_state:0
@@ -878,6 +913,11 @@ msgstr "Aangevraagd door"
 #: model:ir.ui.view,arch_db:maintenance.hr_equipment_request_view_kanban
 msgid "Requested by :"
 msgstr "Aangevraagd door:"
+
+#. module: maintenance
+#: model:ir.model.fields,field_description:maintenance.field_maintenance_team_todo_request_ids
+msgid "Requests"
+msgstr "Aanvragen"
 
 #. module: maintenance
 #: model:ir.model.fields,field_description:maintenance.field_maintenance_equipment_category_technician_user_id
@@ -980,6 +1020,11 @@ msgid "Status changed"
 msgstr "Status gewijzigd"
 
 #. module: maintenance
+#: model:maintenance.team,name:maintenance.equipment_team_subcontractor
+msgid "Subcontractor"
+msgstr "Onderaannemer"
+
+#. module: maintenance
 #: model:ir.model.fields,field_description:maintenance.field_maintenance_request_name
 msgid "Subjects"
 msgstr "Onderwerpen"
@@ -1058,19 +1103,19 @@ msgstr "De gebruiker kan apparatuur beheren."
 msgid ""
 "This application helps you to track equipments used by employees.\n"
 "                Create some laptop, printer or phone and link each equipment to\n"
-"                an employee or departement. You will manage allocations, issues\n"
+"                an employee or department. You will manage allocations, issues\n"
 "                and maintenance of equipment."
 msgstr ""
-"Deze toepassing helpt u om de apparatuur van werknemers te beheren. Maak een\n"
-"laptop, een printer en een telefoon aan, en koppel dit apparaat aan een werknemer\n"
-"of een afdeling. U kunt de toekenningen, de problemen en het onderhoud van de\n"
-"apparatuur beheren."
+"Deze toepassing helpt u om de apparatuur van werknemers te beheren.\n"
+"Maak een laptop, een printer en een telefoon aan, en koppel dit apparaat\n"
+"aan een werknemer of een afdeling. U kunt de toekenningen, de problemen\n"
+"en het onderhoud van de apparatuur beheren."
 
 #. module: maintenance
 #: model:ir.actions.act_window,help:maintenance.hr_equipment_action_from_category_form
 msgid ""
 "This application helps you to track equipments used by employees.\n"
-"                Create some laptop, printer or phone and link each equipment to an employee or departement.\n"
+"                Create some laptop, printer or phone and link each equipment to an employee or department.\n"
 "                You will manage allocations, issues and maintenance of equipment."
 msgstr ""
 "Deze toepassing helpt u om de apparatuur van werknemers te beheren. \n"
@@ -1092,36 +1137,6 @@ msgstr "Te doen"
 #: model:ir.ui.view,arch_db:maintenance.hr_equipment_view_search
 msgid "Today Activities"
 msgstr "Activiteiten van vandaag"
-
-#. module: maintenance
-#: model:ir.model.fields,field_description:maintenance.field_maintenance_team_todo_request_ids
-msgid "Todo Request"
-msgstr "Te doen verzoek"
-
-#. module: maintenance
-#: model:ir.model.fields,field_description:maintenance.field_maintenance_team_todo_request_count
-msgid "Todo Request Count"
-msgstr "Te doen verzoek teller"
-
-#. module: maintenance
-#: model:ir.model.fields,field_description:maintenance.field_maintenance_team_todo_request_count_block
-msgid "Todo Request Count Block"
-msgstr "Aantal aanvragen geblokkeerd"
-
-#. module: maintenance
-#: model:ir.model.fields,field_description:maintenance.field_maintenance_team_todo_request_count_date
-msgid "Todo Request Count Date"
-msgstr "Te doen verzoek teller datum"
-
-#. module: maintenance
-#: model:ir.model.fields,field_description:maintenance.field_maintenance_team_todo_request_count_high_priority
-msgid "Todo Request Count High Priority"
-msgstr "Aantal aanvragen met hoge prioriteit"
-
-#. module: maintenance
-#: model:ir.model.fields,field_description:maintenance.field_maintenance_team_todo_request_count_unscheduled
-msgid "Todo Request Count Unscheduled"
-msgstr "Te doen verzoek teller ongeplant"
 
 #. module: maintenance
 #: model:ir.ui.view,arch_db:maintenance.hr_equipment_request_view_search

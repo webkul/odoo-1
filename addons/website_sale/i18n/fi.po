@@ -3,10 +3,10 @@
 # * website_sale
 # 
 # Translators:
-# Martin Trigaux <mat@odoo.com>, 2017
+# Martin Trigaux, 2017
 # Veikko Väätäjä <veikko.vaataja@gmail.com>, 2017
 # Tuomo Aura <tuomo.aura@web-veistamo.fi>, 2017
-# salmemik <salmemik@gmail.com>, 2017
+# Mikko Salmela <salmemik@gmail.com>, 2017
 # Tommi Rintala <tommi.rintala@gmail.com>, 2017
 # Kari Lindgren <kari.lindgren@emsystems.fi>, 2017
 # Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>, 2017
@@ -20,13 +20,15 @@
 # Svante Suominen <svante.suominen@web-veistamo.fi>, 2017
 # Timo Koukkari <ti.ko@netikka.fi>, 2017
 # Eino Mäkitalo <eino.makitalo@netitbe.fi>, 2017
+# Jukka Paulin <jukka.paulin@gmail.com>, 2017
+# Timo Talvitie <timo.talvitie@vizucom.com>, 2018
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.saas~18\n"
+"Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-02 11:26+0000\n"
-"PO-Revision-Date: 2017-10-02 11:26+0000\n"
-"Last-Translator: Eino Mäkitalo <eino.makitalo@netitbe.fi>, 2017\n"
+"POT-Creation-Date: 2018-02-19 13:43+0000\n"
+"PO-Revision-Date: 2018-02-19 13:43+0000\n"
+"Last-Translator: Timo Talvitie <timo.talvitie@vizucom.com>, 2018\n"
 "Language-Team: Finnish (https://www.transifex.com/odoo/teams/41243/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -40,7 +42,7 @@ msgid "&amp;nbsp;"
 msgstr "&amp;nbsp;"
 
 #. module: website_sale
-#: model:ir.ui.view,arch_db:website_sale.reduction_code
+#: model:ir.ui.view,arch_db:website_sale.cart_lines
 msgid "/shop/cart"
 msgstr ""
 
@@ -751,6 +753,8 @@ msgstr "Tarvikkeet"
 msgid ""
 "Add a step to request some extra customer data (picking preferences, etc.)"
 msgstr ""
+"Lisää tilausprosessiin uusi välivaihe lisätietojen syöttämiseen (asiakkaan "
+"viite, kommentit ym.)"
 
 #. module: website_sale
 #: model:ir.ui.view,arch_db:website_sale.product
@@ -924,6 +928,10 @@ msgid ""
 "codes. Specific conditions can be set (products, customers, minimum purchase"
 " amount, period). Rewards can be discounts (% or amount) or free products."
 msgstr ""
+"Voit lisätä myyntiäsi kahdella tapaa: alennuskampanjalla ja kupongeilla. "
+"Voit määrittää tarkat ehdot (mitkä tuotteet, asiakkaat, vähimmäisostomäärän,"
+" ja voimassaolon). Hyvitykset voivat olla suoria alennuksia (% tai summa) "
+"tai ilmaisia tuotteita."
 
 #. module: website_sale
 #: model:sale.order.line,website_description:website_sale.website_sale_order_line_14
@@ -996,7 +1004,7 @@ msgstr ""
 #: model:ir.ui.menu,name:website_sale.menu_catalog
 #: model:ir.ui.view,arch_db:website_sale.website_planner
 msgid "Catalog"
-msgstr ""
+msgstr "Luettelo"
 
 #. module: website_sale
 #: model:ir.ui.view,arch_db:website_sale.sort
@@ -1122,32 +1130,32 @@ msgstr "Komponentit"
 #. module: website_sale
 #: model:ir.ui.view,arch_db:website_sale.res_config_settings_view_form
 msgid "Compute shipping costs and ship with DHL"
-msgstr ""
+msgstr "Laske kuljetuskustannukset ja lähetä DHL:llä"
 
 #. module: website_sale
 #: model:ir.ui.view,arch_db:website_sale.res_config_settings_view_form
 msgid "Compute shipping costs and ship with FedEx"
-msgstr ""
+msgstr "Laske kuljetuskustannukset ja lähetä FedEx:llä"
 
 #. module: website_sale
 #: model:ir.ui.view,arch_db:website_sale.res_config_settings_view_form
 msgid "Compute shipping costs and ship with UPS"
-msgstr ""
+msgstr "Laske kuljetuskustannukset ja lähetä UPS:llä"
 
 #. module: website_sale
 #: model:ir.ui.view,arch_db:website_sale.res_config_settings_view_form
 msgid "Compute shipping costs and ship with USPS"
-msgstr ""
+msgstr "Laske kuljetuskustannukset ja lähetä USPS:llä"
 
 #. module: website_sale
 #: model:ir.ui.view,arch_db:website_sale.res_config_settings_view_form
 msgid "Compute shipping costs and ship with bpost"
-msgstr ""
+msgstr "Laske kuljetuskustannukset ja lähetä bpost :lla"
 
 #. module: website_sale
 #: model:ir.ui.view,arch_db:website_sale.res_config_settings_view_form
 msgid "Compute shipping costs on orders"
-msgstr ""
+msgstr "Laske kuljetuskustannukset tilauksille"
 
 #. module: website_sale
 #: model:product.public.category,name:website_sale.Computer_all_in_one
@@ -1457,7 +1465,7 @@ msgid "Enter a name for your new product"
 msgstr ""
 
 #. module: website_sale
-#: code:addons/website_sale/models/product.py:91
+#: code:addons/website_sale/models/product.py:92
 #, python-format
 msgid "Error ! You cannot create recursive categories."
 msgstr "Virhe! Et voi luoda rekursiivisia ryhmiä."
@@ -1500,12 +1508,12 @@ msgstr "Ulkoinen kiintolevy"
 #. module: website_sale
 #: model:ir.ui.view,arch_db:website_sale.extra_info_option
 msgid "Extra Info<span class=\"chevron\"/>"
-msgstr ""
+msgstr "Tilauksen lisätiedot"
 
 #. module: website_sale
 #: model:ir.ui.view,arch_db:website_sale.extra_info
 msgid "Extra Step"
-msgstr ""
+msgstr "Lisätietovaihe"
 
 #. module: website_sale
 #: model:sale.order.line,website_description:website_sale.website_sale_order_line_1
@@ -1516,6 +1524,11 @@ msgstr ""
 #: model:ir.ui.view,arch_db:website_sale.res_config_settings_view_form
 msgid "FedEx"
 msgstr ""
+
+#. module: website_sale
+#: model:ir.model,name:website_sale.model_ir_model_fields
+msgid "Fields"
+msgstr "Kentät"
 
 #. module: website_sale
 #: model:ir.actions.act_window,help:website_sale.action_abandoned_orders_ecommerce
@@ -1596,7 +1609,6 @@ msgid "Have Genius call the tunes."
 msgstr ""
 
 #. module: website_sale
-#: model:ir.ui.view,arch_db:website_sale.payment
 #: model:ir.ui.view,arch_db:website_sale.reduction_code
 msgid "Have a promo code? Fill in this field and apply."
 msgstr ""
@@ -1754,7 +1766,7 @@ msgid "Installs *e-Commerce Inventory*"
 msgstr ""
 
 #. module: website_sale
-#: code:addons/website_sale/controllers/main.py:501
+#: code:addons/website_sale/controllers/main.py:502
 #, python-format
 msgid "Invalid Email! Please enter a valid email address."
 msgstr "Sähköpostiosoite on virheellinen. Anna pätevä osoite."
@@ -2011,7 +2023,7 @@ msgstr "Verkko"
 
 #. module: website_sale
 #. openerp-web
-#: code:addons/website_sale/controllers/main.py:964
+#: code:addons/website_sale/controllers/main.py:968
 #: code:addons/website_sale/static/src/js/website_sale.editor.js:32
 #: model:ir.ui.view,arch_db:website_sale.content_new_product
 #, python-format
@@ -2162,7 +2174,8 @@ msgid "Parent Category"
 msgstr "Ylempi ryhmä"
 
 #. module: website_sale
-#: code:addons/website_sale/controllers/main.py:752
+#: code:addons/website_sale/controllers/main.py:756
+#: model:ir.ui.view,arch_db:website_sale.payment
 #, python-format
 msgid "Pay Now"
 msgstr "Maksa nyt"
@@ -2175,7 +2188,7 @@ msgstr "Vahvista tilaus <span class=\"fa fa-long-arrow-right\"/>"
 #. module: website_sale
 #: model:ir.ui.view,arch_db:website_sale.payment
 msgid "Pay with"
-msgstr ""
+msgstr "Maksa"
 
 #. module: website_sale
 #: model:ir.ui.menu,name:website_sale.menu_ecommerce_payment_acquirers
@@ -2187,6 +2200,11 @@ msgstr "Maksun vastaanottajat"
 #: model:ir.ui.view,arch_db:website_sale.report_shop_saleorder_document
 msgid "Payment Information"
 msgstr "Maksun tiedot"
+
+#. module: website_sale
+#: model:ir.model,name:website_sale.model_payment_transaction
+msgid "Payment Transaction"
+msgstr "Maksutapahtuma"
 
 #. module: website_sale
 #: model:ir.ui.view,arch_db:website_sale.website_planner
@@ -2302,7 +2320,7 @@ msgstr "Hinnoittelu"
 #. module: website_sale
 #: model:ir.ui.view,arch_db:website_sale.website_planner
 msgid "Pricing &amp; Discounts"
-msgstr ""
+msgstr "Hinnoittelu ja alennukset"
 
 #. module: website_sale
 #: model:product.public.category,name:website_sale.printer
@@ -2408,11 +2426,6 @@ msgstr ""
 #: model:ir.ui.view,arch_db:website_sale.product
 msgid "Products"
 msgstr "Tuotteet"
-
-#. module: website_sale
-#: model:ir.ui.view,arch_db:website_sale.reduction_code
-msgid "Promo Code"
-msgstr ""
 
 #. module: website_sale
 #: model:ir.ui.view,arch_db:website_sale.website_sale
@@ -2613,7 +2626,7 @@ msgstr "Myynti"
 #: model:ir.model.fields,field_description:website_sale.field_website_salesteam_id
 #: model:ir.ui.view,arch_db:website_sale.res_config_settings_view_form
 msgid "Sales Channel"
-msgstr ""
+msgstr "Myyntikanava"
 
 #. module: website_sale
 #: model:ir.ui.view,arch_db:website_sale.sale_report_view_pivot_website
@@ -2743,7 +2756,7 @@ msgstr ""
 
 #. module: website_sale
 #: model:ir.ui.view,arch_db:website_sale.res_config_settings_view_form
-msgid "Send a recovery email to authentified shoppers"
+msgid "Send a recovery email to authenticated shoppers"
 msgstr ""
 
 #. module: website_sale
@@ -2806,7 +2819,7 @@ msgstr ""
 #. module: website_sale
 #: model:ir.model.fields,field_description:website_sale.field_res_config_settings_sale_delivery_settings
 msgid "Shipping Management"
-msgstr ""
+msgstr "Lähetysten hallinta"
 
 #. module: website_sale
 #: model:ir.ui.view,arch_db:website_sale.products
@@ -2903,7 +2916,7 @@ msgid ""
 msgstr ""
 
 #. module: website_sale
-#: code:addons/website_sale/controllers/main.py:517
+#: code:addons/website_sale/controllers/main.py:520
 #, python-format
 msgid "Some required fields are empty."
 msgstr "Täytä kaikki vaaditut kentät. Kiitos!"
@@ -3199,6 +3212,11 @@ msgid "Total"
 msgstr "Yhteensä"
 
 #. module: website_sale
+#: model:ir.ui.view,arch_db:website_sale.cart_popover
+msgid "True"
+msgstr ""
+
+#. module: website_sale
 #: model:ir.model.fields,field_description:website_sale.field_product_attribute_type
 msgid "Type"
 msgstr "Tyyppi"
@@ -3326,6 +3344,12 @@ msgid "Website price"
 msgstr ""
 
 #. module: website_sale
+#: model:ir.model.fields,field_description:website_sale.field_product_product_website_price_difference
+#: model:ir.model.fields,field_description:website_sale.field_product_template_website_price_difference
+msgid "Website price difference"
+msgstr ""
+
+#. module: website_sale
 #: model:ir.model.fields,field_description:website_sale.field_product_product_website_public_price
 #: model:ir.model.fields,field_description:website_sale.field_product_template_website_public_price
 msgid "Website public price"
@@ -3448,6 +3472,11 @@ msgstr "Oma viitteesi"
 #: model:ir.ui.view,arch_db:website_sale.cart_popover
 msgid "Your cart is empty!"
 msgstr "Ostoskorisi on tyhjä!"
+
+#. module: website_sale
+#: model:ir.ui.view,arch_db:website_sale.payment_confirmation_status
+msgid "Your payment has been authorized."
+msgstr "Maksusuorituksesi on hyväksytty."
 
 #. module: website_sale
 #: model:ir.ui.view,arch_db:website_sale.cart

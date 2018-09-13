@@ -5,14 +5,14 @@
 # Translators:
 # Dorin Hongu <dhongu@gmail.com>, 2017
 # Cozmin Candea <office@terrabit.ro>, 2017
-# Martin Trigaux <mat@odoo.com>, 2017
+# Martin Trigaux, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.saas~18\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-10-02 11:26+0000\n"
 "PO-Revision-Date: 2017-10-02 11:26+0000\n"
-"Last-Translator: Martin Trigaux <mat@odoo.com>, 2017\n"
+"Last-Translator: Martin Trigaux, 2017\n"
 "Language-Team: Romanian (https://www.transifex.com/odoo/teams/41243/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,6 +30,12 @@ msgid ""
 "                                - If you don't select \"Share with all users\", link of google document in \"More\" options will not appear for other users in opportunities of Sales Department.<br/>\n"
 "                                - If filter is not specified, link of google document will appear in \"More\" option for all users for all opportunities."
 msgstr ""
+"<b>Pentru a crea un filtru nou:</b><br/>\n"
+" - Du-te la documentul Odoo pe care vrei să-l filtrezi. De exemplu, accesați Oportunități și căutați Departamentul de vânzări.<br/>\n"
+" - În această vizualizare \"Căutare\", selectați opțiunea \"Salvați filtrul curent\", introduceți numele (Ex: departamentul de vânzări) <br/>\n"
+" - Dacă selectați \"Partajați cu toți utilizatorii\", link-ul documentului Google în opțiunile \"Mai multe\" va apărea pentru toți utilizatorii în oportunitățile departamentului de vânzări.<br/> \n"
+"- Dacă nu selectați \"Partajați cu toți utilizatorii\", link-ul documentului Google în opțiunile \"Mai multe\" nu va apărea pentru alți utilizatori în oportunitățile departamentului de vânzări.<br/>\n"
+" - Dacă filtrul nu este specificat, link-ul documentului Google va apărea în opțiunea \"Mai mult\" pentru toți utilizatorii pentru toate oportunitățile."
 
 #. module: google_drive
 #: model:ir.ui.view,arch_db:google_drive.view_google_drive_config_kanban
@@ -39,7 +45,7 @@ msgstr ""
 #. module: google_drive
 #: model:ir.ui.view,arch_db:google_drive.view_google_drive_config_kanban
 msgid "<strong>Model</strong>"
-msgstr ""
+msgstr "<strong>Model</strong>"
 
 #. module: google_drive
 #: model:ir.ui.view,arch_db:google_drive.view_google_drive_config_kanban

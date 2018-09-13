@@ -200,6 +200,26 @@ var FormRenderer = BasicRenderer.extend({
     //--------------------------------------------------------------------------
 
     /**
+     * Add a tooltip on a button
+     *
+     * @private
+     * @param {Object} node
+     * @param {jQuery} $button
+     */
+    _addButtonTooltip: function (node, $button) {
+        var self = this;
+        $button.tooltip({
+            delay: { show: 1000, hide: 0 },
+            title: function () {
+                return qweb.render('WidgetButton.tooltip', {
+                    debug: config.debug,
+                    state: self.state,
+                    node: node,
+                });
+            },
+        });
+    },
+    /**
      * @private
      * @param {jQueryElement} $el
      * @param {Object} node
@@ -225,6 +245,17 @@ var FormRenderer = BasicRenderer.extend({
             this.idsForLabels[name] = idForLabel;
         }
         return idForLabel;
+    },
+    /**
+     * @override
+     * @private
+     */
+    _postProcessField: function (widget, node) {
+        this._setIDForLabel(widget, this._getIDForLabel(node.attrs.name));
+        this._handleAttributes(widget.$el, node);
+        if (JSON.parse(node.attrs.default_focus || "0")) {
+            this.defaultFocusField = widget;
+        }
     },
     /**
      * @private
@@ -288,23 +319,6 @@ var FormRenderer = BasicRenderer.extend({
         return $result;
     },
     /**
-     * @override
-     * @private
-     * @param {string} node
-     * @param {Object} record
-     * @param {Object} [options]
-     * @returns {AbstractField}
-     */
-    _renderFieldWidget: function (node, record, options, modifiersOptions) {
-        var widget = this._super.apply(this, arguments);
-        this._setIDForLabel(widget, this._getIDForLabel(node.attrs.name));
-        this._handleAttributes(widget.$el, node);
-        if (JSON.parse(node.attrs.default_focus || "0")) {
-            this.defaultFocusField = widget;
-        }
-        return widget;
-    },
-    /**
      * @private
      * @param {Object} node
      * @returns {jQueryElement}
@@ -322,7 +336,6 @@ var FormRenderer = BasicRenderer.extend({
      * @returns {jQueryElement}
      */
     _renderHeaderButton: function (node) {
-        var self = this;
         var $button = $('<button>')
                         .text(node.attrs.string)
                         .addClass('btn btn-sm btn-default');
@@ -332,16 +345,7 @@ var FormRenderer = BasicRenderer.extend({
 
         // Display tooltip
         if (config.debug || node.attrs.help) {
-            $button.tooltip({
-                delay: { show: 1000, hide: 0 },
-                title: function () {
-                    return qweb.render('WidgetButton.tooltip', {
-                        debug: config.debug,
-                        state: self.state,
-                        node: node,
-                    });
-                },
-            });
+            this._addButtonTooltip(node, $button);
         }
         return $button;
     },
@@ -552,6 +556,12 @@ var FormRenderer = BasicRenderer.extend({
         this._addOnClickAction($button, node);
         this._handleAttributes($button, node);
         this._registerModifiers(node, this.state, $button);
+
+        // Display tooltip
+        if (config.debug || node.attrs.help) {
+            this._addButtonTooltip(node, $button);
+        }
+
         return $button;
     },
     /**
@@ -591,6 +601,10 @@ var FormRenderer = BasicRenderer.extend({
 
         var $result = $('<div/>', {class: 'o_group'});
         var colSize = Math.max(1, Math.round(12 / (parseInt(node.attrs.col, 10) || 2)));
+        if (node.attrs.string) {
+            var $sep = $('<div/>', {class: 'o_horizontal_separator'}).text(node.attrs.string);
+            $result.append($sep);
+        }
         $result.append(_.map(node.children, function (child) {
             if (child.tag === 'newline') {
                 return $('<br/>');
@@ -618,6 +632,8 @@ var FormRenderer = BasicRenderer.extend({
                 $statusbar.append(widget.$el);
             }
         });
+        this._handleAttributes($statusbar, node);
+        this._registerModifiers(node, this.state, $statusbar);
         return $statusbar;
     },
     /**
@@ -681,6 +697,7 @@ var FormRenderer = BasicRenderer.extend({
         var self = this;
         var $headers = $('<ul class="nav nav-tabs">');
         var $pages = $('<div class="tab-content nav nav-tabs">');
+        var autofocusTab = -1;
         // renderedTabs is used to aggregate the generated $headers and $pages
         // alongside their node, so that their modifiers can be registered once
         // all tabs have been rendered, to ensure that the first visible tab
@@ -689,9 +706,8 @@ var FormRenderer = BasicRenderer.extend({
             var pageID = _.uniqueId('notebook_page_');
             var $header = self._renderTabHeader(child, pageID);
             var $page = self._renderTabPage(child, pageID);
-            if (index === 0) {
-                $header.addClass('active');
-                $page.addClass('active');
+            if (autofocusTab === -1 && child.attrs.autofocus === 'autofocus') {
+                autofocusTab = index;
             }
             self._handleAttributes($header, child);
             $headers.append($header);
@@ -702,6 +718,11 @@ var FormRenderer = BasicRenderer.extend({
                 node: child,
             };
         });
+        if (renderedTabs.length) {
+            var tabToFocus = renderedTabs[Math.max(0, autofocusTab)];
+            tabToFocus.$header.addClass('active');
+            tabToFocus.$page.addClass('active');
+        }
         // register the modifiers for each tab
         _.each(renderedTabs, function (tab) {
             self._registerModifiers(tab.node, self.state, tab.$header, {

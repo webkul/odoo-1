@@ -97,7 +97,7 @@ msgstr "Overeenkomst selectie soort"
 #: model:ir.model.fields,field_description:purchase_requisition.field_purchase_requisition_type_name
 #: model:ir.ui.view,arch_db:purchase_requisition.view_purchase_requisition_type_form
 msgid "Agreement Type"
-msgstr "Soort afspraak"
+msgstr "Soort overeenkosmt"
 
 #. module: purchase_requisition
 #: model:ir.ui.view,arch_db:purchase_requisition.res_config_settings_view_form
@@ -129,7 +129,7 @@ msgstr "Aanbestedingen"
 #. module: purchase_requisition
 #: model:ir.ui.view,arch_db:purchase_requisition.view_purchase_requisition_form
 msgid "Cancel Call"
-msgstr "Telefoonnotitie annuleren"
+msgstr "Overeenkomst annuleren"
 
 #. module: purchase_requisition
 #: selection:purchase.requisition,state:0
@@ -304,7 +304,7 @@ msgstr "Laatst bijgewerkt op"
 #. module: purchase_requisition
 #: model:ir.model.fields,field_description:purchase_requisition.field_purchase_requisition_type_line_copy
 msgid "Lines"
-msgstr "Lijnen"
+msgstr "Regels"
 
 #. module: purchase_requisition
 #: model:ir.ui.view,arch_db:purchase_requisition.report_purchaserequisitions
@@ -388,7 +388,7 @@ msgstr "Stel aanbesteding voor"
 #: model:ir.model.fields,field_description:purchase_requisition.field_purchase_order_requisition_id
 #: model:ir.model.fields,field_description:purchase_requisition.field_purchase_requisition_line_requisition_id
 msgid "Purchase Agreement"
-msgstr "Inkoop afspraak"
+msgstr "Inkoopovereenkomst"
 
 #. module: purchase_requisition
 #: model:ir.model,name:purchase_requisition.model_purchase_requisition_type
@@ -470,7 +470,7 @@ msgstr "Offerteaanvragen/Orders"
 #. module: purchase_requisition
 #: model:ir.ui.view,arch_db:purchase_requisition.product_template_form_view_inherit
 msgid "Reordering"
-msgstr ""
+msgstr "Aanvullen"
 
 #. module: purchase_requisition
 #: model:ir.actions.act_window,name:purchase_requisition.action_purchase_requisition_to_so
@@ -600,7 +600,7 @@ msgstr "Gebruik hoeveelheden van overeenkomst"
 #. module: purchase_requisition
 #: model:ir.ui.view,arch_db:purchase_requisition.view_purchase_requisition_form
 msgid "Validate"
-msgstr "Controleer"
+msgstr "Bevestig"
 
 #. module: purchase_requisition
 #: model:ir.model.fields,field_description:purchase_requisition.field_purchase_requisition_vendor_id

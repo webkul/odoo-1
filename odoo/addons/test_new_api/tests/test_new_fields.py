@@ -61,6 +61,19 @@ class TestFields(common.TransactionCase):
         self.assertTrue(field.store)
         self.assertTrue(field.readonly)
 
+    def test_10_computed_custom(self):
+        """ check definition of custom computed fields """
+        self.env['ir.model.fields'].create({
+            'name': 'x_bool_false_computed',
+            'model_id': self.env.ref('test_new_api.model_test_new_api_message').id,
+            'field_description': 'A boolean computed to false',
+            'compute': "for r in self: r['x_bool_false_computed'] = False",
+            'store': False,
+            'ttype': 'boolean'
+        })
+        field = self.env['test_new_api.message']._fields['x_bool_false_computed']
+        self.assertFalse(field.depends)
+
     def test_10_non_stored(self):
         """ test non-stored fields """
         # a field declared with store=False should not have a column
@@ -232,6 +245,13 @@ class TestFields(common.TransactionCase):
         self.assertEqual(cath.parent, beth)
         self.assertEqual(ewan.parent, cath)
         self.assertEqual(ewan.name, "Erwan")
+
+        # write on non-stored inverse field on severals records
+        foo1 = Category.create({'name': 'Foo'})
+        foo2 = Category.create({'name': 'Foo'})
+        (foo1 + foo2).write({'display_name': 'Bar'})
+        self.assertEqual(foo1.name, 'Bar')
+        self.assertEqual(foo2.name, 'Bar')
 
         record = self.env['test_new_api.compute.inverse']
 
@@ -651,16 +671,17 @@ class TestFields(common.TransactionCase):
         env = self.env(user=self.env.ref('base.user_demo'))
         self.assertEqual(env.user.login, "demo")
 
-        # create a new message as demo user
-        discussion = self.env.ref('test_new_api.discussion_0')
-        message = env['test_new_api.message'].new({'discussion': discussion})
-        self.assertEqual(message.discussion, discussion)
+        with self.env.do_in_onchange():
+            # create a new message as demo user
+            discussion = self.env.ref('test_new_api.discussion_0')
+            message = env['test_new_api.message'].new({'discussion': discussion})
+            self.assertEqual(message.discussion, discussion)
 
-        # read the related field discussion_name
-        self.assertEqual(message.discussion.env, env)
-        self.assertEqual(message.discussion_name, discussion.name)
-        with self.assertRaises(AccessError):
-            message.discussion.name
+            # read the related field discussion_name
+            self.assertEqual(message.discussion.env, env)
+            self.assertEqual(message.discussion_name, discussion.name)
+            with self.assertRaises(AccessError):
+                message.discussion.name
 
     @mute_logger('odoo.addons.base.ir.ir_model')
     def test_42_new_related(self):
@@ -673,14 +694,15 @@ class TestFields(common.TransactionCase):
         env = self.env(user=self.env.ref('base.user_demo'))
         self.assertEqual(env.user.login, "demo")
 
-        # create a new discussion and a new message as demo user
-        discussion = env['test_new_api.discussion'].new({'name': 'Stuff'})
-        message = env['test_new_api.message'].new({'discussion': discussion})
-        self.assertEqual(message.discussion, discussion)
+        with self.env.do_in_onchange():
+            # create a new discussion and a new message as demo user
+            discussion = env['test_new_api.discussion'].new({'name': 'Stuff'})
+            message = env['test_new_api.message'].new({'discussion': discussion})
+            self.assertEqual(message.discussion, discussion)
 
-        # read the related field discussion_name
-        self.assertNotEqual(message.sudo().env, message.env)
-        self.assertEqual(message.discussion_name, discussion.name)
+            # read the related field discussion_name
+            self.assertNotEqual(message.sudo().env, message.env)
+            self.assertEqual(message.discussion_name, discussion.name)
 
     def test_50_defaults(self):
         """ test default values. """

@@ -417,7 +417,7 @@ var FieldDate = InputField.extend({
             this.datewidget = this._makeDatePicker();
             this.datewidget.on('datetime_changed', this, function () {
                 var value = this._getValue();
-                if ((!value && this.value) || (value && !value.isSame(this.value))) {
+                if ((!value && this.value) || (value && !this._isSameValue(value))) {
                     this._setValue(value);
                 }
             });
@@ -468,7 +468,13 @@ var FieldDate = InputField.extend({
      * @private
      */
     _makeDatePicker: function () {
-        return new datepicker.DateWidget(this, {defaultDate: this.value});
+        return new datepicker.DateWidget(
+            this,
+            _.defaults(
+                this.nodeOptions.datepicker || {},
+                {defaultDate: this.value}
+            )
+        );
     },
 
     /**
@@ -562,12 +568,13 @@ var FieldMonetary = InputField.extend({
             this.tagName = 'div';
             this.className += ' o_input';
 
-            // use the formatFloat function in edit
-            this.formatType = 'float';
+            // do not display currency symbol in edit
+            this.formatOptions.noSymbol = true;
         }
 
         this.formatOptions.currency = this.currency;
         this.formatOptions.digits = [16, 2];
+        this.formatOptions.field_digits = this.nodeOptions.field_digits;
     },
 
     //--------------------------------------------------------------------------
@@ -638,6 +645,7 @@ var FieldMonetary = InputField.extend({
         var currencyField = this.nodeOptions.currency_field || this.field.currency_field || 'currency_id';
         var currencyID = this.record.data[currencyField] && this.record.data[currencyField].res_id;
         this.currency = session.get_currency(currencyID);
+        this.formatOptions.currency = this.currency; // _formatValue() uses formatOptions
     },
 });
 
@@ -1012,6 +1020,21 @@ var FieldPhone = FieldEmail.extend({
     },
 
     /**
+     * Remove possibly present &shy; characters when saving number
+     *
+     * @override
+     * @private
+     */
+    _setValue: function (value, options) {
+        // NOT NEEDED AS OF SAAS-11.3
+        if (value) {
+            // remove possibly pasted &shy; characters
+            value = value.replace(/\u00AD/g, '');
+        }
+        return this._super(value, options);
+    },
+
+    /**
      * Phone fields are clickable in readonly on small screens ~= on phones.
      * This can be overriden by call-capable modules to display a clickable
      * link in different situations, like always regardless of screen size,
@@ -1066,6 +1089,7 @@ var UrlWidget = InputField.extend({
     _renderReadonly: function () {
         this.$el.text(this.attrs.text || this.value)
             .addClass('o_form_uri o_text_overflow')
+            .attr('target', '_blank')
             .attr('href', this.value);
     }
 });
@@ -1209,16 +1233,13 @@ var FieldBinaryImage = AbstractFieldBinary.extend({
             self.do_warn(_t("Image"), _t("Could not display the selected image."));
         });
     },
-    isSet: function () {
-        return true;
-    },
 });
 
 var FieldBinaryFile = AbstractFieldBinary.extend({
     template: 'FieldBinaryFile',
     events: _.extend({}, AbstractFieldBinary.prototype.events, {
         'click': function (event) {
-            if (this.mode === 'readonly' && this.value) {
+            if (this.mode === 'readonly' && this.value && this.recordData.id) {
                 this.on_save_as(event);
             }
         },
@@ -1235,9 +1256,19 @@ var FieldBinaryFile = AbstractFieldBinary.extend({
         this.do_toggle(!!this.value);
         if (this.value) {
             this.$el.empty().append($("<span/>").addClass('fa fa-download'));
+            if (this.recordData.id) {
+                this.$el.css('cursor', 'pointer');
+            } else {
+                this.$el.css('cursor', 'not-allowed');
+            }
             if (this.filename_value) {
                 this.$el.append(" " + this.filename_value);
             }
+        }
+        if (!this.res_id) {
+            this.$el.css('cursor', 'not-allowed');
+        } else {
+            this.$el.css('cursor', 'pointer');
         }
     },
     _renderEdit: function () {
@@ -1263,7 +1294,7 @@ var FieldBinaryFile = AbstractFieldBinary.extend({
         if (!this.value) {
             this.do_warn(_t("Save As..."), _t("The field is empty, there's nothing to save !"));
             ev.stopPropagation();
-        } else {
+        } else if (this.res_id) {
             framework.blockUI();
             var c = crash_manager;
             var filename_fieldname = this.attrs.filename;
@@ -1728,7 +1759,7 @@ var StatInfo = AbstractField.extend({
      */
     _render: function () {
         var options = {
-            value: this.value || 0,
+            value: this._formatValue(this.value || 0),
         };
         if (! this.attrs.nolabel) {
             if (this.nodeOptions.label_field && this.recordData[this.nodeOptions.label_field]) {
@@ -1744,7 +1775,7 @@ var StatInfo = AbstractField.extend({
 
 var FieldPercentPie = AbstractField.extend({
     template: 'FieldPercentPie',
-    supportedFieldTypes: ['integer'],
+    supportedFieldTypes: ['integer', 'float'],
 
     /**
      * Register some useful references for later use throughout the widget.
@@ -1980,8 +2011,9 @@ var FieldToggleBoolean = AbstractField.extend({
      * @private
      */
     _render: function () {
-        var className = this.value ? 'o_toggle_button_success' : 'text-muted';
-        this.$('i').addClass('fa fa-circle ' + className);
+        this.$('i')
+            .toggleClass('o_toggle_button_success', !!this.value)
+            .toggleClass('text-muted', !this.value);
         var title = this.value ? this.attrs.options.active : this.attrs.options.inactive;
         this.$el.attr('title', title);
     },
@@ -2023,7 +2055,12 @@ var JournalDashboardGraph = AbstractField.extend({
         return this._super.apply(this, arguments);
     },
     destroy: function () {
-        nv.utils.offWindowResize(this._onResize);
+        if ('nv' in window) {
+            // if the widget is destroyed before the lazy loaded libs (nv) are
+            // actually loaded (i.e. after the widget has actually started),
+            // nv is undefined, but the handler isn't bound yet anyway
+            nv.utils.offWindowResize(this._onResize);
+        }
         this._super.apply(this, arguments);
     },
 
@@ -2227,19 +2264,18 @@ var FieldDomain = AbstractField.extend({
 
         // Convert char value to array value
         var value = this.value || "[]";
-        var domain = Domain.prototype.stringToArray(value);
 
         // Create the domain selector or change the value of the current one...
         var def;
         if (!this.domainSelector) {
-            this.domainSelector = new DomainSelector(this, this._domainModel, domain, {
+            this.domainSelector = new DomainSelector(this, this._domainModel, value, {
                 readonly: this.mode === "readonly" || this.inDialog,
                 filters: this.fsFilters,
                 debugMode: session.debug,
             });
             def = this.domainSelector.prependTo(this.$el);
         } else {
-            def = this.domainSelector.setDomain(domain);
+            def = this.domainSelector.setDomain(value);
         }
         // ... then replace the other content (matched records, etc)
         return def.then(this._replaceContent.bind(this));
@@ -2395,6 +2431,21 @@ var AceEditor = DebouncedField.extend({
     //--------------------------------------------------------------------------
 
     /**
+     * Format value
+     *
+     * Note: We have to overwrite this method to always return a string.
+     * AceEditor works with string and not boolean value.
+     *
+     * @override
+     * @private
+     * @param {boolean|string} value
+     * @returns {string}
+     */
+    _formatValue: function (value) {
+        return this._super.apply(this, arguments) || '';
+    },
+
+    /**
      * @override
      * @private
      */
@@ -2416,6 +2467,7 @@ var AceEditor = DebouncedField.extend({
             this.aceSession.setValue(newValue);
         }
     },
+
     /**
      * Starts the ace library on the given DOM element. This initializes the
      * ace editor option according to the edit/readonly mode and binds ace

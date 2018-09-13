@@ -3,18 +3,19 @@
 # * product
 # 
 # Translators:
-# Martin Trigaux <mat@odoo.com>, 2017
+# Martin Trigaux, 2017
 # Yenthe Van Ginneken <yenthespam@gmail.com>, 2017
 # Erwin van der Ploeg <erwin@odooexperts.nl>, 2017
 # Cas Vissers <casvissers@brahoo.nl>, 2017
 # Eric Geens <ericgeens@yahoo.com>, 2017
+# Melroy van den Berg <webmaster1989@gmail.com>, 2018
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.saas~18\n"
+"Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-02 11:26+0000\n"
-"PO-Revision-Date: 2017-10-02 11:26+0000\n"
-"Last-Translator: Eric Geens <ericgeens@yahoo.com>, 2017\n"
+"POT-Creation-Date: 2018-02-19 13:43+0000\n"
+"PO-Revision-Date: 2018-02-19 13:43+0000\n"
+"Last-Translator: Melroy van den Berg <webmaster1989@gmail.com>, 2018\n"
 "Language-Team: Dutch (https://www.transifex.com/odoo/teams/41243/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -790,6 +791,10 @@ msgid ""
 "in average/fifo. Also used as a base price for pricelists. Expressed in the "
 "default unit of measure of the product."
 msgstr ""
+"Kosten die gebruikt worden voor voorraadwaardering in standaardprijs en als "
+"een beginprijs om in gemiddelde / FIFO in te stellen. Wordt tevens gebruikt "
+"als basisprijs voor prijslijsten. Uitgedrukt in de standaard meeteenheid van"
+" het product."
 
 #. module: product
 #: model:ir.model.fields,help:product.field_product_template_standard_price
@@ -798,6 +803,10 @@ msgid ""
 "in average/fifo. Also used as a base price for pricelists. Expressed in the "
 "default unit of measure of the product. "
 msgstr ""
+"Kosten die gebruikt worden voor voorraadwaardering in standaardprijs en als "
+"een beginprijs om in gemiddelde / FIFO in te stellen. Wordt tevens gebruikt "
+"als basisprijs voor prijslijsten. Uitgedrukt in de standaard meeteenheid van"
+" het product."
 
 #. module: product
 #: model:product.product,name:product.service_delivery
@@ -1234,6 +1243,11 @@ msgid "Friendly to the environment."
 msgstr "Vriendelijk voor het milieu."
 
 #. module: product
+#: model:ir.ui.view,arch_db:product.product_template_search_view
+msgid "Future Activities"
+msgstr "Toekomstige activiteiten"
+
+#. module: product
 #: model:product.product,name:product.product_product_1
 #: model:product.template,name:product.product_product_1_product_template
 msgid "GAP Analysis Service"
@@ -1411,6 +1425,8 @@ msgstr "Als het gemaakt is voor de iPad, is het gemaakt voor de iPad mini."
 msgid ""
 "If not set, the vendor price will apply to all variants of this products."
 msgstr ""
+"Indien niet ingesteld, is de leveranciersprijs van toepassing op alle "
+"varianten van het product."
 
 #. module: product
 #: model:ir.model.fields,help:product.field_product_pricelist_active
@@ -1597,6 +1613,11 @@ msgid "Last Updated on"
 msgstr "Laatst bijgewerkt op"
 
 #. module: product
+#: model:ir.ui.view,arch_db:product.product_template_search_view
+msgid "Late Activities"
+msgstr "Te late activiteiten"
+
+#. module: product
 #: model:ir.model.fields,help:product.field_product_supplierinfo_delay
 msgid ""
 "Lead time in days between the confirmation of the purchase order and the "
@@ -1620,7 +1641,7 @@ msgstr "Lengte / Afstand"
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_attribute_attribute_line_ids
 msgid "Lines"
-msgstr "Lijnen"
+msgstr "Regels"
 
 #. module: product
 #: model:product.uom,name:product.product_uom_litre
@@ -1721,7 +1742,7 @@ msgstr "Meer features."
 #: model:product.product,name:product.product_product_20
 #: model:product.template,name:product.product_product_20_product_template
 msgid "Motherboard I9P57"
-msgstr "Moedermoord I9P57"
+msgstr "Moederbord I9P57"
 
 #. module: product
 #: model:product.product,name:product.product_product_10
@@ -1801,7 +1822,7 @@ msgstr "Hoofdcategorie"
 #: model:product.product,name:product.product_product_5c
 #: model:product.template,name:product.product_product_5c_product_template
 msgid "Parts Replacement"
-msgstr ""
+msgstr "Onderdelen vervanging"
 
 #. module: product
 #: selection:product.pricelist.item,compute_price:0
@@ -2152,6 +2173,11 @@ msgid "Public Price"
 msgstr "Verkoopprijs"
 
 #. module: product
+#: model:product.pricelist,name:product.list0
+msgid "Public Pricelist"
+msgstr "Verkoopprijslijst"
+
+#. module: product
 #: model:ir.model.fields,field_description:product.field_product_product_description_purchase
 #: model:ir.model.fields,field_description:product.field_product_template_description_purchase
 msgid "Purchase Description"
@@ -2410,6 +2436,11 @@ msgstr ""
 "Deel al uw relaties met alle bedrijven die binnen uw structuur zijn gedefinieerd.\n"
 " * Aangevinkt : Relaties zijn zichtbaar voor alle bedrijven, zelfs indien het bedrijf bij de relatie aangeduid is.\n"
 " * Niet aangevinkt : Elk bedrijf kan enkel de eigen relaties zien (relaties waarbij het bedrijf werd aangeduid). Relaties waarbij het bedrijf niet werd aangeduid zijn zichtbaar voor alle bedrijven."
+
+#. module: product
+#: model:ir.ui.view,arch_db:product.product_template_search_view
+msgid "Show all records which has next action date is before today"
+msgstr "Toon alle records welke een actiedatum voor vandaag hebben"
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_res_config_settings_group_product_pricelist
@@ -2873,7 +2904,7 @@ msgid ""
 " 1024x1024px."
 msgstr ""
 "Dit veld bevat de afbeelding die gebruikt wordt voor de product variant, "
-"gelimiteerd tot 1024x2014px."
+"beperkt tot 1024x2014px."
 
 #. module: product
 #: model:ir.model.fields,help:product.field_product_template_image
@@ -2892,7 +2923,7 @@ msgstr "Dit is de som van de extra prijs van alle kenmerken"
 #. module: product
 #: model:ir.ui.view,arch_db:product.product_template_form_view
 msgid "This note will show up on sales orders."
-msgstr "Deze opmerking wordt afgebeeld op verkooporders."
+msgstr "Deze opmerking wordt getoond op verkooporders."
 
 #. module: product
 #: model:ir.model.fields,help:product.field_res_partner_property_product_pricelist
@@ -2923,6 +2954,11 @@ msgstr ""
 "offerte aanvraag. Laat dit leeg om een interne productcode te gebruiken."
 
 #. module: product
+#: model:ir.ui.view,arch_db:product.product_template_search_view
+msgid "Today Activities"
+msgstr "Activiteiten van vandaag"
+
+#. module: product
 #: model:product.product,website_description:product.product_product_7
 #: model:product.template,website_description:product.product_product_7_product_template
 msgid "Two is better than one."
@@ -2942,11 +2978,6 @@ msgid ""
 msgstr ""
 "USB poorten staan u toe veilige software updates te doen om te zorgen voor "
 "voortdurende toestelcompatibiliteit"
-
-#. module: product
-#: model:product.pricelist,name:product.list0
-msgid "USD"
-msgstr "USD"
 
 #. module: product
 #: model:product.product,website_description:product.product_product_6
@@ -3258,7 +3289,7 @@ msgstr "U moet een logo of lay-out instellen voor uw bedrijf."
 #: code:addons/product/wizard/product_price_list.py:28
 #, python-format
 msgid "You have to set your reports's header and footer layout."
-msgstr "U moet uw rapporten hun hoofding en footer lay-out instellen."
+msgstr "U dienst u kop- en voettekst van uw documenten in te stellen."
 
 #. module: product
 #: model:ir.actions.act_window,help:product.product_uom_form_action
@@ -3299,6 +3330,8 @@ msgid ""
 "You must define at least one product category in order to be able to create "
 "products."
 msgstr ""
+"U dient tenminste één productcategorie aan te maken, voordat u een product "
+"kunt aanmaken."
 
 #. module: product
 #: model:product.product,website_description:product.product_product_11
@@ -3483,13 +3516,13 @@ msgstr "Hoeveelheid"
 #: model:product.product,description_sale:product.consu_delivery_02
 #: model:product.template,description_sale:product.consu_delivery_02_product_template
 msgid "raid 1, 512ECC ram"
-msgstr ""
+msgstr "raid 1, 512ECC ram"
 
 #. module: product
 #: model:product.product,description_sale:product.consu_delivery_01
 #: model:product.template,description_sale:product.consu_delivery_01_product_template
 msgid "raid 10, 2048ECC ram"
-msgstr ""
+msgstr "raid 10, 2048ECC ram"
 
 #. module: product
 #: model:ir.model,name:product.model_report_product_report_pricelist

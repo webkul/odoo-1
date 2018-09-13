@@ -8,6 +8,7 @@ var models = require('point_of_sale.models');
 var core = require('web.core');
 var ajax = require('web.ajax');
 var CrashManager = require('web.CrashManager');
+var BarcodeEvents = require('barcodes.BarcodeEvents').BarcodeEvents;
 
 
 var _t = core._t;
@@ -606,10 +607,9 @@ var Chrome = PosBaseWidget.extend({
         $(window).off();
         $('html').off();
         $('body').off();
-        $(this.$el).parent().off();
-        $('document').off();
-        $('.oe_web_client').off();
-        $('.openerp_webclient_container').off();
+        this.$el.parent().off();
+        // The above lines removed the bindings, but we really need them for the barcode
+        BarcodeEvents.start();
     },
 
     build_chrome: function() { 
@@ -742,7 +742,7 @@ var Chrome = PosBaseWidget.extend({
         if(err.message === 'XmlHttpRequestError '){
             title = 'Network Failure (XmlHttpRequestError)';
             body  = 'The Point of Sale could not be loaded due to a network problem.\n Please check your internet connection.';
-        }else if(err.message === 'OpenERP Server Error'){
+        }else if(err.code === 200){
             title = err.data.message;
             body  = err.data.debug;
         }

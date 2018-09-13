@@ -435,8 +435,8 @@ msgid ""
 "minutes."
 msgstr ""
 "Dit veld wordt gebruikt om de verwachte duur van een werkorder in dit "
-"werkcentrum te berekenen. Bijvoorbeeld, als een werkorder een uur duurt en "
-"de efficiëntie factor 100% is, zal de verwachte duur 1 uur zijn. Indien de "
+"werkplek te berekenen. Bijvoorbeeld, als een werkorder een uur duurt en de "
+"efficiëntie factor 100% is, zal de verwachte duur 1 uur zijn. Indien de "
 "efficiëntie factor 200% is zal de verwachte duur echter 30 minuten zijn."
 
 #. module: resource
@@ -472,6 +472,9 @@ msgid ""
 "Timezone used when encoding the leave. It is used to correctlylocalize leave"
 " hours when computing time intervals."
 msgstr ""
+"Tijdzone welke wordt gebruikt voor het verwerken van het verlof. Deze wordt "
+"gebruikt om op een juiste manier uren te verwerken bij het berekenen van "
+"tijd intervallen."
 
 #. module: resource
 #: selection:resource.calendar.attendance,dayofweek:0

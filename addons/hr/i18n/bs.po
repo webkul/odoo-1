@@ -3,15 +3,15 @@
 # * hr
 # 
 # Translators:
-# Martin Trigaux <mat@odoo.com>, 2017
+# Martin Trigaux, 2017
 # Boško Stojaković <bluesoft83@gmail.com>, 2017
 # Bole <bole@dajmi5.com>, 2017
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.saas~18\n"
+"Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-02 11:26+0000\n"
-"PO-Revision-Date: 2017-10-02 11:26+0000\n"
+"POT-Creation-Date: 2018-07-27 11:55+0000\n"
+"PO-Revision-Date: 2018-07-27 11:55+0000\n"
 "Last-Translator: Bole <bole@dajmi5.com>, 2017\n"
 "Language-Team: Bosnian (https://www.transifex.com/odoo/teams/41243/bs/)\n"
 "MIME-Version: 1.0\n"
@@ -69,21 +69,23 @@ msgid ""
 "<span class=\"o_unfollow\">Unfollow</span>\n"
 "                                    <span class=\"o_following\">Following</span>"
 msgstr ""
+"<span class=\"o_unfollow\">Ne prati</span>\n"
+"                                    <span class=\"o_following\">Pratim</span>"
 
 #. module: hr
 #: model:ir.ui.view,arch_db:hr.hr_department_view_kanban
 msgid "<span>Reporting</span>"
-msgstr ""
+msgstr "<span>Izvještavanje</span>"
 
 #. module: hr
 #: model:ir.ui.view,arch_db:hr.hr_department_view_kanban
 msgid "<span>To Approve</span>"
-msgstr ""
+msgstr "<span>Za odobriti</span>"
 
 #. module: hr
 #: model:ir.ui.view,arch_db:hr.hr_department_view_kanban
 msgid "<span>To Do</span>"
-msgstr ""
+msgstr "<span>Za uraditi</span>"
 
 #. module: hr
 #: model:hr.job,website_description:hr.job_ceo
@@ -131,7 +133,7 @@ msgstr "Arhivirano"
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_employee_bank_account_id
 msgid "Bank Account Number"
-msgstr ""
+msgstr "Broj bankovnog računa"
 
 #. module: hr
 #: model:hr.job,website_description:hr.job_cto
@@ -165,17 +167,17 @@ msgstr ""
 #. module: hr
 #: model:ir.ui.view,arch_db:hr.view_employee_form
 msgid "Birth"
-msgstr ""
+msgstr "Rođenje"
 
 #. module: hr
 #: model:hr.job,name:hr.job_ceo
 msgid "Chief Executive Officer"
-msgstr ""
+msgstr "Izvršni direktor"
 
 #. module: hr
 #: model:hr.job,name:hr.job_cto
 msgid "Chief Technical Officer"
-msgstr ""
+msgstr "Tehnički direktor"
 
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_department_child_ids
@@ -185,23 +187,23 @@ msgstr "Pododjeljenja"
 #. module: hr
 #: model:ir.ui.view,arch_db:hr.view_employee_form
 msgid "Citizenship & Other Information"
-msgstr ""
+msgstr "Državljanstvo i ostali podatci"
 
 #. module: hr
 #: model:ir.actions.act_window,help:hr.act_employee_from_department
 #: model:ir.actions.act_window,help:hr.open_view_employee_list_my
 msgid "Click to add a new employee."
-msgstr ""
+msgstr "Kliknite da dodate novog zaposlenog."
 
 #. module: hr
 #: model:ir.actions.act_window,help:hr.open_module_tree_department
 msgid "Click to create a department."
-msgstr ""
+msgstr "Kliknite da kreirate odjeljenje."
 
 #. module: hr
 #: model:ir.actions.act_window,help:hr.action_hr_job
 msgid "Click to define a new job position."
-msgstr ""
+msgstr "Kliknite da definišete novo radno mjesto."
 
 #. module: hr
 #: model:hr.job,website_description:hr.job_ceo
@@ -218,7 +220,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:hr.field_hr_employee_coach_id
 #: model:ir.ui.view,arch_db:hr.view_employee_filter
 msgid "Coach"
-msgstr ""
+msgstr "Trener"
 
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_department_color
@@ -243,7 +245,7 @@ msgstr "Kompanija"
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_res_config_settings_resource_calendar_id
 msgid "Company Working Hours"
-msgstr ""
+msgstr "Radni sati kompanije"
 
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_department_complete_name
@@ -256,14 +258,9 @@ msgid "Configuration"
 msgstr "Konfiguracija"
 
 #. module: hr
-#: model:ir.actions.act_window,name:hr.hr_config_settings_action
-msgid "Configure HR"
-msgstr ""
-
-#. module: hr
 #: model:hr.job,name:hr.job_consultant
 msgid "Consultant"
-msgstr ""
+msgstr "Konsultant"
 
 #. module: hr
 #: model:ir.model,name:hr.model_res_partner
@@ -301,12 +298,12 @@ msgstr "Kreirano"
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_job_no_of_employee
 msgid "Current Number of Employees"
-msgstr ""
+msgstr "Trenutni broj zaposlenih"
 
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_employee_birthday
 msgid "Date of Birth"
-msgstr ""
+msgstr "Datum rođenja"
 
 #. module: hr
 #: model:hr.job,website_description:hr.job_ceo
@@ -373,24 +370,24 @@ msgstr "Kategorija uposlenika"
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_employee_category_name
 msgid "Employee Tag"
-msgstr ""
+msgstr "Oznaka zaposlenog"
 
 #. module: hr
 #: model:ir.actions.act_window,name:hr.open_view_categ_form
 #: model:ir.ui.menu,name:hr.menu_view_employee_category_form
 #: model:ir.ui.view,arch_db:hr.view_employee_category_form
 msgid "Employee Tags"
-msgstr ""
+msgstr "Oznake zaposlenih"
 
 #. module: hr
 #: model:ir.model.fields,help:hr.field_hr_employee_bank_account_id
 msgid "Employee bank salary account"
-msgstr ""
+msgstr "Bankovni račun za isplatu plate"
 
 #. module: hr
 #: model:ir.ui.view,arch_db:hr.view_employee_form
 msgid "Employee's Name"
-msgstr ""
+msgstr "Ime zaposlenog"
 
 #. module: hr
 #: model:ir.actions.act_window,name:hr.act_employee_from_department
@@ -401,6 +398,7 @@ msgstr ""
 #: model:ir.ui.menu,name:hr.menu_hr_root
 #: model:ir.ui.menu,name:hr.menu_open_view_employee_list_my
 #: model:ir.ui.view,arch_db:hr.hr_department_view_kanban
+#: model:ir.ui.view,arch_db:hr.res_config_settings_view_form
 #: model:ir.ui.view,arch_db:hr.view_employee_filter
 #: model:ir.ui.view,arch_db:hr.view_employee_tree
 #: model:ir.ui.view,arch_db:hr.view_partner_tree2
@@ -415,7 +413,7 @@ msgstr "Struktura uposlenika"
 #. module: hr
 #: model:ir.ui.view,arch_db:hr.view_employee_category_list
 msgid "Employees Tags"
-msgstr ""
+msgstr "Ozanake zaposlenih"
 
 #. module: hr
 #: model:ir.model.fields,help:hr.field_hr_employee_address_home_id
@@ -423,34 +421,37 @@ msgid ""
 "Enter here the private address of the employee, not the one linked to your "
 "company."
 msgstr ""
+"Ovde unesite privatnu adresu zaposlenog, ne adresu povezanu sa vašom "
+"kompanijom."
 
 #. module: hr
-#: code:addons/hr/models/hr.py:303
+#: code:addons/hr/models/hr.py:310
 #, python-format
 msgid "Error! You cannot create recursive departments."
-msgstr ""
+msgstr "Greška! Ne možete kreirati rekurzivna odjeljenja."
 
 #. module: hr
-#: code:addons/hr/models/hr.py:184
+#: code:addons/hr/models/hr.py:187
 #, python-format
 msgid "Error! You cannot create recursive hierarchy of Employee(s)."
-msgstr ""
+msgstr "Greška! Ne možete da kreirate rekurzivnu hijerarhiju zaposlenih."
 
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_job_no_of_recruitment
 msgid "Expected New Employees"
-msgstr ""
+msgstr "Očekivani novi zaposlenici"
 
 #. module: hr
 #: model:ir.model.fields,help:hr.field_hr_job_expected_employees
 msgid ""
 "Expected number of employees for this job position after new recruitment."
 msgstr ""
+"Očekivani broj zaposlenih za ovo radno mjesto nakon novog zapošljavanja."
 
 #. module: hr
 #: model:hr.job,name:hr.job_developer
 msgid "Experienced Developer"
-msgstr ""
+msgstr "Developer sa iskustvom"
 
 #. module: hr
 #: selection:hr.employee,gender:0
@@ -526,12 +527,12 @@ msgstr "Grupiši po"
 #. module: hr
 #: model:ir.model,name:hr.model_hr_department
 msgid "HR Department"
-msgstr ""
+msgstr "Odjeljenje ljudskih resursa"
 
 #. module: hr
 #: model:ir.ui.view,arch_db:hr.view_employee_form
 msgid "HR Settings"
-msgstr ""
+msgstr "Postavke ljudskih resursa"
 
 #. module: hr
 #: model:hr.job,website_description:hr.job_consultant
@@ -556,7 +557,7 @@ msgstr ""
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_job_no_of_hired_employee
 msgid "Hired Employees"
-msgstr ""
+msgstr "Angažovani zaposlenici"
 
 #. module: hr
 #: model:ir.ui.menu,name:hr.menu_hr_main
@@ -566,7 +567,7 @@ msgstr "Ljudski resursi"
 #. module: hr
 #: model:hr.job,name:hr.job_hrm
 msgid "Human Resources Manager"
-msgstr ""
+msgstr "Upravitelj ljudskim resursima"
 
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_department_id
@@ -579,7 +580,7 @@ msgstr "ID"
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_employee_identification_id
 msgid "Identification No"
-msgstr ""
+msgstr "Identifikacijski broj"
 
 #. module: hr
 #: model:ir.model.fields,help:hr.field_hr_employee_active
@@ -600,12 +601,12 @@ msgstr ""
 #. module: hr
 #: model:ir.ui.view,arch_db:hr.view_job_filter
 msgid "In Position"
-msgstr ""
+msgstr "Na poziciji"
 
 #. module: hr
 #: model:ir.ui.view,arch_db:hr.view_job_filter
 msgid "In Recruitment"
-msgstr ""
+msgstr "U procesu zaposlenja"
 
 #. module: hr
 #: model:hr.job,website_description:hr.job_ceo
@@ -627,12 +628,12 @@ msgstr ""
 #: model:ir.ui.view,arch_db:hr.view_hr_job_tree
 #: model:ir.ui.view,arch_db:hr.view_job_filter
 msgid "Job"
-msgstr ""
+msgstr "Posao"
 
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_job_description
 msgid "Job Description"
-msgstr ""
+msgstr "Opis posla"
 
 #. module: hr
 #: model:ir.model,name:hr.model_hr_job
@@ -644,7 +645,7 @@ msgstr "Radno mjesto"
 #. module: hr
 #: model:ir.actions.act_window,name:hr.action_hr_job
 msgid "Job Positions"
-msgstr ""
+msgstr "Radno mjesto"
 
 #. module: hr
 #: model:ir.actions.act_window,help:hr.action_hr_job
@@ -659,7 +660,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:hr.field_hr_department_jobs_ids
 #: model:ir.ui.view,arch_db:hr.view_job_filter
 msgid "Jobs"
-msgstr ""
+msgstr "Poslovi"
 
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_department___last_update
@@ -688,7 +689,7 @@ msgstr "Zadnje ažurirano"
 #. module: hr
 #: model:ir.ui.view,arch_db:hr.view_hr_job_form
 msgid "Launch Recruitment"
-msgstr ""
+msgstr "Pokreni zaposljavanje"
 
 #. module: hr
 #: model:hr.job,website_description:hr.job_marketing
@@ -703,6 +704,11 @@ msgstr ""
 #. module: hr
 #: model:hr.job,website_description:hr.job_ceo
 msgid "Launch new products, marketing campaigns and offers"
+msgstr ""
+
+#. module: hr
+#: selection:hr.employee,marital:0
+msgid "Legal Cohabitant"
 msgstr ""
 
 #. module: hr
@@ -726,11 +732,11 @@ msgstr "Bračni status"
 #. module: hr
 #: model:hr.job,name:hr.job_marketing
 msgid "Marketing and Community Manager"
-msgstr ""
+msgstr "Upravitelj marketinga i odnosa sa javnošću"
 
 #. module: hr
 #: selection:hr.employee,marital:0
-msgid "Married (or similar)"
+msgid "Married"
 msgstr ""
 
 #. module: hr
@@ -782,7 +788,7 @@ msgstr "Naziv:"
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_employee_country_id
 msgid "Nationality (Country)"
-msgstr ""
+msgstr "Nacionalnost (Država)"
 
 #. module: hr
 #: model:hr.job,website_description:hr.job_ceo
@@ -798,7 +804,7 @@ msgstr ""
 #. module: hr
 #: selection:hr.job,state:0
 msgid "Not Recruiting"
-msgstr ""
+msgstr "Baz zapošljavanja"
 
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_department_note
@@ -813,18 +819,18 @@ msgstr "Zabilješke"
 #. module: hr
 #: model:ir.model.fields,help:hr.field_hr_job_no_of_employee
 msgid "Number of employees currently occupying this job position."
-msgstr ""
+msgstr "Broj zaposlenih na ovom radnom mjestu"
 
 #. module: hr
 #: model:ir.model.fields,help:hr.field_hr_job_no_of_hired_employee
 msgid ""
 "Number of hired employees for this job position during recruitment phase."
-msgstr ""
+msgstr "Broj zaposlenih na ovom radnom mjestu u procesu zapošljavanja."
 
 #. module: hr
 #: model:ir.model.fields,help:hr.field_hr_job_no_of_recruitment
 msgid "Number of new employees you expect to recruit."
-msgstr ""
+msgstr "Broj novih zaposlenih koje planirate da zaposlite."
 
 #. module: hr
 #: model:ir.actions.act_window,help:hr.open_module_tree_department
@@ -847,7 +853,7 @@ msgstr "Drugo"
 #. module: hr
 #: model:ir.ui.view,arch_db:hr.view_employee_form
 msgid "Other Information ..."
-msgstr ""
+msgstr "Ostale informacije ..."
 
 #. module: hr
 #: model:hr.job,website_description:hr.job_ceo
@@ -873,7 +879,7 @@ msgstr ""
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_employee_passport_id
 msgid "Passport No"
-msgstr ""
+msgstr "Broj pasoša"
 
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_employee_image
@@ -894,7 +900,7 @@ msgstr ""
 #. module: hr
 #: model:ir.ui.view,arch_db:hr.view_employee_form
 msgid "Position"
-msgstr ""
+msgstr "Pozicija"
 
 #. module: hr
 #: model:hr.job,website_description:hr.job_cto
@@ -906,17 +912,12 @@ msgstr ""
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_employee_address_home_id
 msgid "Private Address"
-msgstr ""
+msgstr "Privatna adresa"
 
 #. module: hr
 #: model:ir.ui.view,arch_db:hr.view_employee_form
 msgid "Private Information"
-msgstr ""
-
-#. module: hr
-#: model:ir.ui.view,arch_db:hr.res_config_settings_view_form
-msgid "Prout prout prout"
-msgstr ""
+msgstr "Privatne informacije"
 
 #. module: hr
 #: model:hr.job,website_description:hr.job_consultant
@@ -936,7 +937,7 @@ msgstr "Regrutovanje"
 #. module: hr
 #: selection:hr.job,state:0
 msgid "Recruitment in Progress"
-msgstr ""
+msgstr "Zapošljavanje u procesu"
 
 #. module: hr
 #: model:ir.ui.view,arch_db:hr.view_employee_form
@@ -946,7 +947,7 @@ msgstr "Srodni korisnik"
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_res_users_employee_ids
 msgid "Related employees"
-msgstr ""
+msgstr "Povezani zaposlenik"
 
 #. module: hr
 #: model:ir.model.fields,help:hr.field_hr_employee_user_id
@@ -997,14 +998,19 @@ msgid ""
 "Set default calendar used to compute time allocation for leaves, timesheets,"
 " ..."
 msgstr ""
+"Postavi zadani kalendar za računanje vremena godišnjih odmora, radne "
+"listove, ..."
 
 #. module: hr
 #: model:ir.model.fields,help:hr.field_hr_job_state
 msgid ""
 "Set whether the recruitment process is open or closed for this job position."
 msgstr ""
+"Postavi dali je proces zapošljavanja otvoren ili zatvoren za ovo radno "
+"mjesto."
 
 #. module: hr
+#: model:ir.actions.act_window,name:hr.hr_config_settings_action
 #: model:ir.ui.menu,name:hr.hr_menu_configuration
 #: model:ir.ui.view,arch_db:hr.hr_department_view_kanban
 msgid "Settings"
@@ -1013,22 +1019,22 @@ msgstr "Postavke"
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_res_config_settings_module_hr_org_chart
 msgid "Show Organizational Chart"
-msgstr ""
+msgstr "Prikaži organizacijsku strukturu"
 
 #. module: hr
 #: model:ir.ui.view,arch_db:hr.res_config_settings_view_form
 msgid "Show organizational chart on employee form"
-msgstr ""
+msgstr "Prikaži organizacijsku strukturu na formi zaposlenog"
 
 #. module: hr
 #: model:ir.ui.view,arch_db:hr.res_config_settings_view_form
 msgid "Show organizational chart on employee form."
-msgstr ""
+msgstr "Prikaži organizacijsku strukturu na formi zaposlenog"
 
 #. module: hr
 #: selection:hr.employee,marital:0
 msgid "Single"
-msgstr ""
+msgstr "Samac"
 
 #. module: hr
 #: model:hr.job,website_description:hr.job_ceo
@@ -1057,12 +1063,12 @@ msgstr ""
 #. module: hr
 #: model:ir.model.fields,help:hr.field_hr_employee_sinid
 msgid "Social Insurance Number"
-msgstr ""
+msgstr "Broj socijalnog osiguranja"
 
 #. module: hr
 #: model:ir.model.fields,help:hr.field_hr_employee_ssnid
 msgid "Social Security Number"
-msgstr ""
+msgstr "Broj socijalnog"
 
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_job_state
@@ -1074,12 +1080,12 @@ msgstr "Status"
 #. module: hr
 #: model:ir.ui.view,arch_db:hr.view_hr_job_form
 msgid "Stop Recruitment"
-msgstr ""
+msgstr "Zaustavi zapošljavanje"
 
 #. module: hr
 #: model:ir.actions.act_window,name:hr.hr_employee_action_subordinate_hierachy
 msgid "Subordinate Hierarchy"
-msgstr ""
+msgstr "Podređena hijerarhija"
 
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_employee_child_ids
@@ -1109,12 +1115,13 @@ msgstr ""
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_employee_is_address_home_a_company
 msgid "The employee adress has a company linked"
-msgstr ""
+msgstr "Adresa zaposlenog im povezanu kompaniju"
 
 #. module: hr
 #: sql_constraint:hr.job:0
 msgid "The name of the job position must be unique per department in company!"
 msgstr ""
+"Naziv radnog mjesta mora biti jedinstveno po odjeljenju unutar kompanije!"
 
 #. module: hr
 #: model:ir.model.fields,help:hr.field_hr_employee_image
@@ -1122,16 +1129,18 @@ msgid ""
 "This field holds the image used as photo for the employee, limited to "
 "1024x1024px."
 msgstr ""
+"Ovo polje sadrži sliku koja se koristi kao fotografija zaposlenog, "
+"limitirana na 1024x1024px."
 
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_job_expected_employees
 msgid "Total Forecasted Employees"
-msgstr ""
+msgstr "Ukupno prognoziranih zaposlenih"
 
 #. module: hr
 #: model:hr.job,name:hr.job_trainee
 msgid "Trainee"
-msgstr ""
+msgstr "Trener"
 
 #. module: hr
 #: model:hr.job,website_description:hr.job_marketing
@@ -1153,6 +1162,9 @@ msgid ""
 "                                            This private address is used in the expense report reimbursement document.\n"
 "                                            It should be different from the work address."
 msgstr ""
+"Koristi ovdje kućnu adresu zaposlenog.\n"
+"                                            Ova privatna adresa se koristi na dokumentima nadoknade izvještaja troškova.\n"
+"                                            Trebala bi biti drugačija od poslovne adrese."
 
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_employee_user_id
@@ -1167,17 +1179,17 @@ msgstr "Korisnici"
 #. module: hr
 #: model:ir.ui.view,arch_db:hr.hr_job_view_kanban
 msgid "Vacancies :"
-msgstr ""
+msgstr "Slobodna radna mjesta:"
 
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_employee_visa_expire
 msgid "Visa Expire Date"
-msgstr ""
+msgstr "Datum isteka vize"
 
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_employee_visa_no
 msgid "Visa No"
-msgstr ""
+msgstr "Broj Vize"
 
 #. module: hr
 #: model:hr.job,website_description:hr.job_consultant
@@ -1240,7 +1252,7 @@ msgstr ""
 #. module: hr
 #: selection:hr.employee,marital:0
 msgid "Widower"
-msgstr ""
+msgstr "Udovac"
 
 #. module: hr
 #: model:hr.job,website_description:hr.job_consultant
@@ -1255,6 +1267,9 @@ msgid ""
 "                can easily find all the information you need for each person;\n"
 "                contact data, job position, availability, etc."
 msgstr ""
+"Sa samo kratkim pogledom na ekran zaposlenih, možete lako \n"
+"                da pronađete sve informacije koje su vam potrebne za svaku od osoba;\n"
+"                kontakt podatke, radno mjesto, dostupnost, itd."
 
 #. module: hr
 #: model:hr.job,website_description:hr.job_ceo
@@ -1273,7 +1288,7 @@ msgstr ""
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_employee_address_id
 msgid "Work Address"
-msgstr ""
+msgstr "Adresa na poslu"
 
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_employee_work_email
@@ -1283,32 +1298,32 @@ msgstr "Poslovni e-mail"
 #. module: hr
 #: model:ir.ui.view,arch_db:hr.view_employee_form
 msgid "Work Information"
-msgstr ""
+msgstr "Poslovne informacije"
 
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_employee_work_location
 msgid "Work Location"
-msgstr ""
+msgstr "Lokacija posla"
 
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_employee_mobile_phone
 msgid "Work Mobile"
-msgstr ""
+msgstr "Poslovni mobilni"
 
 #. module: hr
 #: model:ir.ui.view,arch_db:hr.res_config_settings_view_form
 msgid "Work Organization"
-msgstr ""
+msgstr "Poslovna organizacija"
 
 #. module: hr
 #: model:ir.ui.view,arch_db:hr.view_employee_form
 msgid "Work Permit"
-msgstr ""
+msgstr "Radna dozvola"
 
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_employee_permit_no
 msgid "Work Permit No"
-msgstr ""
+msgstr "Broj radne dozvole"
 
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_employee_work_phone
@@ -1378,6 +1393,9 @@ msgid ""
 "                the recruitment process to evaluate the applicants for this job\n"
 "                position."
 msgstr ""
+"Možete zakačiti istraživanje za radno mjesto. Koristiće se u\n"
+"                procesu zapošljavanja za procjenu aplikanata za ovo \n"
+"                radno mjesto."
 
 #. module: hr
 #: model:hr.job,website_description:hr.job_consultant
@@ -1494,7 +1512,7 @@ msgstr ""
 #. module: hr
 #: model:mail.template,subject:hr.mail_template_data_unknown_employee_email_address
 msgid "Your document has not been created"
-msgstr ""
+msgstr "Vaš dokument nije kreiran"
 
 #. module: hr
 #: model:mail.template,body_html:hr.mail_template_data_unknown_employee_email_address
@@ -1503,6 +1521,9 @@ msgid ""
 "recognized. Please send emails with the email address recorded on your "
 "employee information, or contact your HR manager."
 msgstr ""
+"Vaš dokument nije kreiran zato što vaša email adresa nije prepoznata. Molimo"
+" pošaljite emailove sa adresom mail-a koja je unesena na vašim informacijama"
+" o zaposlenom, ili kontaktirajte vašeg upravitelja ljudskim resursima."
 
 #. module: hr
 #: model:ir.ui.view,arch_db:hr.view_department_form
@@ -1512,22 +1533,22 @@ msgstr "odjeljenje"
 #. module: hr
 #: model:ir.ui.view,arch_db:hr.view_employee_form
 msgid "e.g. Part Time"
-msgstr ""
+msgstr "npr.: Pola radnog vremena"
 
 #. module: hr
 #: model:ir.ui.view,arch_db:hr.view_hr_job_form
 msgid "e.g. Sales Manager"
-msgstr ""
+msgstr "npr.: Upravitelj prodajom"
 
 #. module: hr
 #: model:ir.model,name:hr.model_mail_alias_mixin
 msgid "mail.alias.mixin"
-msgstr ""
+msgstr "mail.alias.mixin"
 
 #. module: hr
 #: model:ir.model,name:hr.model_res_config_settings
 msgid "res.config.settings"
-msgstr ""
+msgstr "res.config.settings"
 
 #. module: hr
 #: model:res.groups,comment:hr.group_hr_user

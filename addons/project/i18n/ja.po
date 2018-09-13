@@ -4,7 +4,7 @@
 # 
 # Translators:
 # Norimichi Sugimoto <norimichi.sugimoto@tls-ltd.co.jp>, 2017
-# Martin Trigaux <mat@odoo.com>, 2017
+# Martin Trigaux, 2017
 # Yoshi Tashiro <tashiro@roomsfor.hk>, 2017
 # Masayuki Takesue <m_takesue@nifty.com>, 2017
 # Manami Hashi <manami@roomsfor.hk>, 2017
@@ -12,13 +12,14 @@
 # SHIMIZU Taku <shimizu.taku@gmail.com>, 2017
 # 高木正勝 <masakatsu.takagi@pro-spire.co.jp>, 2017
 # kent_ocean <ke.tanabe@gmail.com>, 2017
+# 城谷 龍弥 <tatsuya.shirotani@pro-spire.co.jp>, 2018
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.saas~18\n"
+"Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-02 11:25+0000\n"
-"PO-Revision-Date: 2017-10-02 11:25+0000\n"
-"Last-Translator: kent_ocean <ke.tanabe@gmail.com>, 2017\n"
+"POT-Creation-Date: 2017-11-30 13:11+0000\n"
+"PO-Revision-Date: 2017-11-30 13:11+0000\n"
+"Last-Translator: 城谷 龍弥 <tatsuya.shirotani@pro-spire.co.jp>, 2018\n"
 "Language-Team: Japanese (https://www.transifex.com/odoo/teams/41243/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -495,7 +496,7 @@ msgid ""
 "                                Walk through your project plan and allow each team member to provide a brief status of assignments due this week and tasks planned for the next two  weeks. You want to know whether tasks are on track and if any will miss  their projected deadline. You also want to allow the team member to share  any special considerations that might affect other tasks or members of  the project. Carefully manage this part because some team members will  want to pontificate and spend more time than is really needed. Remember, you’re the project manager."
 msgstr ""
 "<strong>プロジェクト計画状況の確認(20分)</strong>\n"
-"                                 プロジェクト計画を通して、各チームメンバーが今週の予定とタスクを計画し、次の2週間の計画します。 あなたは、タスクが軌道に乗っているかどうか、そして予定された締め切りが間に合うかどうか確認もしたいし、 また、チームメンバーがプロジェクトの他のタスクやメンバーに影響する可能性のある特別な考慮事項を共有できるようにする必要もあります。 チームメンバの中には、実際に必要とされるよりも多くの時間を費やして賞賛したいこともあるので、この部分は注意深く管理してください。 覚えておいてください、あなたはプロジェクトマネージャです。"
+"                                 プロジェクト計画を通して、各チームメンバーが今週の予定とタスクを計画し、次の2週間の計画します。 あなたは、タスクが軌道に乗っているかどうか、そして予定された締め切りが間に合うかどうか確認もしたいし、 また、チームメンバーがプロジェクトの他のタスクやメンバーに影響する可能性のある特別な考慮事項を共有できるようにする必要もあります。 チームメンバの中には、実際に必要とされるよりも多くの時間を費やして賞賛したいこともあるので、この部分は注意深く管理してください。 覚えておいてください、あなたはプロジェクトマネジャーです。"
 
 #. module: project
 #: model:ir.ui.view,arch_db:project.project_planner
@@ -772,12 +773,12 @@ msgid ""
 "                                As project manager, you also need to be fully prepared. There should be no surprises during the meeting. Surprises can undermine your ability to manage the project and cause team members to lose confidence in you."
 msgstr ""
 "<strong>自分自身も入念に準備</strong><br/>\n"
-"                                プロジェクトマネージャーとして、あなたは完全に準備する必要もあります。 会議中に驚きはないはずです。 驚きは、あなたのプロジェクト管理能力を損ない、チームメンバーが自信を失う原因となります。"
+"                                プロジェクトマネジャーとして、あなたは完全に準備する必要もあります。 会議中に驚きはないはずです。 驚きは、あなたのプロジェクト管理能力を損ない、チームメンバーが自信を失う原因となります。"
 
 #. module: project
 #: model:ir.ui.view,arch_db:project.portal_my_project
 msgid "<strong>Project Manager</strong>"
-msgstr "<strong>プロジェクトマネージャ</strong>"
+msgstr "<strong>プロジェクトマネジャー</strong>"
 
 #. module: project
 #: model:ir.ui.view,arch_db:project.portal_my_task
@@ -905,8 +906,8 @@ msgid ""
 "A project usually involves many stakeholders, be it the project's sponsor, resources, customers or external contractors. But the most important person in a project is usually the Project Manager.<br/>\n"
 "                    In Odoo, the Project Managers have the responsibility of managing the Kanban view: they ensure smooth progression of the projects, minimal downtime between stages and optimal work distribution between resources."
 msgstr ""
-"プロジェクトには通常、プロジェクトのスポンサー、リソース、顧客、または外部請負業者など、多くのステークホルダーが関与します。 しかし、プロジェクトの中で最も重要な人は、通常、プロジェクトマネージャーです。<br/>\n"
-"Odooでは、プロジェクトマネージャはかんばんビューを管理する責任があります。プロジェクトの円滑な進行、ステージ間のダウンタイムの最小化、リソース間の最適な作業分散を保証します。"
+"プロジェクトには通常、プロジェクトのスポンサー、リソース、顧客、または外部請負業者など、多くのステークホルダーが関与します。 しかし、プロジェクトの中で最も重要な人は、通常、プロジェクトマネジャーです。<br/>\n"
+"Odooでは、プロジェクトマネジャーはかんばんビューを管理する責任があります。プロジェクトの円滑な進行、ステージ間のダウンタイムの最小化、リソース間の最適な作業分散を保証します。"
 
 #. module: project
 #: model:ir.model.fields,help:project.field_project_task_kanban_state
@@ -946,6 +947,11 @@ msgstr "<i>人事管理</i>の「タイムシートに基づく請求を許可�
 #: model:ir.model.fields,field_description:project.field_project_task_active
 msgid "Active"
 msgstr "有効"
+
+#. module: project
+#: model:ir.ui.view,arch_db:project.project_planner
+msgid "Activities"
+msgstr "活動"
 
 #. module: project
 #: model:ir.actions.act_window,name:project.mail_activity_type_action_config_project_types
@@ -1063,7 +1069,7 @@ msgstr "アーカイブ済"
 #. module: project
 #: model:ir.ui.view,arch_db:project.view_task_form2
 msgid "Assign to Me"
-msgstr ""
+msgstr "自分に割当"
 
 #. module: project
 #: model:ir.model.fields,field_description:project.field_report_project_task_user_date_start
@@ -1135,7 +1141,7 @@ msgstr "アプリストアにあります"
 msgid ""
 "Back at the office, the manager splits the customer's requests into several "
 "tasks and delegates them to several employees."
-msgstr "オフィスに戻って、マネージャは顧客の要求をいくつかのタスクに分割し、それらを複数の従業員に委任します。"
+msgstr "オフィスに戻って、マネジャーは顧客の要求をいくつかのタスクに分割し、それらを複数の従業員に委任します。"
 
 #. module: project
 #. openerp-web
@@ -1364,11 +1370,6 @@ msgid "Configuration options are available in the Settings app."
 msgstr "設定オプションは、設定アプリで使用できます。"
 
 #. module: project
-#: model:ir.actions.act_window,name:project.project_config_settings_action
-msgid "Configure Project"
-msgstr "プロジェクト設定"
-
-#. module: project
 #: model:ir.ui.view,arch_db:project.project_planner
 msgid ""
 "Congratulations on choosing Odoo Project to help running your company more "
@@ -1414,7 +1415,7 @@ msgstr "コピーライティング/デザイン"
 #. module: project
 #: model:ir.model.fields,field_description:project.field_project_task_displayed_image_id
 msgid "Cover Image"
-msgstr ""
+msgstr "カバーイメージ"
 
 #. module: project
 #: model:ir.ui.view,arch_db:project.project_project_view_form_simplified
@@ -1535,7 +1536,7 @@ msgstr "このタスクの現在のステージ"
 #. module: project
 #: model:ir.actions.act_window,help:project.project_task_action_activity
 msgid "Currently there are not any activity scheduled."
-msgstr ""
+msgstr "現在活動予定はありません。"
 
 #. module: project
 #: code:addons/project/models/project.py:818
@@ -1762,14 +1763,14 @@ msgstr "完了"
 msgid ""
 "During a meeting, a customer asks a manager for a few modifications to a "
 "project."
-msgstr "会議中、顧客はマネージャにプロジェクトのいくつかの変更を依頼します。"
+msgstr "会議中、顧客はマネジャーにプロジェクトのいくつかの変更を依頼します。"
 
 #. module: project
 #: model:ir.ui.view,arch_db:project.project_planner
 msgid ""
 "Each employee will have his own task, while the manager will be able to "
 "follow the global progress in the Kanban view of the project."
-msgstr "各従業員は自分自身の仕事がありますが、マネージャはプロジェクトのかんばんの観点からグローバルな進捗状況に追従可能です。"
+msgstr "各従業員は自分自身の仕事がありますが、マネジャーはプロジェクトのかんばんの観点からグローバルな進捗状況に追従可能です。"
 
 #. module: project
 #: model:ir.ui.view,arch_db:project.portal_my_task
@@ -1818,7 +1819,7 @@ msgstr "エラー！ プロジェクトの開始日はプロジェクトの終�
 msgid ""
 "Estimated time to do the task, usually set by the project manager when the "
 "task is in draft state."
-msgstr "タスクを行う予想時間。タスクがドラフト状態の時に通常はプロジェクトマネジャによりセットされます。"
+msgstr "タスクを行う予想時間。タスクがドラフト状態の時に通常はプロジェクトマネジャーによりセットされます。"
 
 #. module: project
 #: model:ir.ui.view,arch_db:project.project_planner
@@ -2468,13 +2469,13 @@ msgstr ""
 #. module: project
 #: model:ir.ui.view,arch_db:project.res_config_settings_view_form
 msgid "Manage your resources with Gantt charts"
-msgstr ""
+msgstr "ガントチャートでリソースを管理"
 
 #. module: project
 #: model:ir.ui.view,arch_db:project.view_project_project_filter
 #: model:res.groups,name:project.group_project_manager
 msgid "Manager"
-msgstr "マネージャ"
+msgstr "マネジャー"
 
 #. module: project
 #: model:ir.ui.view,arch_db:project.project_planner
@@ -2539,7 +2540,7 @@ msgstr "自分の活動"
 #. module: project
 #: model:ir.ui.view,arch_db:project.view_project_project_filter
 msgid "My Favorites"
-msgstr "お気にいり"
+msgstr "お気に入り"
 
 #. module: project
 #: model:ir.ui.view,arch_db:project.view_task_search_form
@@ -2567,7 +2568,7 @@ msgstr "名称"
 #. module: project
 #: model:ir.ui.view,arch_db:project.edit_project
 msgid "Name of the tasks :"
-msgstr ""
+msgstr "タスク名:"
 
 #. module: project
 #: model:project.task,legend_blocked:project.project_task_10
@@ -2675,6 +2676,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:project.field_project_project_doc_count
 msgid "Number of documents attached"
 msgstr "添付ファイルの数"
+
+#. module: project
+#: model:ir.ui.view,arch_db:project.project_planner
+msgid "Objectives"
+msgstr "Objectives"
 
 #. module: project
 #: model:ir.ui.view,arch_db:project.project_planner
@@ -2805,7 +2811,7 @@ msgid "Planner"
 msgstr "プランナー"
 
 #. module: project
-#: code:addons/project/models/project.py:925
+#: code:addons/project/models/project.py:887
 #, python-format
 msgid ""
 "Please remove existing tasks in the project linked to the accounts you want "
@@ -2844,7 +2850,7 @@ msgstr "プライバシー"
 #. module: project
 #: model:ir.ui.view,arch_db:project.project_planner
 msgid "Product or software version"
-msgstr "製品またはソフトウェアのバージョン"
+msgstr "プロダクトまたはソフトウェアのバージョン"
 
 #. module: project
 #: code:addons/project/models/project.py:346
@@ -2854,6 +2860,7 @@ msgstr "製品またはソフトウェアのバージョン"
 #: model:ir.ui.menu,name:project.menu_main_pm
 #: model:ir.ui.view,arch_db:project.edit_project
 #: model:ir.ui.view,arch_db:project.project_project_view_form_simplified
+#: model:ir.ui.view,arch_db:project.res_config_settings_view_form
 #: model:ir.ui.view,arch_db:project.view_task_project_user_search
 #: model:ir.ui.view,arch_db:project.view_task_search_form
 #: model:res.request.link,name:project.req_link_project
@@ -2880,7 +2887,7 @@ msgstr "プロジェクト数"
 #: model:ir.ui.view,arch_db:project.view_project
 #: model:ir.ui.view,arch_db:project.view_project_project_filter
 msgid "Project Manager"
-msgstr "プロジェクトマネジャ"
+msgstr "プロジェクトマネジャー"
 
 #. module: project
 #: model:ir.ui.view,arch_db:project.edit_project
@@ -2939,6 +2946,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:project.portal_layout
 #: model:ir.ui.view,arch_db:project.portal_my_home
 #: model:ir.ui.view,arch_db:project.portal_my_projects
+#: model:ir.ui.view,arch_db:project.project_planner
 #: model:ir.ui.view,arch_db:project.view_project
 msgid "Projects"
 msgstr "プロジェクト"
@@ -2951,7 +2959,7 @@ msgstr "プロジェクトとタスク"
 #. module: project
 #: model:ir.model.fields,field_description:project.field_res_config_settings_module_rating_project
 msgid "Rating on Tasks"
-msgstr ""
+msgstr "タスク評価"
 
 #. module: project
 #: model:project.task,legend_done:project.project_task_1
@@ -3149,7 +3157,7 @@ msgstr "検索"
 #: code:addons/project/controllers/portal.py:92
 #, python-format
 msgid "Search <span class=\"nolabel\"> (in Content)</span>"
-msgstr ""
+msgstr "サーチ <span class=\"nolabel\"> (内容)</span>"
 
 #. module: project
 #: model:ir.ui.view,arch_db:project.view_project_project_filter
@@ -3160,13 +3168,13 @@ msgstr "プロジェクトの検索"
 #: code:addons/project/controllers/portal.py:96
 #, python-format
 msgid "Search in All"
-msgstr ""
+msgstr "すべて検索"
 
 #. module: project
 #: code:addons/project/controllers/portal.py:94
 #, python-format
 msgid "Search in Customer"
-msgstr ""
+msgstr "お客様の検索"
 
 #. module: project
 #: code:addons/project/controllers/portal.py:93
@@ -3223,6 +3231,7 @@ msgid "Set a Cover Image"
 msgstr "カバーイメージを設定"
 
 #. module: project
+#: model:ir.actions.act_window,name:project.project_config_settings_action
 #: model:ir.ui.menu,name:project.project_config_settings_menu_action
 #: model:ir.ui.view,arch_db:project.edit_project
 #: model:ir.ui.view,arch_db:project.view_project_kanban
@@ -3247,7 +3256,7 @@ msgstr "ダッシュボードにプロジェクトを表示"
 #. module: project
 #: model:ir.ui.view,arch_db:project.view_task_search_form
 msgid "Show all records which has next action date is before today"
-msgstr ""
+msgstr "次のアクションの日付が今日より前のすべてのレコードを表示する"
 
 #. module: project
 #: model:ir.ui.view,arch_db:project.project_planner
@@ -3285,7 +3294,7 @@ msgstr "タスクの仕様は記述済"
 #. module: project
 #: model:ir.ui.view,arch_db:project.res_config_settings_view_form
 msgid "Split your tasks to organize your work into sub-milestones"
-msgstr ""
+msgstr "タスクを分割し、より細かいマイルストンで作業管理"
 
 #. module: project
 #. openerp-web
@@ -3427,7 +3436,7 @@ msgstr "タスクブロック"
 #. module: project
 #: model:ir.ui.view,arch_db:project.res_config_settings_view_form
 msgid "Task Management"
-msgstr ""
+msgstr "タスク管理"
 
 #. module: project
 #: model:mail.message.subtype,name:project.mt_project_task_new
@@ -3747,7 +3756,7 @@ msgstr "タスクの時間見積"
 #. module: project
 #: model:ir.ui.view,arch_db:project.res_config_settings_view_form
 msgid "Time Management"
-msgstr ""
+msgstr "時間管理"
 
 #. module: project
 #: model:ir.ui.view,arch_db:project.edit_project
@@ -3826,7 +3835,7 @@ msgstr "タスクの顧客満足度を追跡"
 #. module: project
 #: model:ir.ui.view,arch_db:project.res_config_settings_view_form
 msgid "Track time spent on projects and tasks"
-msgstr ""
+msgstr "プロジェクトやタスクの時間消費を追跡"
 
 #. module: project
 #: model:ir.ui.view,arch_db:project.view_task_project_user_search
@@ -3843,7 +3852,7 @@ msgstr "未読メッセージ"
 #. module: project
 #: model:res.groups,name:project.group_subtask_project
 msgid "Use Subtask Project"
-msgstr ""
+msgstr "サブタスクプロジェクトを使用"
 
 #. module: project
 #: model:ir.model.fields,field_description:project.field_project_project_label_tasks
@@ -3858,7 +3867,7 @@ msgstr "タイムシートを使用"
 #. module: project
 #: model:ir.ui.view,arch_db:project.res_config_settings_view_form
 msgid "Use collaborative rich text pads on tasks"
-msgstr ""
+msgstr "タスクにて共同作業用のリッチテキストパッドを使用"
 
 #. module: project
 #: model:ir.ui.view,arch_db:project.project_planner
@@ -3909,7 +3918,7 @@ msgstr ""
 "通常、プロジェクトのチームメンバーは毎週(または毎月)のステータスミーティングを通じて管理されます。<br/>\n"
 "                        時には、これらの会議は数時間続くことがあり、参加者はプロジェクトの過度の詳細なレビューに晒されることがあります。<br/>\n"
 "                        あなたのチームメンバーは、おそらく、そのような種類の会議を避けようとしたり、締め切りを抱えていて急がなければならないかもしれません。<br/> <br/>\n"
-"                        というわけで、プロジェクトマネージャーとして、チームメンバーがプロジェクトの次のステップに関与し、情報を提供し、喜んで貢献している週定例のステータスミーティングをどのように構成できますか？ ここにいくつかのヒントがあります。"
+"                        というわけで、プロジェクトマネジャーとして、チームメンバーがプロジェクトの次のステップに関与し、情報を提供し、喜んで貢献している週定例のステータスミーティングをどのように構成できますか？ ここにいくつかのヒントがあります。"
 
 #. module: project
 #. openerp-web
@@ -3969,7 +3978,7 @@ msgstr "<b>プロジェクトを管理</b>するより良い方法をお探し�
 #. module: project
 #: model:ir.model.fields,field_description:project.field_project_task_email_cc
 msgid "Watchers Emails"
-msgstr "傍観者のEメール"
+msgstr "ウォッチャーのEメール"
 
 #. module: project
 #: model:ir.ui.view,arch_db:project.project_planner

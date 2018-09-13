@@ -9,7 +9,7 @@ from odoo.osv import expression
 
 from odoo.addons import decimal_precision as dp
 
-from odoo.tools import pycompat
+from odoo.tools import float_compare, pycompat
 
 
 class ProductCategory(models.Model):
@@ -42,10 +42,13 @@ class ProductCategory(models.Model):
                 category.complete_name = category.name
 
     def _compute_product_count(self):
-        read_group_res = self.env['product.template'].read_group([('categ_id', 'in', self.ids)], ['categ_id'], ['categ_id'])
+        read_group_res = self.env['product.template'].read_group([('categ_id', 'child_of', self.ids)], ['categ_id'], ['categ_id'])
         group_data = dict((data['categ_id'][0], data['categ_id_count']) for data in read_group_res)
         for categ in self:
-            categ.product_count = group_data.get(categ.id, 0)
+            product_count = 0
+            for sub_categ_id in categ.search([('id', 'child_of', categ.id)]).ids:
+                product_count += group_data.get(sub_categ_id, 0)
+            categ.product_count = product_count
 
     @api.constrains('parent_id')
     def _check_category_recursion(self):
@@ -146,6 +149,9 @@ class ProductProduct(models.Model):
         ('barcode_uniq', 'unique(barcode)', "A barcode can only be assigned to one product !"),
     ]
 
+    def _get_invoice_policy(self):
+        return False
+
     def _compute_product_price(self):
         prices = {}
         pricelist_id_or_name = self._context.get('pricelist')
@@ -216,6 +222,7 @@ class ProductProduct(models.Model):
         for supplier_info in self.seller_ids:
             if supplier_info.name.id == self._context.get('partner_id'):
                 self.code = supplier_info.product_code or self.default_code
+                break
         else:
             self.code = self.default_code
 
@@ -223,10 +230,11 @@ class ProductProduct(models.Model):
     def _compute_partner_ref(self):
         for supplier_info in self.seller_ids:
             if supplier_info.name.id == self._context.get('partner_id'):
-                product_name = supplier_info.product_name or self.default_code
+                product_name = supplier_info.product_name or self.default_code or self.name
+                self.partner_ref = '%s%s' % (self.code and '[%s] ' % self.code or '', product_name)
+                break
         else:
-            product_name = self.name
-        self.partner_ref = '%s%s' % (self.code and '[%s] ' % self.code or '', product_name)
+            self.partner_ref = self.name_get()[0][1]
 
     @api.one
     @api.depends('image_variant', 'product_tmpl_id.image')
@@ -425,7 +433,12 @@ class ProductProduct(models.Model):
                     limit2 = (limit - len(products)) if limit else False
                     products += self.search(args + [('name', operator, name), ('id', 'not in', products.ids)], limit=limit2)
             elif not products and operator in expression.NEGATIVE_TERM_OPERATORS:
-                products = self.search(args + ['&', ('default_code', operator, name), ('name', operator, name)], limit=limit)
+                domain = expression.OR([
+                    ['&', ('default_code', operator, name), ('name', operator, name)],
+                    ['&', ('default_code', '=', False), ('name', operator, name)],
+                ])
+                domain = expression.AND([args, domain])
+                products = self.search(domain, limit=limit)
             if not products and operator in positive_operators:
                 ptrn = re.compile('(\[(.*?)\])')
                 res = ptrn.search(name)
@@ -465,7 +478,9 @@ class ProductProduct(models.Model):
     def _select_seller(self, partner_id=False, quantity=0.0, date=None, uom_id=False):
         self.ensure_one()
         if date is None:
-            date = fields.Date.today()
+            date = fields.Date.context_today(self)
+        precision = self.env['decimal.precision'].precision_get('Product Unit of Measure')
+
         res = self.env['product.supplierinfo']
         for seller in self.seller_ids:
             # Set quantity in UoM of seller
@@ -479,7 +494,7 @@ class ProductProduct(models.Model):
                 continue
             if partner_id and seller.name not in [partner_id, partner_id.parent_id]:
                 continue
-            if quantity_uom_seller < seller.min_qty:
+            if float_compare(quantity_uom_seller, seller.min_qty, precision_digits=precision) == -1:
                 continue
             if seller.product_id and seller.product_id != self:
                 continue
@@ -542,7 +557,7 @@ class ProductProduct(models.Model):
         history = self.env['product.price.history'].search([
             ('company_id', '=', company_id),
             ('product_id', 'in', self.ids),
-            ('datetime', '<=', date or fields.Datetime.now())], limit=1)
+            ('datetime', '<=', date or fields.Datetime.now())], order='datetime desc,id desc', limit=1)
         return history.cost or 0.0
 
 class ProductPackaging(models.Model):

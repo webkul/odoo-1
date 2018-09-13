@@ -5,13 +5,14 @@ import logging
 import re
 
 from email.utils import formataddr
+from openerp.http import request
 
 from odoo import _, api, fields, models, modules, SUPERUSER_ID, tools
 from odoo.exceptions import UserError, AccessError
 from odoo.osv import expression
 
 _logger = logging.getLogger(__name__)
-_image_dataurl = re.compile(r'(data:image/[a-z]+?);base64,([a-z0-9+/]{3,}=*)([\'"])', re.I)
+_image_dataurl = re.compile(r'(data:image/[a-z]+?);base64,([a-z0-9+/\n]{3,}=*)\n*([\'"])', re.I)
 
 
 class Message(models.Model):
@@ -97,6 +98,7 @@ class Message(models.Model):
     tracking_value_ids = fields.One2many(
         'mail.tracking.value', 'mail_message_id',
         string='Tracking values',
+        groups="base.group_no_one",
         help='Tracked values are stored in a separate model. This field allow to reconstruct '
              'the tracking and to generate statistics on the model.')
     # mail gateway
@@ -147,7 +149,7 @@ class Message(models.Model):
             given, restrict to messages written in one of those channels. """
         partner_id = self.env.user.partner_id.id
         delete_mode = not self.env.user.share  # delete employee notifs, keep customer ones
-        if domain is None and delete_mode:
+        if not domain and delete_mode:
             query = "DELETE FROM mail_message_res_partner_needaction_rel WHERE res_partner_id IN %s"
             args = [(partner_id,)]
             if channel_ids:
@@ -280,8 +282,8 @@ class Message(models.Model):
         # 1. Aggregate partners (author_id and partner_ids), attachments and tracking values
         partners = self.env['res.partner'].sudo()
         attachments = self.env['ir.attachment']
-        trackings = self.env['mail.tracking.value']
-        for key, message in message_tree.items():
+        message_ids = list(message_tree.keys())
+        for message in message_tree.values():
             if message.author_id:
                 partners |= message.author_id
             if message.subtype_id and message.partner_ids:  # take notified people of message with a subtype
@@ -292,29 +294,33 @@ class Message(models.Model):
                 partners |= message.needaction_partner_ids
             if message.attachment_ids:
                 attachments |= message.attachment_ids
-            if message.tracking_value_ids:
-                trackings |= message.tracking_value_ids
         # Read partners as SUPERUSER -> message being browsed as SUPERUSER it is already the case
         partners_names = partners.name_get()
         partner_tree = dict((partner[0], partner) for partner in partners_names)
 
         # 2. Attachments as SUPERUSER, because could receive msg and attachments for doc uid cannot see
         attachments_data = attachments.sudo().read(['id', 'datas_fname', 'name', 'mimetype'])
+        safari = request and request.httprequest.user_agent.browser == 'safari'
         attachments_tree = dict((attachment['id'], {
             'id': attachment['id'],
             'filename': attachment['datas_fname'],
             'name': attachment['name'],
-            'mimetype': attachment['mimetype'],
+            'mimetype': 'application/octet-stream' if safari and 'video' in attachment['mimetype'] else attachment['mimetype'],
         }) for attachment in attachments_data)
 
         # 3. Tracking values
-        tracking_tree = dict((tracking.id, {
-            'id': tracking.id,
-            'changed_field': tracking.field_desc,
-            'old_value': tracking.get_old_display_value()[0],
-            'new_value': tracking.get_new_display_value()[0],
-            'field_type': tracking.field_type,
-        }) for tracking in trackings)
+        tracking_values = self.env['mail.tracking.value'].sudo().search([('mail_message_id', 'in', message_ids)])
+        message_to_tracking = dict()
+        tracking_tree = dict.fromkeys(tracking_values.ids, False)
+        for tracking in tracking_values:
+            message_to_tracking.setdefault(tracking.mail_message_id.id, list()).append(tracking.id)
+            tracking_tree[tracking.id] = {
+                'id': tracking.id,
+                'changed_field': tracking.field_desc,
+                'old_value': tracking.get_old_display_value()[0],
+                'new_value': tracking.get_new_display_value()[0],
+                'field_type': tracking.field_type,
+            }
 
         # 4. Update message dictionaries
         for message_dict in messages:
@@ -341,9 +347,9 @@ class Message(models.Model):
                 if attachment.id in attachments_tree:
                     attachment_ids.append(attachments_tree[attachment.id])
             tracking_value_ids = []
-            for tracking_value in message.tracking_value_ids:
-                if tracking_value.id in tracking_tree:
-                    tracking_value_ids.append(tracking_tree[tracking_value.id])
+            for tracking_value_id in message_to_tracking.get(message_id, list()):
+                if tracking_value_id in tracking_tree:
+                    tracking_value_ids.append(tracking_tree[tracking_value_id])
 
             message_dict.update({
                 'author_id': author,
@@ -407,7 +413,6 @@ class Message(models.Model):
             'message_type', 'subtype_id', 'subject',  # message specific
             'model', 'res_id', 'record_name',  # document related
             'channel_ids', 'partner_ids',  # recipients
-            'needaction_partner_ids',  # list of partner ids for whom the message is a needaction
             'starred_partner_ids',  # list of partner ids for whom the message is starred
         ])
         message_tree = dict((m.id, m) for m in self.sudo())
@@ -418,7 +423,18 @@ class Message(models.Model):
         subtype_ids = [msg['subtype_id'][0] for msg in message_values if msg['subtype_id']]
         subtypes = self.env['mail.message.subtype'].sudo().browse(subtype_ids).read(['internal', 'description'])
         subtypes_dict = dict((subtype['id'], subtype) for subtype in subtypes)
+
+        # fetch notification status
+        notif_dict = {}
+        notifs = self.env['mail.notification'].sudo().search([('mail_message_id', 'in', list(mid for mid in message_tree)), ('is_read', '=', False)])
+        for notif in notifs:
+            mid = notif.mail_message_id.id
+            if not notif_dict.get(mid):
+                notif_dict[mid] = {'partner_id': list()}
+            notif_dict[mid]['partner_id'].append(notif.res_partner_id.id)
+
         for message in message_values:
+            message['needaction_partner_ids'] = notif_dict.get(message['id'], dict()).get('partner_id', [])
             message['is_note'] = message['subtype_id'] and subtypes_dict[message['subtype_id'][0]]['internal']
             message['subtype_description'] = message['subtype_id'] and subtypes_dict[message['subtype_id'][0]]['description']
             if message['model'] and self.env[message['model']]._original_module:
@@ -464,6 +480,7 @@ class Message(models.Model):
         - if author_id == pid, uid is the author, OR
         - uid belongs to a notified channel, OR
         - uid is in the specified recipients, OR
+        - uid has a notification on the message, OR
         - uid have read access to the related document is model, res_id
         - otherwise: remove the id
         """
@@ -491,17 +508,22 @@ class Message(models.Model):
         # check read access rights before checking the actual rules on the given ids
         super(Message, self.sudo(access_rights_uid or self._uid)).check_access_rights('read')
 
-        self._cr.execute("""SELECT DISTINCT m.id, m.model, m.res_id, m.author_id, partner_rel.res_partner_id, channel_partner.channel_id as channel_id
+        self._cr.execute("""
+            SELECT DISTINCT m.id, m.model, m.res_id, m.author_id,
+                            COALESCE(partner_rel.res_partner_id, needaction_rel.res_partner_id),
+                            channel_partner.channel_id as channel_id
             FROM "%s" m
             LEFT JOIN "mail_message_res_partner_rel" partner_rel
-            ON partner_rel.mail_message_id = m.id AND partner_rel.res_partner_id = (%%s)
+            ON partner_rel.mail_message_id = m.id AND partner_rel.res_partner_id = %%(pid)s
+            LEFT JOIN "mail_message_res_partner_needaction_rel" needaction_rel
+            ON needaction_rel.mail_message_id = m.id AND needaction_rel.res_partner_id = %%(pid)s
             LEFT JOIN "mail_message_mail_channel_rel" channel_rel
             ON channel_rel.mail_message_id = m.id
             LEFT JOIN "mail_channel" channel
             ON channel.id = channel_rel.mail_channel_id
             LEFT JOIN "mail_channel_partner" channel_partner
-            ON channel_partner.channel_id = channel.id AND channel_partner.partner_id = (%%s)
-            WHERE m.id = ANY (%%s)""" % self._table, (pid, pid, ids,))
+            ON channel_partner.channel_id = channel.id AND channel_partner.partner_id = %%(pid)s
+            WHERE m.id = ANY (%%(ids)s)""" % self._table, dict(pid=pid, ids=ids))
         for id, rmod, rid, author_id, partner_id, channel_id in self._cr.fetchall():
             if author_id == pid:
                 author_ids.add(id)
@@ -529,6 +551,7 @@ class Message(models.Model):
             - read: if
                 - author_id == pid, uid is the author OR
                 - uid is in the recipients (partner_ids) OR
+                - uid has been notified (needaction) OR
                 - uid is member of a listern channel (channel_ids.partner_ids) OR
                 - uid have read access to the related document if model, res_id
                 - otherwise: raise
@@ -579,17 +602,22 @@ class Message(models.Model):
         message_values = dict((res_id, {}) for res_id in self.ids)
 
         if operation in ['read', 'write']:
-            self._cr.execute("""SELECT DISTINCT m.id, m.model, m.res_id, m.author_id, m.parent_id, partner_rel.res_partner_id, channel_partner.channel_id as channel_id
+            self._cr.execute("""
+                SELECT DISTINCT m.id, m.model, m.res_id, m.author_id, m.parent_id,
+                                COALESCE(partner_rel.res_partner_id, needaction_rel.res_partner_id),
+                                channel_partner.channel_id as channel_id
                 FROM "%s" m
                 LEFT JOIN "mail_message_res_partner_rel" partner_rel
-                ON partner_rel.mail_message_id = m.id AND partner_rel.res_partner_id = (%%s)
+                ON partner_rel.mail_message_id = m.id AND partner_rel.res_partner_id = %%(pid)s
+                LEFT JOIN "mail_message_res_partner_needaction_rel" needaction_rel
+                ON needaction_rel.mail_message_id = m.id AND needaction_rel.res_partner_id = %%(pid)s
                 LEFT JOIN "mail_message_mail_channel_rel" channel_rel
                 ON channel_rel.mail_message_id = m.id
                 LEFT JOIN "mail_channel" channel
                 ON channel.id = channel_rel.mail_channel_id
                 LEFT JOIN "mail_channel_partner" channel_partner
-                ON channel_partner.channel_id = channel.id AND channel_partner.partner_id = (%%s)
-                WHERE m.id = ANY (%%s)""" % self._table, (self.env.user.partner_id.id, self.env.user.partner_id.id, self.ids,))
+                ON channel_partner.channel_id = channel.id AND channel_partner.partner_id = %%(pid)s
+                WHERE m.id = ANY (%%(ids)s)""" % self._table, dict(pid=self.env.user.partner_id.id, ids=self.ids))
             for mid, rmod, rid, author_id, parent_id, partner_id, channel_id in self._cr.fetchall():
                 message_values[mid] = {
                     'model': rmod,
@@ -741,12 +769,18 @@ class Message(models.Model):
                         'datas_fname': name,
                         'res_model': 'mail.message',
                     })
+                    attachment.generate_access_token()
                     values['attachment_ids'].append((4, attachment.id))
-                    data_to_url[key] = '/web/image/%s' % attachment.id
-                return '%s%s alt="%s"' % (data_to_url[key], match.group(3), name)
+                    data_to_url[key] = ['/web/image/%s?access_token=%s' % (attachment.id, attachment.access_token), name]
+                return '%s%s alt="%s"' % (data_to_url[key][0], match.group(3), data_to_url[key][1])
             values['body'] = _image_dataurl.sub(base64_to_boundary, tools.ustr(values['body']))
 
+        # delegate creation of tracking after the create as sudo to avoid access rights issues
+        tracking_values_cmd = values.pop('tracking_value_ids', False)
         message = super(Message, self).create(values)
+        if tracking_values_cmd:
+            message.sudo().write({'tracking_value_ids': tracking_values_cmd})
+
         message._invalidate_documents()
 
         if not self.env.context.get('message_create_from_mail_mail'):
@@ -837,6 +871,9 @@ class Message(models.Model):
                 ('channel_ids', 'in', email_channels.ids),
                 ('email', '!=', self_sudo.author_id.email or self_sudo.email_from),
             ])._notify(self, force_send=force_send, send_after_commit=send_after_commit, user_signature=user_signature)
+
+        notif_partners._notify_by_chat(self)
+
         channels_sudo._notify(self)
 
         # Discard cache, because child / parent allow reading and therefore

@@ -346,7 +346,8 @@ return AbstractRenderer.extend({
                 if (!event.allDay) {
                     var start = event.r_start || event.start;
                     var end = event.r_end || event.end;
-                    display_hour = start.format('HH:mm') + ' - ' + end.format('HH:mm');
+                    var timeFormat = _t.database.parameters.time_format.search("%H") != -1 ? 'HH:mm': 'h:mma';
+                    display_hour = start.format(timeFormat) + ' - ' + end.format(timeFormat);
                     if (display_hour === '00:00 - 00:00') {
                         display_hour = _t('All day');
                     }
@@ -355,7 +356,7 @@ return AbstractRenderer.extend({
             },
             // Dirty hack to ensure a correct first render
             eventAfterAllRender: function () {
-                window.dispatchEvent(new Event('resize'));
+                $(window).trigger('resize');
             },
             viewRender: function (view) {
                 // compute mode from view.name which is either 'month', 'agendaWeek' or 'agendaDay'
@@ -421,11 +422,6 @@ return AbstractRenderer.extend({
             $calendar.fullCalendar('gotoDate', moment(this.state.target_date));
             this.target_date = this.state.target_date.toString();
         }
-
-        var highlightDate = moment(this.state.highlight_date).format('YYYY-MM-DD');
-        $calendar.find('.o_target_date').removeClass('o_target_date');
-        $calendar.find('.fc-bg .fc-day[data-date="'+highlightDate+'"]')
-                 .addClass('o_target_date');
 
         this.$small_calendar.datepicker("setDate", this.state.highlight_date.toDate())
                             .find('.o_selected_range')

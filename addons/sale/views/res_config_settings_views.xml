@@ -8,7 +8,7 @@
         <field name="inherit_id" ref="base.res_config_settings_view_form" />
         <field name="arch" type="xml">
             <xpath expr="//div[hasclass('settings')]" position="inside">
-                <div class="app_settings_block o_not_app" data-string="Sales" data-key="sale_management" groups="sales_team.group_sale_manager">
+                <div class="app_settings_block o_not_app" data-string="Sales" string="Sales" data-key="sale_management" groups="sales_team.group_sale_manager">
                     <h2>Product Catalog</h2>
                     <div class="row mt16 o_settings_container">
                         <div class="col-xs-12 col-md-6 o_setting_box">
@@ -169,9 +169,6 @@
                                         <field name="portal_confirmation_options" class="o_light_label" widget="radio"
                                             attrs="{'required': [('portal_confirmation', '=', True)]}"/>
                                     </div>
-                                <div attrs="{'invisible': [('portal_confirmation_options', '!=', 'pay')]}">
-                                    <button name='%(payment.action_payment_acquirer)d' icon="fa-arrow-right" type="action" string="Payment Acquirers" class="btn-link"/>
-                                </div>
                                 </div>
                             </div>
                         </div>

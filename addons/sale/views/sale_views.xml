@@ -173,7 +173,6 @@
                     <field name="amount_total" sum="Total Tax Included" widget="monetary"/>
                     <field name="currency_id" invisible="1"/>
                     <field name="state"/>
-                    <field name="currency_id" invisible="True"/>
                 </tree>
             </field>
         </record>
@@ -298,6 +297,7 @@
                                     <field name="product_updatable" invisible="1"/>
                                     <field name="product_id"
                                         attrs="{'readonly': [('product_updatable', '=', False)]}"
+                                        force_save="1"
                                         context="{'partner_id':parent.partner_id, 'quantity':product_uom_qty, 'pricelist':parent.pricelist_id, 'uom':product_uom, 'company_id': parent.company_id}"
                                        />
                                     <field name="layout_category_id" groups="sale.group_sale_layout"/>
@@ -381,7 +381,7 @@
                                     <field name="team_id" options="{'no_create': True}"/>
                                     <field name="client_order_ref"/>
                                     <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company"/>
-                                    <field name="analytic_account_id" context="{'default_partner_id':partner_invoice_id, 'default_name':name}" attrs="{'readonly': ['|',('analytic_account_id','!=',False),('invoice_count','!=',0),('state','=','sale')]}" groups="analytic.group_analytic_accounting"/>
+                                    <field name="analytic_account_id" context="{'default_partner_id':partner_invoice_id, 'default_name':name}" attrs="{'readonly': ['|',('analytic_account_id','!=',False),('invoice_count','!=',0),('state','=','sale')]}" groups="analytic.group_analytic_accounting" force_save="1"/>
                                 </group>
                                 <group name="sale_pay" string="Invoicing">
                                     <field name="date_order" attrs="{'invisible': [('state', 'in', ['sale', 'done', 'cancel'])]}"/>
@@ -580,9 +580,6 @@
               </p><p>
                 Your next actions should flow efficiently: confirm the Quotation
                 to a Sales Order, then create the Invoice and collect the Payment.
-              </p><p>
-                Note that once a Quotation becomes a Sales Order, it will be moved
-                from the Quotations list to the Sales Order list.
               </p>
             </field>
         </record>
@@ -649,7 +646,7 @@
             <field name="arch" type="xml">
                 <button name="toggle_active" position="before">
                     <button class="oe_stat_button" name="%(action_product_sale_list)d"
-                        type="action" icon="fa-usd">
+                        type="action" icon="fa-usd" groups="sales_team.group_sale_salesman">
                         <field string="Sales" name="sales_count" widget="statinfo" />
                     </button>
                 </button>
@@ -671,7 +668,7 @@
             <field name="arch" type="xml">
                 <button name="toggle_active" position="before">
                     <button class="oe_stat_button" name="action_view_sales"
-                        type="object" icon="fa-usd">
+                        type="object" icon="fa-usd" groups="sales_team.group_sale_salesman">
                         <field string="Sales" name="sales_count" widget="statinfo" />
                     </button>
                 </button>
@@ -833,8 +830,6 @@
                 Create a Quotation, the first step of a new sale.
               </p><p>
                 Your next actions should flow efficiently: confirm the Quotation to a Sales Order, then create the Invoice and collect the Payment.
-              </p><p>
-                Note that once a Quotation becomes a Sales Order, it will be moved from the Quotations list to the Sales Order list.
               </p>
             </field>
         </record>
@@ -874,9 +869,6 @@
               </p><p>
                 Your next actions should flow efficiently: confirm the Quotation
                 to a Sales Order, then create the Invoice and collect the Payment.
-              </p><p>
-                Note that once a Quotation becomes a Sales Order, it will be moved
-                from the Quotations list to the Sales Order list.
               </p>
             </field>
         </record>

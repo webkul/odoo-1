@@ -78,7 +78,7 @@ class WebsiteSlides(http.Controller):
 
     @http.route([
         '''/slides/<model("slide.channel"):channel>''',
-        '''/slides/<model("slide.channel):channel>/page/<int:page>''',
+        '''/slides/<model("slide.channel"):channel>/page/<int:page>''',
 
         '''/slides/<model("slide.channel"):channel>/<string:slide_type>''',
         '''/slides/<model("slide.channel"):channel>/<string:slide_type>/page/<int:page>''',
@@ -179,8 +179,9 @@ class WebsiteSlides(http.Controller):
         response.mimetype = 'application/pdf'
         return response
 
-    @http.route('''/slides/slide/<model("slide.slide"):slide>/download''', type='http', auth="public", website=True)
-    def slide_download(self, slide, sitemap=False):
+    @http.route('''/slides/slide/<model("slide.slide"):slide>/download''', type='http', auth="public", website=True, sitemap=False)
+    def slide_download(self, slide, **kw):
+        slide = slide.sudo()
         if slide.download_security == 'public' or (slide.download_security == 'user' and request.session.uid):
             filecontent = base64.b64decode(slide.datas)
             disposition = 'attachment; filename=%s.pdf' % werkzeug.urls.url_quote(slide.name)
@@ -190,7 +191,7 @@ class WebsiteSlides(http.Controller):
                  ('Content-Length', len(filecontent)),
                  ('Content-Disposition', disposition)])
         elif not request.session.uid and slide.download_security == 'user':
-            return werkzeug.utils.redirect('/web?redirect=/slides/slide/%s' % (slide.id))
+            return request.redirect('/web/login?redirect=/slides/slide/%s' % (slide.id))
         return request.render("website.403")
 
     @http.route('''/slides/slide/<model("slide.slide"):slide>/promote''', type='http', auth='user', website=True)
@@ -258,9 +259,11 @@ class WebsiteSlides(http.Controller):
 
     @http.route(['/slides/add_slide'], type='json', auth='user', methods=['POST'], website=True)
     def create_slide(self, *args, **post):
-        file_size = len(post['datas']) * 3 / 4; # base64
-        if (file_size / 1024.0 / 1024.0) > 25:
-            return {'error': _('File is too big. File size cannot exceed 25MB')}
+        # check the size only when we upload a file.
+        if post.get('datas'):
+            file_size = len(post['datas']) * 3 / 4 # base64
+            if (file_size / 1024.0 / 1024.0) > 25:
+                return {'error': _('File is too big. File size cannot exceed 25MB')}
 
         values = dict((fname, post[fname]) for fname in [
             'name', 'url', 'tag_ids', 'slide_type', 'channel_id',

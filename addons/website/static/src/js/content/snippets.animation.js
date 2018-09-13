@@ -343,12 +343,19 @@ var Animation = Widget.extend({
      * Also stops animation effects and destroys them if any.
      */
     destroy: function () {
+        var $oldel = this.$el;
         // The difference with the default behavior is that we unset the
         // associated element first so that:
         // 1) its events are unbinded
         // 2) it is not removed from the DOM
         this.setElement(null);
         this._super.apply(this, arguments);
+        // Reassign the variables afterwards to allow extensions to use them
+        // after calling the _super method
+        this.$el = $oldel;
+        this.el = $oldel[0];
+        this.$target = this.$el;
+        this.target = this.el;
     },
     /**
      * @override
@@ -583,14 +590,37 @@ registry.mediaVideo = Animation.extend({
      * @override
      */
     start: function () {
-        if (!this.$target.has('> iframe').length) {
-            var editor = '<div class="css_editableMode_display">&nbsp;</div>';
-            var size = '<div class="media_iframe_video_size">&nbsp;</div>';
-            this.$target.html(editor+size);
+        // TODO: this code should be refactored to make more sense and be better
+        // integrated with Odoo (this refactoring should be done in master).
+
+        var def = this._super.apply(this, arguments);
+        if (this.$target.children('iframe').length) {
+            // There already is an <iframe/>, do nothing
+            return def;
         }
-        // rebuilding the iframe, from https://www.html5rocks.com/en/tutorials/security/sandboxed-iframes/
-        this.$target.html(this.$target.html()+'<iframe sandbox="allow-scripts allow-same-origin" src="'+_.escape(this.$target.data("oe-expression"))+'" frameborder="0" allowfullscreen="allowfullscreen"></iframe>');
-        return this._super.apply(this, arguments);
+
+        // Bug fix / compatibility: empty the <div/> element as all information
+        // to rebuild the iframe should have been saved on the <div/> element
+        this.$target.empty();
+
+        // Add extra content for size / edition
+        this.$target.append(
+            '<div class="css_editable_mode_display">&nbsp;</div>' +
+            '<div class="media_iframe_video_size">&nbsp;</div>'
+        );
+
+        // Rebuild the iframe. Depending on version / compatibility / instance,
+        // the src is saved in the 'data-src' attribute or the
+        // 'data-oe-expression' one (the latter is used as a workaround in 10.0
+        // system but should obviously be reviewed in master).
+        this.$target.append($('<iframe/>', {
+            src: _.escape(this.$target.data('oe-expression') || this.$target.data('src')),
+            frameborder: '0',
+            allowfullscreen: 'allowfullscreen',
+            sandbox: 'allow-scripts allow-same-origin', // https://www.html5rocks.com/en/tutorials/security/sandboxed-iframes/
+        }));
+
+        return def;
     },
 });
 
@@ -826,7 +856,7 @@ registry.socialShare = Animation.extend({
         var hashtags = ' #'+ document.title.split(" | ")[1].replace(' ','') + ' ' + this.hashtags;  // company name without spaces (for hashtag)
         var social_network = {
             'facebook': 'https://www.facebook.com/sharer/sharer.php?u=' + url,
-            'twitter': 'https://twitter.com/intent/tweet?original_referer=' + url + '&text=' + encodeURIComponent(title + hashtags + ' - ' + url),
+            'twitter': 'https://twitter.com/intent/tweet?original_referer=' + url + '&text=' + encodeURIComponent(title + hashtags + ' - ') + url,
             'linkedin': 'https://www.linkedin.com/shareArticle?mini=true&url=' + url + '&title=' + encodeURIComponent(title),
             'google-plus': 'https://plus.google.com/share?url=' + url,
         };

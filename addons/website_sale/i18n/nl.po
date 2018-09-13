@@ -4,7 +4,7 @@
 # 
 # Translators:
 # Yenthe Van Ginneken <yenthespam@gmail.com>, 2017
-# Martin Trigaux <mat@odoo.com>, 2017
+# Martin Trigaux, 2017
 # Cas Vissers <casvissers@brahoo.nl>, 2017
 # Erwin van der Ploeg <erwin@odooexperts.nl>, 2017
 # Eric Geens <ericgeens@yahoo.com>, 2017
@@ -12,10 +12,10 @@
 # Pol Van Dingenen <pol.vandingenen@vanroey.be>, 2017
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.saas~18\n"
+"Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-02 11:26+0000\n"
-"PO-Revision-Date: 2017-10-02 11:26+0000\n"
+"POT-Creation-Date: 2018-02-19 13:43+0000\n"
+"PO-Revision-Date: 2018-02-19 13:43+0000\n"
 "Last-Translator: Pol Van Dingenen <pol.vandingenen@vanroey.be>, 2017\n"
 "Language-Team: Dutch (https://www.transifex.com/odoo/teams/41243/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -30,7 +30,7 @@ msgid "&amp;nbsp;"
 msgstr "&amp;nbsp;"
 
 #. module: website_sale
-#: model:ir.ui.view,arch_db:website_sale.reduction_code
+#: model:ir.ui.view,arch_db:website_sale.cart_lines
 msgid "/shop/cart"
 msgstr "/shop/cart"
 
@@ -94,6 +94,36 @@ msgid ""
 "                </div>\n"
 "            "
 msgstr ""
+"<?xml version=\"1.0\"?>\n"
+"<div style=\"margin:auto;width:100%;\">\n"
+"                    <img src=\"/web/image/res.company/${user.company_id.id}/logo\" style=\"height: auto; width: 80px; margin-top:30px;\" alt=\"${user.company_id.name}\"/>\n"
+"                    <h1 style=\"color:#A9A9A9;\">ER IS ZIT NOG IETS IN UW WINKELWAGEN.</h1>\n"
+"                    <p>Wilt u de bestelling afmaken?</p><br/><br/>\n"
+"                    % if object.order_line:\n"
+"                    % for line in object.order_line:\n"
+"                    <hr/>\n"
+"                    <table width=\"100%\">\n"
+"                        <tr>\n"
+"                            <td style=\"padding: 10px; width:150px;\">\n"
+"                                <img src=\"/web/image/product.product/${line.product_id.id}/image\" height=\"100px\" width=\"100px\"/>\n"
+"                            </td>\n"
+"                            <td>\n"
+"                                <strong>${line.product_id.display_name}</strong><br/>${line.name}\n"
+"                            </td>\n"
+"                            <td width=\"100px\" align=\"right\">\n"
+"                                ${(line.product_uom_qty) | int} ${(line.product_uom.name)}\n"
+"                            </td>\n"
+"                        </tr>\n"
+"                    </table>\n"
+"                    % endfor\n"
+"                    <hr/>\n"
+"                    % endif\n"
+"                    <br/><br/>\n"
+"                    <center>\n"
+"                        <a href=\"/shop/cart?access_token=${object.access_token}\" target=\"_blank\" style=\"background-color: #1abc9c; padding: 20px; text-decoration: none; color: #fff; border-radius: 5px; font-size: 16px;\" class=\"o_default_snippet_text\">Maak bestelling af</a><br/><br/><br/>\n"
+"                        <p><b>Bedankt voor het winkelen met ${user.company_id.name}!</b></p>\n"
+"                    </center>\n"
+"                </div>            "
 
 #. module: website_sale
 #: model:ir.ui.view,arch_db:website_sale.report_shop_saleorder_document
@@ -158,6 +188,10 @@ msgid ""
 "                        <p>You should send an email to the customers to encourage them!</p>\n"
 "                    "
 msgstr ""
+"<p class=\"oe_view_nocontent_create\">\n"
+"                         Vind hier de niet achtergelaten winkelmandjes, bijv. de winkelmandjes welke zijn aangemaakt door uw website bezoekers, meer dan en uur geleden en niet bevestigd.</p>\n"
+"                        <p>Stuur ze een e-mail om ze te overtuigen!</p>\n"
+"                    "
 
 #. module: website_sale
 #: model:ir.ui.view,arch_db:website_sale.terms
@@ -300,7 +334,7 @@ msgid ""
 msgstr ""
 "<span class=\"panel-title\">\n"
 "                                        <span class=\"fa\" data-icon=\"\"/>\n"
-"                                        <strong> Manueel aanmaken</strong><br/>\n"
+"                                        <strong> Handmatig aanmaken</strong><br/>\n"
 "                                        <span class=\"small\">Aanbevolen indien &lt;50 items</span>\n"
 "                                    </span>"
 
@@ -612,7 +646,7 @@ msgstr "<strong>Order gegevens:</strong>"
 #. module: website_sale
 #: model:ir.ui.view,arch_db:website_sale.report_shop_saleorder_document
 msgid "<strong>Payment Acquirer:</strong>"
-msgstr ""
+msgstr "<strong>Betaalverwerver:</strong>"
 
 #. module: website_sale
 #: model:ir.ui.view,arch_db:website_sale.confirmation
@@ -663,6 +697,8 @@ msgid ""
 "<strong>Reassurance arguments</strong><br/>\n"
 "                            Anticipate your customers questions &amp; worries on practical details like shipping rates &amp; policies, return &amp; replacement policies, payment acquirers &amp; security and your"
 msgstr ""
+"<strong>Geruststellende argumenten</strong><br/>\n"
+"Anticipeer op uw klant zijn vragen &amp; zorgen over praktische informatie zoals verzendkosten &amp; beleidsregels &amp; retouren, betalingsmethodes &amp; algemene condities, etc."
 
 #. module: website_sale
 #: model:ir.ui.view,arch_db:website_sale.website_planner
@@ -689,6 +725,9 @@ msgid ""
 "payment acquirers (check, purchase order, etc.) by renaming 'Wire Transfer' "
 "or duplicating it."
 msgstr ""
+"<strong>Tip voor B2B gebruikers:</strong> u kunt nieuwe handmatig verwerkte "
+"betaalmethoden (cheque, inkooporder, etc.) door de naam 'overboeking' te "
+"hernoemen of dupliceren."
 
 #. module: website_sale
 #: model:ir.ui.view,arch_db:website_sale.confirmation
@@ -787,9 +826,8 @@ msgid ""
 "A rounding per line is advised if your prices are tax-included. That way, "
 "the sum of line subtotals equals the total with taxes."
 msgstr ""
-"Een afronding per lijn is aanbevolen indien uw prijzen inclusief belastingen"
-" zijn. Hierdoor is de som van de lijnen gelijk aan de totale som met "
-"belastingen."
+"Een afronding per lijn is aanbevolen indien uw prijzen inclusief BTW zijn. "
+"Hierdoor is de som van de regels gelijk aan de totale som met BTW."
 
 #. module: website_sale
 #: model:sale.order.line,website_description:website_sale.website_sale_order_line_1
@@ -959,7 +997,7 @@ msgstr "Toestaan meerdere valuta"
 #. module: website_sale
 #: model:ir.ui.view,arch_db:website_sale.res_config_settings_view_form
 msgid "Apply right VAT rates for digital products sold in EU"
-msgstr "Pas juiste belastingen toe voor digitale producten verkocht in de EU"
+msgstr "Pas juiste BTW toe voor digitale producten verkocht in de EU"
 
 #. module: website_sale
 #: model:ir.ui.view,arch_db:website_sale.res_config_settings_view_form
@@ -1048,6 +1086,10 @@ msgid ""
 "codes. Specific conditions can be set (products, customers, minimum purchase"
 " amount, period). Rewards can be discounts (% or amount) or free products."
 msgstr ""
+"Verhoog uw verkopen met twee soorten kortingsprogramma's: promoties en "
+"coupon codes. Specifieke condities kunnen worden ingesteld (producten, "
+"klanten, minimaal bestel bedrag, periode). Beloningen kunnen kortingen (% of"
+" bedrag) of gratis producten zijn."
 
 #. module: website_sale
 #: model:sale.order.line,website_description:website_sale.website_sale_order_line_14
@@ -1084,7 +1126,7 @@ msgstr "Kan tot enkele dagen duren voor het geld ontvangen is"
 #: code:addons/website_sale/static/src/xml/website_sale_dashboard.xml:12
 #, python-format
 msgid "Capture order payments when the delivery is completed."
-msgstr ""
+msgstr "Ontvang betalingen voor order wanneer de levering compleet is."
 
 #. module: website_sale
 #: model:ir.model.fields,field_description:website_sale.field_sale_order_cart_quantity
@@ -1170,6 +1212,9 @@ msgid ""
 "Checked if the sales order can directly be marked as paid, i.e. if the quotation\n"
 "                is sent or confirmed and if the payment acquire is of the type transfer or manual"
 msgstr ""
+"Aangevinkt wanneer de verkooporder direct kan worden gemarkeerd als betaald "
+"bijv. als de offerte is verstuurd of bevestigd en als de betaalverwerker is "
+"van het type handmatig."
 
 #. module: website_sale
 #: model:ir.model.fields,field_description:website_sale.field_product_public_category_child_id
@@ -1184,7 +1229,7 @@ msgstr "Kerstmis"
 #. module: website_sale
 #: model:ir.ui.view,arch_db:website_sale.address
 msgid "City"
-msgstr "Gemeente"
+msgstr "Plaats"
 
 #. module: website_sale
 #: model:ir.ui.view,arch_db:website_sale.products
@@ -1330,7 +1375,7 @@ msgstr "Bevestig orders wanneer u betaald wordt."
 #. module: website_sale
 #: model:ir.ui.view,arch_db:website_sale.res_config_settings_view_form
 msgid "Confirmation Email"
-msgstr "Bevestigingsemailadres"
+msgstr "Bevestiging e-mailadres"
 
 #. module: website_sale
 #: model:ir.ui.view,arch_db:website_sale.wizard_checkout
@@ -1606,7 +1651,7 @@ msgid "Enter a name for your new product"
 msgstr "Geef een naam in voor uw nieuw product"
 
 #. module: website_sale
-#: code:addons/website_sale/models/product.py:91
+#: code:addons/website_sale/models/product.py:92
 #, python-format
 msgid "Error ! You cannot create recursive categories."
 msgstr "Fout! het is niet mogelijk recursieve categorieën te maken!"
@@ -1679,11 +1724,19 @@ msgid "FedEx"
 msgstr "FedEx"
 
 #. module: website_sale
+#: model:ir.model,name:website_sale.model_ir_model_fields
+msgid "Fields"
+msgstr "Velden"
+
+#. module: website_sale
 #: model:ir.actions.act_window,help:website_sale.action_abandoned_orders_ecommerce
 msgid ""
 "Find here all the abandoned carts, i.e. the carts generated by your "
 "website's visitors more than one hour ago and not confirmed."
 msgstr ""
+"Vind hier de niet achtergelaten winkelmandjes, bijv. de winkelmandjes welke "
+"zijn aangemaakt door uw website bezoekers, meer dan en uur geleden en niet "
+"bevestigd."
 
 #. module: website_sale
 #: model:ir.ui.view,arch_db:website_sale.website_planner
@@ -1728,7 +1781,7 @@ msgstr "Geef ons uw feedback..."
 #: model:ir.model.fields,help:website_sale.field_product_public_category_sequence
 msgid "Gives the sequence order when displaying a list of product categories."
 msgstr ""
-"Geeft de volgorde weer waarin de product categorieën worden weergegeven."
+"Geeft de volgorde weer waarin de productcategorieën worden weergegeven."
 
 #. module: website_sale
 #: model:ir.ui.view,arch_db:website_sale.website_planner
@@ -1760,7 +1813,6 @@ msgid "Have Genius call the tunes."
 msgstr "Laat Genius de muziek kiezen."
 
 #. module: website_sale
-#: model:ir.ui.view,arch_db:website_sale.payment
 #: model:ir.ui.view,arch_db:website_sale.reduction_code
 msgid "Have a promo code? Fill in this field and apply."
 msgstr "Heeft u een promo code? Vul dit veld en pas toe."
@@ -1857,6 +1909,12 @@ msgid ""
 "telecommunications, and services that are electronically supplied instead of"
 " shipped. Gift cards sent online are not included in the definition."
 msgstr ""
+"Als u digitale goederen aan klanten in de EU verkoopt, moet u BTW op basis "
+"van de locatie van uw klanten berekenen. Deze regel geldt, ongeacht waar u "
+"zich bevindt. Digitale goederen worden in de wetgeving omschreven als "
+"omroep, telecommunicatie en diensten die elektronisch worden geleverd in "
+"plaats van verzonden. Cadeaubonnen die online zijn verzonden, worden niet in"
+" de definitie opgenomen."
 
 #. module: website_sale
 #: model:ir.ui.view,arch_db:website_sale.terms
@@ -1939,10 +1997,10 @@ msgstr "Installeer vervoerder connector"
 #. module: website_sale
 #: model:ir.model.fields,help:website_sale.field_res_config_settings_module_website_sale_stock
 msgid "Installs *e-Commerce Inventory*"
-msgstr ""
+msgstr "Installeert \"E-commerce voorraad\""
 
 #. module: website_sale
-#: code:addons/website_sale/controllers/main.py:501
+#: code:addons/website_sale/controllers/main.py:502
 #, python-format
 msgid "Invalid Email! Please enter a valid email address."
 msgstr "Foutieve e-mail! Graag een geldig e-mailadres in te geven."
@@ -2054,7 +2112,7 @@ msgstr "Legale naam"
 #. module: website_sale
 #: model:ir.ui.view,arch_db:website_sale.res_config_settings_view_form
 msgid "Let returning shoppers save products in a whishlist"
-msgstr ""
+msgstr "Laat terugkerende winkelaars producten opslaan in een wenslijst"
 
 #. module: website_sale
 #: model:ir.ui.view,arch_db:website_sale.res_config_settings_view_form
@@ -2081,6 +2139,8 @@ msgid ""
 "Let's now take a look at your administration dashboard to get your eCommerce"
 " website ready in no time."
 msgstr ""
+"Zullen we kijken naar uw administratie dashboard om uw webshop eenvoudig "
+"klaar te maken."
 
 #. module: website_sale
 #: model:ir.ui.view,arch_db:website_sale.website_planner
@@ -2208,7 +2268,7 @@ msgstr "Netwerk"
 
 #. module: website_sale
 #. openerp-web
-#: code:addons/website_sale/controllers/main.py:964
+#: code:addons/website_sale/controllers/main.py:968
 #: code:addons/website_sale/static/src/js/website_sale.editor.js:32
 #: model:ir.ui.view,arch_db:website_sale.content_new_product
 #, python-format
@@ -2243,7 +2303,7 @@ msgstr "Geen website"
 #. module: website_sale
 #: model:ir.ui.view,arch_db:website_sale.confirmation
 msgid "Now to Follow Your Order"
-msgstr ""
+msgstr "Om nu uw order te volgen"
 
 #. module: website_sale
 #: model:ir.model.fields,field_description:website_sale.field_crm_team_abandoned_carts_count
@@ -2263,6 +2323,8 @@ msgid ""
 "Once activated, discounted prices can be applied from Pricelists setup form "
 "(Discount policy field)."
 msgstr ""
+"Wanneer geactiveerd kunnen kortingen worden toegepast bij het prijslijsten "
+"formulier."
 
 #. module: website_sale
 #. openerp-web
@@ -2312,7 +2374,7 @@ msgstr "Order bevestiging e-mail "
 #. module: website_sale
 #: model:ir.model.fields,field_description:website_sale.field_sale_order_website_order_line
 msgid "Order Lines displayed on Website"
-msgstr "Order regels tonen op website"
+msgstr "Orderregels tonen op website"
 
 #. module: website_sale
 #: model:ir.model.fields,help:website_sale.field_sale_order_website_order_line
@@ -2359,7 +2421,8 @@ msgid "Parent Category"
 msgstr "Hoofdcategorie"
 
 #. module: website_sale
-#: code:addons/website_sale/controllers/main.py:752
+#: code:addons/website_sale/controllers/main.py:756
+#: model:ir.ui.view,arch_db:website_sale.payment
 #, python-format
 msgid "Pay Now"
 msgstr "Betaal nu"
@@ -2384,6 +2447,11 @@ msgstr "Betaling verwervers"
 #: model:ir.ui.view,arch_db:website_sale.report_shop_saleorder_document
 msgid "Payment Information"
 msgstr "Betaalinformatie"
+
+#. module: website_sale
+#: model:ir.model,name:website_sale.model_payment_transaction
+msgid "Payment Transaction"
+msgstr "Betalingstransactie"
 
 #. module: website_sale
 #: model:ir.ui.view,arch_db:website_sale.website_planner
@@ -2431,7 +2499,7 @@ msgstr "Afspeellijsten. De perfecte mix voor elke stemming."
 #. module: website_sale
 #: model:ir.ui.view,arch_db:website_sale.cart
 msgid "Please proceed your current cart."
-msgstr ""
+msgstr "Ga door met uw huidige bestelling"
 
 #. module: website_sale
 #: model:sale.order.line,website_description:website_sale.website_sale_order_line_14
@@ -2533,7 +2601,7 @@ msgstr "Product catalogus"
 #. module: website_sale
 #: model:ir.model.fields,field_description:website_sale.field_res_config_settings_module_website_sale_comparison
 msgid "Product Comparison Tool"
-msgstr ""
+msgstr "Productvergelijking mogelijkheid"
 
 #. module: website_sale
 #: model:ir.ui.view,arch_db:website_sale.product_template_form_view
@@ -2559,7 +2627,7 @@ msgstr "Productprijzen"
 #. module: website_sale
 #: model:ir.ui.view,arch_db:website_sale.product_public_category_tree_view
 msgid "Product Public Categories"
-msgstr "Openbare product categorieën"
+msgstr "Openbare productcategorieën"
 
 #. module: website_sale
 #: model:ir.model,name:website_sale.model_product_template
@@ -2610,11 +2678,6 @@ msgid "Products"
 msgstr "Producten"
 
 #. module: website_sale
-#: model:ir.ui.view,arch_db:website_sale.reduction_code
-msgid "Promo Code"
-msgstr "Promo code"
-
-#. module: website_sale
 #: model:ir.ui.view,arch_db:website_sale.website_sale
 msgid "Promote"
 msgstr "Promoot"
@@ -2627,6 +2690,9 @@ msgid ""
 "do so, attach some files to a product using the new Files button and publish"
 " them."
 msgstr ""
+"Geef klanten een product-specifieke link of downloadbare gegevens in de "
+"bevestigingspagina van het bestel proces als dat de betaling verwerkt is. Om"
+" dit te doen, voeg enkele bestanden toe aan het product en publiceer ze."
 
 #. module: website_sale
 #: model:ir.ui.view,arch_db:website_sale.product_template_search_view_website
@@ -2720,7 +2786,7 @@ msgstr "Beoordeling laatste waarde"
 #. module: website_sale
 #: model:ir.model.fields,field_description:website_sale.field_product_product_rating_count
 msgid "Rating count"
-msgstr "Beoordeling teller"
+msgstr "Aantal beoordelingen"
 
 #. module: website_sale
 #: model:ir.model.fields,help:website_sale.field_product_product_rating_last_feedback
@@ -2959,7 +3025,7 @@ msgstr "Verkoop in meerdere valuta's"
 #. module: website_sale
 #: model:ir.actions.server,name:website_sale.ir_actions_server_sale_cart_recovery_email
 msgid "Send a Cart Recovery Email"
-msgstr ""
+msgstr "Verstuur een herstel e-mail"
 
 #. module: website_sale
 #: model:ir.ui.view,arch_db:website_sale.sale_order_view_form_cart_recovery
@@ -2968,8 +3034,8 @@ msgstr "Verstuur een herstel e-mail"
 
 #. module: website_sale
 #: model:ir.ui.view,arch_db:website_sale.res_config_settings_view_form
-msgid "Send a recovery email to authentified shoppers"
-msgstr ""
+msgid "Send a recovery email to authenticated shoppers"
+msgstr "Stuur een herstel e-mail naar gevalideerde klanten"
 
 #. module: website_sale
 #. openerp-web
@@ -2977,6 +3043,8 @@ msgstr ""
 #, python-format
 msgid "Send a recovery email to visitors who haven't completed their order."
 msgstr ""
+"Stuur een herstel e-mail naar bezoekers welke hun bestelling niet hebben "
+"afgerond."
 
 #. module: website_sale
 #: model:ir.model.fields,field_description:website_sale.field_product_public_category_sequence
@@ -3006,7 +3074,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:website_sale.res_config_settings_view_form
 msgid "Set product attributes (e.g. color, size) to sell variants"
 msgstr ""
-"Stel productattributen in (bijvoorbeeld kleur, grootte) om varianten te "
+"Stel productkenmerken in (bijvoorbeeld kleur, grootte) om varianten te "
 "verkopen"
 
 #. module: website_sale
@@ -3035,7 +3103,7 @@ msgstr "Verzendkosten"
 #. module: website_sale
 #: model:ir.model.fields,field_description:website_sale.field_res_config_settings_sale_delivery_settings
 msgid "Shipping Management"
-msgstr "Vervoersbeheer"
+msgstr "Verzendbeheer"
 
 #. module: website_sale
 #: model:ir.ui.view,arch_db:website_sale.products
@@ -3134,7 +3202,7 @@ msgstr ""
 "als betaling gateways met uw eigen payment verwerker."
 
 #. module: website_sale
-#: code:addons/website_sale/controllers/main.py:517
+#: code:addons/website_sale/controllers/main.py:520
 #, python-format
 msgid "Some required fields are empty."
 msgstr "Sommige verplichte velden zijn leeg."
@@ -3350,6 +3418,8 @@ msgid ""
 "The mode selected here applies as invoicing policy of any new product "
 "created but not of products already existing."
 msgstr ""
+"De mode hier geselecteerd geld als factuurbeleid voor ieder nieuw aangemaakt"
+" product, maar niet voor bestaande producten."
 
 #. module: website_sale
 #: code:addons/website_sale/models/sale_order.py:247
@@ -3358,6 +3428,8 @@ msgid ""
 "The quote should be sent and the payment acquirer type should be manual or "
 "wire transfer"
 msgstr ""
+"De offerte moet worden verstuurt en de betaalverwerker soort moet staan op "
+"handmatig of overmaken."
 
 #. module: website_sale
 #: model:ir.ui.view,arch_db:website_sale.website_planner
@@ -3455,6 +3527,11 @@ msgid "Total"
 msgstr "Totaal"
 
 #. module: website_sale
+#: model:ir.ui.view,arch_db:website_sale.cart_popover
+msgid "True"
+msgstr "Waar"
+
+#. module: website_sale
 #: model:ir.model.fields,field_description:website_sale.field_product_attribute_type
 msgid "Type"
 msgstr "Soort"
@@ -3502,7 +3579,7 @@ msgstr "Onbetaalde orders"
 #: code:addons/website_sale/static/src/xml/website_sale_dashboard.xml:75
 #, python-format
 msgid "Untaxed Total Sold"
-msgstr "Onbelast totaal verkocht"
+msgstr "Totaal excl. BTW verkocht"
 
 #. module: website_sale
 #. openerp-web
@@ -3582,6 +3659,12 @@ msgid "Website price"
 msgstr "Website prijs"
 
 #. module: website_sale
+#: model:ir.model.fields,field_description:website_sale.field_product_product_website_price_difference
+#: model:ir.model.fields,field_description:website_sale.field_product_template_website_price_difference
+msgid "Website price difference"
+msgstr "Website prijsverschil"
+
+#. module: website_sale
 #: model:ir.model.fields,field_description:website_sale.field_product_product_website_public_price
 #: model:ir.model.fields,field_description:website_sale.field_product_template_website_public_price
 msgid "Website public price"
@@ -3637,6 +3720,9 @@ msgid ""
 "(from Sales tab). With the second one, you set prices and computation rules "
 "from Pricelists."
 msgstr ""
+"Met de eerste optie kunt u meerder prijzen in stellen op het product "
+"configuratie formulier (verkoop tab). Met de tweede optie, kunt prijzen en "
+"rekenregels instellen op prijslijsten."
 
 #. module: website_sale
 #: model:ir.ui.view,arch_db:website_sale.website_planner
@@ -3714,6 +3800,11 @@ msgstr "Uw referentie"
 #: model:ir.ui.view,arch_db:website_sale.cart_popover
 msgid "Your cart is empty!"
 msgstr "Je winkelmandje is leeg!"
+
+#. module: website_sale
+#: model:ir.ui.view,arch_db:website_sale.payment_confirmation_status
+msgid "Your payment has been authorized."
+msgstr "Uw betaling is geauthoriseerd."
 
 #. module: website_sale
 #: model:ir.ui.view,arch_db:website_sale.cart

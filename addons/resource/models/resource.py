@@ -14,11 +14,13 @@ from operator import itemgetter
 from odoo import api, fields, models, _
 from odoo.addons.base.res.res_partner import _tz_get
 from odoo.exceptions import ValidationError
-from odoo.tools.float_utils import float_compare
+from odoo.tools.float_utils import float_compare, float_round
 
 
 def float_to_time(float_hour):
-    return datetime.time(int(math.modf(float_hour)[1]), int(60 * math.modf(float_hour)[0]), 0)
+    if float_hour == 24.0:
+        return datetime.time.max
+    return datetime.time(int(math.modf(float_hour)[1]), int(float_round(60 * math.modf(float_hour)[0], precision_digits=0)), 0)
 
 
 def to_naive_user_tz(datetime, record):
@@ -34,7 +36,7 @@ def to_naive_utc(datetime, record):
 
 
 def to_tz(datetime, tz_name):
-    tz = pytz.timezone(tz_name)
+    tz = pytz.timezone(tz_name) if tz_name else pytz.UTC
     return pytz.UTC.localize(datetime.replace(tzinfo=None), is_dst=False).astimezone(tz).replace(tzinfo=None)
 
 
@@ -128,6 +130,8 @@ class ResourceCalendar(models.Model):
         )
 
     def _interval_and(self, interval, interval_dst):
+        if interval.start_datetime > interval_dst.end_datetime or interval.end_datetime < interval_dst.start_datetime:
+            return None
         return self._interval_obj(
             interval.start_datetime > interval_dst.start_datetime and interval.start_datetime or interval_dst.start_datetime,
             interval.end_datetime < interval_dst.end_datetime and interval.end_datetime or interval_dst.end_datetime,
@@ -295,7 +299,7 @@ class ResourceCalendar(models.Model):
             domain += [('date_to', '>', fields.Datetime.to_string(start_datetime + timedelta(days=-1)))]
         if end_datetime:
             # domain += [('date_from', '<', fields.Datetime.to_string(to_naive_utc(end_datetime, self.env.user)))]
-            domain += [('date_from', '<', fields.Datetime.to_string(start_datetime + timedelta(days=1)))]
+            domain += [('date_from', '<', fields.Datetime.to_string(end_datetime + timedelta(days=1)))]
         leaves = self.env['resource.calendar.leaves'].search(domain + [('calendar_id', '=', self.id)])
 
         filtered_leaves = self.env['resource.calendar.leaves']
@@ -392,10 +396,10 @@ class ResourceCalendar(models.Model):
             start_datetime=datetime.datetime.combine(day_date, start_time),
             end_datetime=datetime.datetime.combine(day_date, end_time))
 
-        final_intervals = [
-            self._interval_and(leave_interval, work_interval)
-            for leave_interval in leaves_intervals
-            for work_interval in working_intervals]
+        final_intervals = [i for i in
+                           [self._interval_and(leave_interval, work_interval)
+                            for leave_interval in leaves_intervals
+                            for work_interval in working_intervals] if i]
 
         # adapt tz
         return [self._interval_new(
@@ -641,7 +645,9 @@ class ResourceCalendarAttendance(models.Model):
         ], 'Day of Week', required=True, index=True, default='0')
     date_from = fields.Date(string='Starting Date')
     date_to = fields.Date(string='End Date')
-    hour_from = fields.Float(string='Work from', required=True, index=True, help="Start and End time of working.")
+    hour_from = fields.Float(string='Work from', required=True, index=True,
+        help="Start and End time of working.\n"
+             "A specific value of 24:00 is interpreted as 23:59:59.999999.")
     hour_to = fields.Float(string='Work to', required=True)
     calendar_id = fields.Many2one("resource.calendar", string="Resource's Calendar", required=True, ondelete='cascade')
 
@@ -721,8 +727,8 @@ class ResourceCalendarLeaves(models.Model):
     date_from = fields.Datetime('Start Date', required=True)
     date_to = fields.Datetime('End Date', required=True)
     tz = fields.Selection(
-        _tz_get, string='Timezone', default=lambda self: self._context.get('tz', self.env.user.tz or 'UTC'),
-        help="Timezone used when encoding the leave. It is used to correctly"
+        _tz_get, string='Timezone', default=lambda self: self._context.get('tz') or self.env.user.tz or 'UTC',
+        help="Timezone used when encoding the leave. It is used to correctly "
              "localize leave hours when computing time intervals.")
     resource_id = fields.Many2one(
         "resource.resource", 'Resource',

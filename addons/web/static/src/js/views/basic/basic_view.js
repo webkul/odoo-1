@@ -47,7 +47,10 @@ var BasicView = AbstractView.extend({
         this.loadParams.context = params.context || {};
         this.loadParams.limit = parseInt(viewInfo.arch.attrs.limit, 10) || params.limit;
         this.loadParams.viewType = this.viewType;
+        this.loadParams.parentID = params.parentID;
         this.recordID = params.recordID;
+
+        this.model = params.model;
     },
 
     //--------------------------------------------------------------------------
@@ -117,7 +120,12 @@ var BasicView = AbstractView.extend({
                 // (because those fields were unknow at that time). So we ask
                 // the model to process them.
                 def = this.model.applyRawChanges(record.id, viewType).then(function () {
-                    if (!self.model.isNew(record.id)) {
+                    if (self.model.isNew(record.id)) {
+                        return self.model.applyDefaultValues(record.id, {}, {
+                            fieldNames: fieldNames,
+                            viewType: viewType,
+                        });
+                    } else {
                         return self.model.reload(record.id, {
                             fieldNames: fieldNames,
                             keepChanges: true,

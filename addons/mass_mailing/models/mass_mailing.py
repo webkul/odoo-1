@@ -332,7 +332,7 @@ class MassMailing(models.Model):
     mailing_model_real = fields.Char(compute='_compute_model', string='Recipients Real Model', default='mail.mass_mailing.contact', required=True)
     mailing_model_id = fields.Many2one('ir.model', string='Recipients Model', domain=[('model', 'in', MASS_MAILING_BUSINESS_MODELS)],
         default=lambda self: self.env.ref('mass_mailing.model_mail_mass_mailing_list').id)
-    mailing_model_name = fields.Char(related='mailing_model_id.model', string='Recipients Model Name')
+    mailing_model_name = fields.Char(related='mailing_model_id.model', string='Recipients Model Name', readonly=True, related_sudo=True)
     mailing_domain = fields.Char(string='Domain', oldname='domain', default=[])
     contact_list_ids = fields.Many2many('mail.mass_mailing.list', 'mail_mass_mailing_list_rel',
         string='Mailing Lists')
@@ -353,7 +353,7 @@ class MassMailing(models.Model):
     opened_ratio = fields.Integer(compute="_compute_statistics", string='Opened Ratio')
     replied_ratio = fields.Integer(compute="_compute_statistics", string='Replied Ratio')
     bounced_ratio = fields.Integer(compute="_compute_statistics", String='Bounced Ratio')
-    next_departure = fields.Datetime(compute="_compute_next_departure", string='Next Departure')
+    next_departure = fields.Datetime(compute="_compute_next_departure", string='Scheduled date')
 
     def _compute_total(self):
         for mass_mailing in self:
@@ -520,14 +520,15 @@ class MassMailing(models.Model):
         self.ensure_one()
         mass_mailing_copy = self.copy()
         if mass_mailing_copy:
+            context = dict(self.env.context)
+            context['form_view_initial_mode'] = 'edit'
             return {
                 'type': 'ir.actions.act_window',
                 'view_type': 'form',
                 'view_mode': 'form',
                 'res_model': 'mail.mass_mailing',
                 'res_id': mass_mailing_copy.id,
-                'context': self.env.context,
-                'flags': {'initial_mode': 'edit'},
+                'context': context,
             }
         return False
 
@@ -680,6 +681,7 @@ class MassMailing(models.Model):
                 'mass_mailing_id': mailing.id,
                 'mailing_list_ids': [(4, l.id) for l in mailing.contact_list_ids],
                 'no_auto_thread': mailing.reply_to_mode != 'thread',
+                'template_id': None,
             }
             if mailing.reply_to_mode == 'email':
                 composer_values['reply_to'] = mailing.reply_to
@@ -718,6 +720,8 @@ class MassMailing(models.Model):
     def _process_mass_mailing_queue(self):
         mass_mailings = self.search([('state', 'in', ('in_queue', 'sending')), '|', ('schedule_date', '<', fields.Datetime.now()), ('schedule_date', '=', False)])
         for mass_mailing in mass_mailings:
+            user = mass_mailing.write_uid or self.env.user
+            mass_mailing = mass_mailing.with_context(**user.sudo(user=user).context_get())
             if len(mass_mailing.get_remaining_recipients()) > 0:
                 mass_mailing.state = 'sending'
                 mass_mailing.send_mail()

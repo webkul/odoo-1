@@ -3,17 +3,19 @@
 # * sale_stock
 # 
 # Translators:
-# Martin Trigaux <mat@odoo.com>, 2017
+# Martin Trigaux, 2017
 # Murat Kaplan <muratk@projetgrup.com>, 2017
 # Ediz Duman <neps1192@gmail.com>, 2017
 # Güven YILMAZ <guvenyilmaz@outlook.com.tr>, 2017
+# Ertuğrul Güreş <ertugrulg@projetgrup.com>, 2017
+# Umur Akın <umura@projetgrup.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.saas~18\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-10-02 11:26+0000\n"
 "PO-Revision-Date: 2017-10-02 11:26+0000\n"
-"Last-Translator: Güven YILMAZ <guvenyilmaz@outlook.com.tr>, 2017\n"
+"Last-Translator: Umur Akın <umura@projetgrup.com>, 2018\n"
 "Language-Team: Turkish (https://www.transifex.com/odoo/teams/41243/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,6 +30,8 @@ msgid ""
 "\n"
 "There are %s %s available accross all warehouses."
 msgstr ""
+"\n"
+"There are %s %s available accross all warehouses."
 
 #. module: sale_stock
 #: model:ir.ui.view,arch_db:sale_stock.report_delivery_document_inherit_sale_stock
@@ -165,6 +169,9 @@ msgid ""
 "for delivery that many days earlier than the actual promised date, to cope "
 "with unexpected delays in the supply chain."
 msgstr ""
+"Müşterilere söz verilen tarihler için hata payı. Ürünler, tedarik zincirinde"
+" beklenmedik gecikmelerle başa çıkmak için gerçek vaat edilen tarihten "
+"önceki günlerden daha uzun bir süre önce teslimat için planlanacaktır."
 
 #. module: sale_stock
 #: model:ir.model.fields,help:sale_stock.field_res_company_security_lead
@@ -209,7 +216,7 @@ msgstr "Paket"
 #. module: sale_stock
 #: model:ir.model.fields,field_description:sale_stock.field_sale_order_picking_ids
 msgid "Pickings"
-msgstr "Toplama Listeleri"
+msgstr "Transferler"
 
 #. module: sale_stock
 #: model:ir.model.fields,field_description:sale_stock.field_sale_order_procurement_group_id
@@ -360,6 +367,10 @@ msgid ""
 "available in sales orders, routes must have 'Sales Order Line' option "
 "checked in their setup form."
 msgstr ""
+"Bu, alışılmadık bir sipariş senaryosu durumunda, satış sipariş satırlarına "
+"(ör. Dropshipping, sipariş üzerine) özel bir rota uygulamak için izin verir."
+" Satış siparişlerinde mevcut olması için, rotaların kurulum ayarlarında "
+"'Satış Sipariş Satırları' seçeneğinin işaretli olması gerekir."
 
 #. module: sale_stock
 #: code:addons/sale_stock/models/sale_order.py:273
@@ -410,6 +421,8 @@ msgstr ""
 msgid ""
 "You plan to sell %s %s but you only have %s %s available in %s warehouse."
 msgstr ""
+"%s %s satmayı planlıyorsunuz ancak kullanılabilir yalnızca %s %s var! Stok "
+"miktarı %s."
 
 #. module: sale_stock
 #: model:ir.ui.view,arch_db:sale_stock.res_config_settings_view_form_stock

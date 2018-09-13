@@ -9,17 +9,18 @@
 # Saban Yildiz <sabany@projetgrup.com>, 2017
 # Ayhan KIZILTAN <akiziltan76@hotmail.com>, 2017
 # Ediz Duman <neps1192@gmail.com>, 2017
-# Martin Trigaux <mat@odoo.com>, 2017
+# Martin Trigaux, 2017
 # Levent Karakaş <levent@mektup.at>, 2017
 # Güven YILMAZ <guvenyilmaz@outlook.com.tr>, 2017
 # Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2017
+# Umur Akın <umura@projetgrup.com>, 2018
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.saas~18\n"
+"Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-20 09:54+0000\n"
-"PO-Revision-Date: 2017-09-20 09:54+0000\n"
-"Last-Translator: Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2017\n"
+"POT-Creation-Date: 2017-11-30 13:12+0000\n"
+"PO-Revision-Date: 2017-11-30 13:12+0000\n"
+"Last-Translator: Umur Akın <umura@projetgrup.com>, 2018\n"
 "Language-Team: Turkish (https://www.transifex.com/odoo/teams/41243/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -63,6 +64,11 @@ msgid ""
 "country, GeoIP must be installed on your server, otherwise, the countries of"
 " the rule will not be taken into account.</span>"
 msgstr ""
+"<span>Canlı destek kanalınız için kuralları tanımlayın. Belirtilen URL ve "
+"ülke için aksiyon tanımlayabilir (desteği gizle, desteği otomatik aç, veya "
+"sadece butonu göster)<br/>Ülkeyi tanımlayabilmek için, GeoIP'nin sunucuda "
+"yüklenmiş olması gerekmektedir, aksi durumda ülke ile ilgili kurallar "
+"geçersiz olacaktır.</span>"
 
 #. module: im_livechat
 #: model:ir.model.fields,field_description:im_livechat.field_im_livechat_channel_rule_action
@@ -220,7 +226,7 @@ msgstr "Sohbet"
 #: code:addons/im_livechat/static/src/js/copy_clipboard.js:32
 #, python-format
 msgid "Copied !"
-msgstr ""
+msgstr "Kopyalandı!"
 
 #. module: im_livechat
 #. openerp-web
@@ -228,7 +234,7 @@ msgstr ""
 #: code:addons/im_livechat/static/src/xml/copy_clipboard.xml:12
 #, python-format
 msgid "Copy Text"
-msgstr ""
+msgstr "Metni Kopyala"
 
 #. module: im_livechat
 #: model:ir.ui.view,arch_db:im_livechat.im_livechat_channel_view_form
@@ -263,7 +269,6 @@ msgstr "Oluşturulma (gün)"
 
 #. module: im_livechat
 #: model:ir.ui.view,arch_db:im_livechat.im_livechat_report_channel_view_search
-#: model:ir.ui.view,arch_db:im_livechat.im_livechat_report_operator_view_search
 msgid "Creation date (hour)"
 msgstr "Oluşturulma (saat)"
 
@@ -297,7 +302,7 @@ msgstr "Müşteri Memnuniyeti"
 #. module: im_livechat
 #: model:ir.actions.act_window,help:im_livechat.rating_rating_action_livechat_report
 msgid "Customer ratings on livechat session."
-msgstr ""
+msgstr "Canlı sohbet oturumundaki müşteri puanları"
 
 #. module: im_livechat
 #: model:ir.model.fields,help:im_livechat.field_im_livechat_channel_button_text
@@ -473,11 +478,6 @@ msgid "Last Modified on"
 msgstr "Son Güncelleme"
 
 #. module: im_livechat
-#: model:ir.model,name:im_livechat.model_mail_channel_partner
-msgid "Last Seen Many2many"
-msgstr "Son Görülme Many2many"
-
-#. module: im_livechat
 #: model:ir.model.fields,field_description:im_livechat.field_im_livechat_channel_rule_write_uid
 #: model:ir.model.fields,field_description:im_livechat.field_im_livechat_channel_write_uid
 msgid "Last Updated by"
@@ -504,6 +504,11 @@ msgstr "Ayrıl"
 #: model:ir.ui.view,arch_db:im_livechat.im_livechat_channel_view_form
 msgid "Leave Channel"
 msgstr "Kanaldan Ayrıl"
+
+#. module: im_livechat
+#: model:ir.model,name:im_livechat.model_mail_channel_partner
+msgid "Listeners of a Channel"
+msgstr "Bir Kanal Dinleyicileri"
 
 #. module: im_livechat
 #: model:ir.ui.menu,name:im_livechat.menu_livechat_root
@@ -537,7 +542,7 @@ msgid ""
 "your company livechat session performance. Extract information about the "
 "missed sessions, the audiance, the duration of a session, etc."
 msgstr ""
-"Canlı Sohbet Destek Kanalı istatistikleri firmanızın canlı sohbet oturum "
+"Canlı Sohbet Destek Kanalı istatistikleri şirketinizin canlı sohbet oturum "
 "performansını kolayca kontrol ve analiz etmenizi sağlar. Kaçırılmış oturum "
 "istekleri, hedef kitlesi, oturum süresi, vb. konularda bilgi elde edilir."
 
@@ -601,7 +606,7 @@ msgstr "İsim"
 #: code:addons/im_livechat/models/mail_channel.py:125
 #, python-format
 msgid "No history found"
-msgstr ""
+msgstr "Tarih bulunamadı"
 
 #. module: im_livechat
 #. openerp-web
@@ -700,22 +705,22 @@ msgstr "Değerlendirme: :rating_%d"
 #. module: im_livechat
 #: model:ir.ui.view,arch_db:im_livechat.im_livechat_channel_view_kanban
 msgid "Rating: Bad"
-msgstr ""
+msgstr "Puan: Kötü"
 
 #. module: im_livechat
 #: model:ir.ui.view,arch_db:im_livechat.im_livechat_channel_view_kanban
 msgid "Rating: Great"
-msgstr ""
+msgstr "Puan: İyi"
 
 #. module: im_livechat
 #: model:ir.ui.view,arch_db:im_livechat.im_livechat_channel_view_kanban
 msgid "Rating: Okay"
-msgstr ""
+msgstr "Puan: Fena Değil"
 
 #. module: im_livechat
 #: model:ir.actions.act_window,name:im_livechat.rating_rating_action_view_livechat_rating
 msgid "Ratings for livechat channel"
-msgstr ""
+msgstr "Canlı yardım kanalı puanları"
 
 #. module: im_livechat
 #: model:ir.model.fields,help:im_livechat.field_im_livechat_channel_rule_regex_url
@@ -754,7 +759,7 @@ msgstr "Arama raporu"
 #: code:addons/im_livechat/models/mail_channel.py:113
 #, python-format
 msgid "See 15 last visited pages"
-msgstr ""
+msgstr "Ziyaret edilen son 15 sayfayı gör"
 
 #. module: im_livechat
 #: model:ir.ui.view,arch_db:im_livechat.mail_channel_view_form
@@ -849,7 +854,7 @@ msgstr "Destek kanallarına katılmaya yetkili olacak"
 #. module: im_livechat
 #: model:ir.actions.act_window,help:im_livechat.rating_rating_action_view_livechat_rating
 msgid "There is no rating for this channel at the moment."
-msgstr ""
+msgstr "Şuanda bu kanal için bir puan bulunmuyor."
 
 #. module: im_livechat
 #: model:ir.model.fields,help:im_livechat.field_im_livechat_channel_image
@@ -958,13 +963,6 @@ msgstr "örn. Merhaba, size nasıl yardımcı olabilirim?"
 #: model:ir.ui.view,arch_db:im_livechat.im_livechat_channel_view_form
 msgid "e.g. YourWebsite.com"
 msgstr "örn. Websiteniz.com"
-
-#. module: im_livechat
-#. openerp-web
-#: code:addons/im_livechat/static/src/xml/im_livechat_backend.xml:10
-#, python-format
-msgid "fa-comments"
-msgstr ""
 
 #. module: im_livechat
 #: model:ir.model,name:im_livechat.model_ir_autovacuum

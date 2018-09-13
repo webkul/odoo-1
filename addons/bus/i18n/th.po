@@ -1,20 +1,23 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * bus
-#
+# 
 # Translators:
+# Martin Trigaux, 2017
+# Somchart Jabsung <jabsung.s@gmail.com>, 2018
+# Khwunchai Jaengsawang <khwunchai.j@ku.th>, 2018
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo 9.0\n"
+"Project-Id-Version: Odoo Server 10.saas~18\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-18 14:07+0000\n"
-"PO-Revision-Date: 2016-06-30 09:52+0000\n"
-"Last-Translator: Khwunchai Jaengsawang <khwunchai.j@ku.th>\n"
-"Language-Team: Thai (http://www.transifex.com/odoo/odoo-9/language/th/)\n"
-"Language: th\n"
+"POT-Creation-Date: 2017-09-20 09:53+0000\n"
+"PO-Revision-Date: 2017-09-20 09:53+0000\n"
+"Last-Translator: Khwunchai Jaengsawang <khwunchai.j@ku.th>, 2018\n"
+"Language-Team: Thai (https://www.transifex.com/odoo/teams/41243/th/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
+"Language: th\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: bus
@@ -33,6 +36,11 @@ msgid "Channel"
 msgstr "ช่องทาง"
 
 #. module: bus
+#: model:ir.model,name:bus.model_res_partner
+msgid "Contact"
+msgstr "ผู้ติดต่อ"
+
+#. module: bus
 #: model:ir.model.fields,field_description:bus.field_bus_bus_create_date
 msgid "Create date"
 msgstr "วันที่สร้าง"
@@ -47,21 +55,6 @@ msgstr "สร้างโดย"
 #: model:ir.model.fields,field_description:bus.field_bus_presence_display_name
 msgid "Display Name"
 msgstr "ชื่อที่ใช้แสดง"
-
-#. module: bus
-#: model:ir.model.fields,field_description:bus.field_res_users_partner_latitude
-msgid "Geo Latitude"
-msgstr ""
-
-#. module: bus
-#: model:ir.model.fields,field_description:bus.field_res_users_partner_longitude
-msgid "Geo Longitude"
-msgstr ""
-
-#. module: bus
-#: model:ir.model.fields,field_description:bus.field_res_users_date_localization
-msgid "Geolocation Date"
-msgstr ""
 
 #. module: bus
 #: model:ir.model.fields,field_description:bus.field_bus_bus_id
@@ -118,11 +111,6 @@ msgid "Online"
 msgstr "ออนไลน์"
 
 #. module: bus
-#: model:ir.model,name:bus.model_res_partner
-msgid "Partner"
-msgstr "คู่ค้า"
-
-#. module: bus
 #: model:ir.model,name:bus.model_bus_presence
 msgid "User Presence"
 msgstr ""
@@ -137,6 +125,3 @@ msgstr "ผู้ใช้งาน"
 #: model:ir.model,name:bus.model_bus_bus
 msgid "bus.bus"
 msgstr ""
-
-#~ msgid "Created on"
-#~ msgstr "สร้างเมื่อ"

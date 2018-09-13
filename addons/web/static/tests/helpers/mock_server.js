@@ -32,9 +32,6 @@ var MockServer = Class.extend({
             if (!('name' in model.fields)) {
                 model.fields.name = {string: "Name", type: "char", default: "name"};
             }
-            for (var fieldName in model.onchanges) {
-                model.fields[fieldName].onChange = "1";
-            }
             model.records = model.records || [];
 
             for (var i = 0; i < model.records.length; i++) {
@@ -113,14 +110,14 @@ var MockServer = Class.extend({
                 console.log('%c[rpc] response' + route, 'color: blue; font-weight: bold;', JSON.parse(resultString));
             }
             return JSON.parse(resultString);
-        }).fail(function (result) {
+        }, function (result, event) {
             var errorString = JSON.stringify(result || false);
             if (logLevel === 1) {
                 console.log('Mock: (ERROR)' + route, JSON.parse(errorString));
             } else if (logLevel === 2) {
                 console.log('%c[rpc] response (error) ' + route, 'color: orange; font-weight: bold;', JSON.parse(errorString));
             }
-            return JSON.parse(errorString);
+            return $.Deferred().reject(errorString, event || $.Event());
         });
     },
 
@@ -232,7 +229,6 @@ var MockServer = Class.extend({
             if (node.attrs.attrs) {
                 var attrs = pyeval.py_eval(node.attrs.attrs);
                 _.extend(modifiers, attrs);
-                delete node.attrs.attrs;
             }
             if (node.attrs.states) {
                 if (!modifiers.invisible) {
@@ -282,7 +278,7 @@ var MockServer = Class.extend({
 
             // add onchanges
             if (name in onchanges) {
-                field.onChange="1";
+                node.attrs.on_change="1";
             }
         });
         return {
@@ -495,9 +491,13 @@ var MockServer = Class.extend({
                 return record.display_name.indexOf(str) !== -1;
             });
         }
-        return _.map(records, function (record) {
+        var result = _.map(records, function (record) {
             return [record.id, record.display_name];
         });
+        if (args.limit) {
+            return result.slice(0, args.limit);
+        }
+        return result;
     },
     /**
      * Simulate an 'onchange' rpc
@@ -710,6 +710,23 @@ var MockServer = Class.extend({
 
             return res;
         });
+
+        if (kwargs.orderby) {
+            // only consider first sorting level
+            kwargs.orderby = kwargs.orderby.split(',')[0];
+            var fieldName = kwargs.orderby.split(' ')[0];
+            var order = kwargs.orderby.split(' ')[1];
+            result.sort(function (g1, g2) {
+                if (g1[fieldName] < g2[fieldName]) {
+                    return order === 'ASC' ? -1 : 1;
+                }
+                if (g1[fieldName] > g2[fieldName]) {
+                    return order === 'ASC' ? 1 : -1;
+                }
+                return 0;
+            });
+        }
+
         return result;
     },
     /**
@@ -722,7 +739,7 @@ var MockServer = Class.extend({
      */
     _mockReadProgressBar: function (model, kwargs) {
         var domain = kwargs.domain;
-        var groupBy = kwargs.groupBy;
+        var groupBy = kwargs.group_by;
         var progress_bar = kwargs.progress_bar;
 
         var records = this._getRecords(model, domain || []);
@@ -745,6 +762,23 @@ var MockServer = Class.extend({
         });
 
         return data;
+    },
+    /**
+     * Simulates a 'resequence' operation
+     *
+     * @private
+     * @param {string} model
+     * @param {string} field
+     * @param {Array} ids
+     */
+    _mockResequence: function (args) {
+        var offset = args.offset ? Number(args.offset) : 0;
+        var field = args.field ? args.field : 'sequence';
+        var records = this.data[args.model].records;
+        for (var i in args.ids) {
+            var record = _.findWhere(records, {id: args.ids[i]});
+            record[field] = Number(i) + offset;
+        }
     },
     /**
      * Simulate a 'search_count' operation
@@ -903,6 +937,9 @@ var MockServer = Class.extend({
 
             case '/web/dataset/search_read':
                 return $.when(this._mockSearchReadController(args));
+
+            case '/web/dataset/resequence':
+                return $.when(this._mockResequence(args));
         }
         if (route.indexOf('/web/image') >= 0 || _.contains(['.png', '.jpg'], route.substr(route.length - 4))) {
             return $.when();

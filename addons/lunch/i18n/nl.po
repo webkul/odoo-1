@@ -104,6 +104,9 @@ msgid ""
 "Alerts are used to warn employee from possible issues concerning the lunch orders.\n"
 "                To create a lunch alert you have to define its recurrence, the time interval during which the alert should be executed and the message to display."
 msgstr ""
+"Waarschuwingen worden gebruikt om personeelsleden op de hoogte te houden van eventuele\n"
+"problemen met hun lunch order. Om een waarschuwing in te stellen moet u de herhaling, het\n"
+"interval en het te tonen bericht ingeven."
 
 #. module: lunch
 #: model:ir.model.fields,field_description:lunch.field_lunch_cashmove_amount
@@ -572,7 +575,7 @@ msgstr "Nieuw"
 #: model:ir.actions.act_window,name:lunch.lunch_order_action_form
 #: model:ir.ui.menu,name:lunch.lunch_order_menu_form
 msgid "New Order"
-msgstr "Nieuw order"
+msgstr "Nieuwe order"
 
 #. module: lunch
 #: code:addons/lunch/wizard/lucky_order.py:39
@@ -626,7 +629,7 @@ msgstr "Bestel maand"
 #. module: lunch
 #: model:ir.ui.view,arch_db:lunch.lunch_order_line_view_tree
 msgid "Order lines Tree"
-msgstr "Orderregel lijst"
+msgstr "Orderregellijst"
 
 #. module: lunch
 #: selection:lunch.order.line,state:0
@@ -835,7 +838,7 @@ msgid ""
 " new lunch order."
 msgstr ""
 "Er is geen eerdere bestelling opgenomen. Kik op \"Mijn lunches\" en maak een"
-" nieuwe lunch order."
+" nieuwe lunchorder."
 
 #. module: lunch
 #. openerp-web

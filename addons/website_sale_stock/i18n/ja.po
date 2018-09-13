@@ -4,14 +4,14 @@
 # 
 # Translators:
 # Yoshi Tashiro <tashiro@roomsfor.hk>, 2017
-# Martin Trigaux <mat@odoo.com>, 2017
+# Martin Trigaux, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.saas~18\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-10-02 11:26+0000\n"
 "PO-Revision-Date: 2017-10-02 11:26+0000\n"
-"Last-Translator: Martin Trigaux <mat@odoo.com>, 2017\n"
+"Last-Translator: Martin Trigaux, 2017\n"
 "Language-Team: Japanese (https://www.transifex.com/odoo/teams/41243/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -64,7 +64,7 @@ msgstr "<strong>配送</strong>"
 #: model:ir.ui.view,arch_db:website_sale_stock.website_sale_stock_cart_lines
 #: model:ir.ui.view,arch_db:website_sale_stock.website_sale_stock_payment
 msgid "<strong>Warning!</strong>"
-msgstr ""
+msgstr "<strong>警告!</strong>"
 
 #. module: website_sale_stock
 #: model:ir.model.fields,help:website_sale_stock.field_product_product_inventory_availability
@@ -77,7 +77,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:website_sale_stock.field_product_template_available_threshold
 #: model:ir.model.fields,field_description:website_sale_stock.field_res_config_settings_available_threshold
 msgid "Availability Threshold"
-msgstr ""
+msgstr "利用可能水準"
 
 #. module: website_sale_stock
 #: model:ir.model.fields,field_description:website_sale_stock.field_product_product_cart_qty
@@ -88,12 +88,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:website_sale_stock.field_product_product_custom_message
 #: model:ir.model.fields,field_description:website_sale_stock.field_product_template_custom_message
 msgid "Custom Message"
-msgstr ""
+msgstr "カスタムメッセージ"
 
 #. module: website_sale_stock
 #: model:ir.ui.view,arch_db:website_sale_stock.res_config_settings_view_form
 msgid "Default Availability Mode"
-msgstr ""
+msgstr "デフォルト利用可能モード"
 
 #. module: website_sale_stock
 #: model:ir.ui.view,arch_db:website_sale_stock.res_config_settings_view_form
@@ -105,7 +105,7 @@ msgstr ""
 #. module: website_sale_stock
 #: model:ir.ui.view,arch_db:website_sale_stock.res_config_settings_view_form
 msgid "Default threshold"
-msgstr ""
+msgstr "デフォルト基準数"
 
 #. module: website_sale_stock
 #. openerp-web
@@ -123,7 +123,7 @@ msgstr "在庫"
 #: model:ir.model.fields,field_description:website_sale_stock.field_product_product_inventory_availability
 #: model:ir.model.fields,field_description:website_sale_stock.field_product_template_inventory_availability
 msgid "Inventory Availability"
-msgstr ""
+msgstr "在庫状況"
 
 #. module: website_sale_stock
 #: model:ir.ui.view,arch_db:website_sale_stock.res_config_settings_view_form
@@ -135,12 +135,12 @@ msgstr ""
 #. module: website_sale_stock
 #: model:ir.model,name:website_sale_stock.model_product_product
 msgid "Product"
-msgstr "製品"
+msgstr "プロダクト"
 
 #. module: website_sale_stock
 #: model:ir.model,name:website_sale_stock.model_product_template
 msgid "Product Template"
-msgstr "製品テンプレート"
+msgstr "プロダクトテンプレート"
 
 #. module: website_sale_stock
 #: model:ir.model,name:website_sale_stock.model_sale_order
@@ -150,31 +150,31 @@ msgstr "見積"
 #. module: website_sale_stock
 #: model:ir.model,name:website_sale_stock.model_sale_order_line
 msgid "Sales Order Line"
-msgstr "受注明細"
+msgstr "販売オーダ明細"
 
 #. module: website_sale_stock
 #: selection:product.template,inventory_availability:0
 #: selection:res.config.settings,inventory_availability:0
 msgid "Sell regardless of inventory"
-msgstr ""
+msgstr "在庫状況に関わらず販売"
 
 #. module: website_sale_stock
 #: selection:product.template,inventory_availability:0
 #: selection:res.config.settings,inventory_availability:0
 msgid "Show inventory below a threshold and prevent sales if not enough stock"
-msgstr ""
+msgstr "基準数以下の在庫を表示し、在庫不足の場合は販売不可"
 
 #. module: website_sale_stock
 #: selection:product.template,inventory_availability:0
 #: selection:res.config.settings,inventory_availability:0
 msgid "Show inventory on website and prevent sales if not enough stock"
-msgstr ""
+msgstr "在庫をウェブサイトに表示し、在庫不足の場合は販売不可"
 
 #. module: website_sale_stock
 #: selection:product.template,inventory_availability:0
 #: selection:res.config.settings,inventory_availability:0
 msgid "Show product-specific notifications"
-msgstr ""
+msgstr "プロダクト固有のメッセージを表示"
 
 #. module: website_sale_stock
 #: code:addons/website_sale_stock/models/sale_order.py:28
@@ -189,7 +189,7 @@ msgstr ""
 #: code:addons/website_sale_stock/static/src/xml/website_sale_stock_product_availability.xml:22
 #, python-format
 msgid "Temporarily out of stock"
-msgstr ""
+msgstr "在庫を切らしています"
 
 #. module: website_sale_stock
 #: model:ir.model.fields,field_description:website_sale_stock.field_sale_order_line_warning_stock
@@ -228,7 +228,7 @@ msgstr ""
 #: code:addons/website_sale_stock/static/src/xml/website_sale_stock_product_availability.xml:14
 #, python-format
 msgid "available"
-msgstr ""
+msgstr "お買上可能"
 
 #. module: website_sale_stock
 #. openerp-web

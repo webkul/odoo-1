@@ -54,6 +54,7 @@ odoo.define('point_of_sale.tour.pricelist', function (require) {
             var product_limon = posmodel.db.search_product_in_category(0, 'Stringers')[0];
             var product_pamplemousse = posmodel.db.search_product_in_category(0, 'Red grapefruit')[0];
             var product_grapes = posmodel.db.search_product_in_category(0, 'Black Grapes')[0];
+            var product_poire_conference = posmodel.db.search_product_in_category(0, 'Conference pears')[0];
             var product_external_audit = posmodel.db.search_product_in_category(0, 'External Audit')[0];
             var product_miscellaneous = posmodel.db.search_product_in_category(0, 'Miscellaneous')[0];
 
@@ -83,6 +84,7 @@ odoo.define('point_of_sale.tour.pricelist', function (require) {
                 .then(compare_backend_frontend(product_miscellaneous, 'Pricelist base', 1, undefined))
                 .then(compare_backend_frontend(product_miscellaneous, 'Pricelist base 2', 1, undefined))
                 .then(compare_backend_frontend(product_papillon_orange, 'Pricelist base rounding', 1, undefined))
+                .then(compare_backend_frontend(product_poire_conference, 'Public Pricelist', 1, undefined))
                 .then(function () {
                     $('.pos').addClass('done-testing');
                 });
@@ -165,14 +167,27 @@ odoo.define('point_of_sale.tour.pricelist', function (require) {
         content: "verify that unit price of oranges changed to $1",
         trigger: ".total > .value:contains('$ 2.00')",
     }, {
+        content: "order different oranges",
+        trigger: ".product:contains('Orange Butterfly')",
+    }, {
+        content: "change to price mode",
+        trigger: ".numpad button:contains('Price')",
+    }, {
+        content: "manually override the unit price of these oranges to $5",
+        trigger: ".numpad button.input-button:visible:contains('5')",
+    }, {
+        content: "change back to qty mode",
+        trigger: ".numpad button:contains('Qty')",
+    }, {
         content: "click pricelist button",
         trigger: ".control-button.o_pricelist_button",
     }, {
         content: "select public pricelist",
         trigger: ".selection-item:contains('Public Pricelist')",
     }, {
-        content: "verify that order has been recomputed",
-        trigger: ".total > .value:contains('$ 3.96')",
+        content: "verify that the boni oranges have been recomputed and the\
+butterfly oranges have not (their price was manually overriden)",
+        trigger: ".total > .value:contains('$ 8.96')",
     }, {
         content: "click pricelist button",
         trigger: ".control-button.o_pricelist_button",

@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
+from datetime import datetime, timedelta
+
 from odoo.exceptions import ValidationError
 from odoo.tests.common import TransactionCase
 from odoo.exceptions import AccessError, UserError
-
-from datetime import datetime, timedelta
 
 
 class StockQuant(TransactionCase):
@@ -274,6 +274,31 @@ class StockQuant(TransactionCase):
 
         self.assertEqual(self.env['stock.quant']._get_available_quantity(product2, stock_location), 2.0)
         self.assertEqual(self.env['stock.quant']._get_available_quantity(product2, stock_sub_location), 1.0)
+
+    def test_increase_available_quantity_6(self):
+        """ Increasing the available quantity in a view location should be forbidden.
+        """
+        stock_location = self.env.ref('stock.stock_location_stock')
+        location1 = self.env['stock.location'].create({
+            'name': 'viewloc1',
+            'usage': 'view',
+            'location_id': stock_location.id,
+        })
+        product1 = self.env['product.product'].create({
+            'name': 'Product A',
+            'type': 'product',
+        })
+        with self.assertRaises(ValidationError):
+            self.env['stock.quant']._update_available_quantity(product1, location1, 1.0)
+
+    def test_increase_available_quantity_7(self):
+        """ Setting a location's usage as "view" should be forbidden if it already
+        contains quant.
+        """
+        stock_location = self.env.ref('stock.stock_location_stock')
+        self.assertTrue(len(stock_location.quant_ids.ids) > 0)
+        with self.assertRaises(UserError):
+            stock_location.usage = 'view'
 
     def test_decrease_available_quantity_1(self):
         """ Decrease the available quantity when no quants are already in a location.
@@ -604,7 +629,24 @@ class StockQuant(TransactionCase):
         })
         quantity, in_date = self.env['stock.quant']._update_available_quantity(product1, stock_location, 1.0)
         self.assertEqual(quantity, 1)
-        self.assertEqual(in_date, None)
+        self.assertNotEqual(in_date, None)
+
+
+    def test_in_date_1b(self):
+        stock_location = self.env.ref('stock.stock_location_stock')
+        product1 = self.env['product.product'].create({
+            'name': 'Product A',
+            'type': 'product',
+        })
+        self.env['stock.quant'].create({
+            'product_id': product1.id,
+            'location_id': stock_location.id,
+            'quantity': 1.0,
+        })
+        quantity, in_date = self.env['stock.quant']._update_available_quantity(product1, stock_location, 2.0)
+        self.assertEqual(quantity, 3)
+        self.assertNotEqual(in_date, None)
+
 
     def test_in_date_2(self):
         """ Check that an incoming date is correctly set when updating the quantity of a tracked
@@ -681,6 +723,34 @@ class StockQuant(TransactionCase):
 
         # Removal strategy is LIFO, so lot1 should be received as it was received later.
         self.assertEqual(quants[0][0].lot_id.id, lot1.id)
+
+    def test_in_date_4b(self):
+        """ Check for LIFO and max with/without in_date that it handles the LIFO NULLS LAST well
+        """
+        stock_location = self.env.ref('stock.stock_location_stock')
+        stock_location1 = self.env.ref('stock.stock_location_components')
+        stock_location2 = self.env.ref('stock.stock_location_14')
+        lifo_strategy = self.env['product.removal'].search([('method', '=', 'lifo')])
+        stock_location.removal_strategy_id = lifo_strategy
+        product1 = self.env['product.product'].create({
+            'name': 'Product A',
+            'type': 'product',
+            'tracking': 'serial',
+        })
+
+        self.env['stock.quant'].create({
+            'product_id': product1.id,
+            'location_id': stock_location1.id,
+            'quantity': 1.0,
+        })
+
+        in_date_location2 = datetime.now()
+        self.env['stock.quant']._update_available_quantity(product1, stock_location2, 1.0, in_date=in_date_location2)
+
+        quants = self.env['stock.quant']._update_reserved_quantity(product1, stock_location, 1)
+
+        # Removal strategy is LIFO, so the one with date is the most recent one and should be selected
+        self.assertEqual(quants[0][0].location_id.id, stock_location2.id)
 
     def test_in_date_5(self):
         """ Receive the same lot at different times, once they're in the same location, the quants
